@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://byj3a3y5pp536"]
+
+[ext_resource type="Script" uid="uid://b7t86kcpoj4gv" path="res://components/cahrged_shoter_c.gd" id="1_kltxj"]
+[ext_resource type="Texture2D" uid="uid://p55jgj0ijdgx" path="res://icon.svg" id="2_up8mp"]
+[ext_resource type="Texture2D" uid="uid://dteewskngk11g" path="res://assets/textures/player/charged_shoter/charged_shoter.png" id="3_up8mp"]
+
+[sub_resource type="GDScript" id="GDScript_up8mp"]
+script/source = "extends Node2D
+
+
+func _process(_delta: float) -> void:
+	if get_tree().get_first_node_in_group(\"Boss\") != null:
+		look_at(get_tree().get_first_node_in_group(\"Boss\").global_position)
+	else:
+		rotate(0.05)
+	
+	$AnimatedSprite.frame = clamp(roundi($\"..\".charge_time),0,3)
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot2oa"]
+atlas = ExtResource("3_up8mp")
+region = Rect2(0, 0, 7, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vib6i"]
+atlas = ExtResource("3_up8mp")
+region = Rect2(7, 0, 7, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihfiw"]
+atlas = ExtResource("3_up8mp")
+region = Rect2(14, 0, 7, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyhth"]
+atlas = ExtResource("3_up8mp")
+region = Rect2(21, 0, 7, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2glmu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot2oa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vib6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihfiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyhth")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 5.0
+}]
+
+[node name="ChargedShoter_C" type="Node2D"]
+script = ExtResource("1_kltxj")
+
+[node name="Marker" type="Marker2D" parent="."]
+position = Vector2(127, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker"]
+visible = false
+scale = Vector2(0.125, 0.109375)
+texture = ExtResource("2_up8mp")
+
+[node name="Sprite" type="Node2D" parent="."]
+script = SubResource("GDScript_up8mp")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Sprite"]
+position = Vector2(57, 0)
+rotation = 1.5707964
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_2glmu")
+animation = &"charge"
+frame = 3

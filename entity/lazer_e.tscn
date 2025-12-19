@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://swn8claig2vh"]
+
+[ext_resource type="Script" uid="uid://c4bneanhwmmbl" path="res://entity/lazer_e.gd" id="1_o3qck"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qck"]
+size = Vector2(5, 20)
+
+[node name="Lazer_E" type="Node2D"]
+script = ExtResource("1_o3qck")
+direction = Vector2(1, 0)
+damage = 1.0
+length = 1000.0
+
+[node name="RayCast" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_o3qck")
+target_position = Vector2(0, 100)
+max_results = 16
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 107)
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

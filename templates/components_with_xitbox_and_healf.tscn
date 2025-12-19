@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpptnyh04okad"]
+
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="1_vhw41"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_wf862"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htrrd"]
+
+[node name="Components" type="Node2D"]
+
+[node name="Healf_C" parent="." instance=ExtResource("1_vhw41")]
+
+[node name="XitboxArea_C" parent="." instance=ExtResource("2_wf862")]
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="XitboxArea_C"]
+process_mode = 4
+shape = SubResource("RectangleShape2D_htrrd")

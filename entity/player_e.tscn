@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbtfeh2i3pig5"]
+
+[ext_resource type="Script" uid="uid://0jnj8dxq3nj5" path="res://entity/player_e.gd" id="1_ljctn"]
+[ext_resource type="Texture2D" uid="uid://cfklqij3qwnt" path="res://assets/textures/player/player.png" id="2_p6v0q"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="3_p3qtw"]
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="4_p6v0q"]
+[ext_resource type="PackedScene" uid="uid://ccetrkam57grx" path="res://Gui/lose_sreen.tscn" id="5_nldwe"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="6_lqwqj"]
+
+[sub_resource type="GDScript" id="GDScript_lqwqj"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	visible = false
+	if $\"../\" != null:
+		if $\"../\".get_name() == \"Player_E\":
+			visible = true
+
+func _process(_delta: float) -> void:
+	if $\"../\" != null:
+		if $\"../\".get_name() == \"Player_E\":
+			rotate(-0.01)
+"
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_p6v0q"]
+points = PackedVector2Array(26, -10, 26, 10, 10, 26, -10, 26, -26, 10, -26, -10, -10, -26, 10, -26)
+
+[sub_resource type="GDScript" id="GDScript_nldwe"]
+script/source = "extends LineEdit
+
+func _process(_delta: float) -> void:
+	text = str($\"../Components/Healf_C\".healf)
+"
+
+[node name="Player_E" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_ljctn")
+weapons = Array[String](["cahrged_shoter", "shoter"])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.6249999, 1.6249999)
+texture = ExtResource("2_p6v0q")
+script = SubResource("GDScript_lqwqj")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("3_p3qtw")]
+entity_id = "Player_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("ConvexPolygonShape2D_p6v0q")
+
+[node name="Healf_C" parent="Components" instance=ExtResource("4_p6v0q")]
+
+[node name="Camera" type="Camera2D" parent="Components"]
+
+[node name="LoseSreen" parent="Components/Camera" instance=ExtResource("5_nldwe")]
+process_mode = 2
+visible = false
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -71.0
+offset_top = -88.0
+offset_right = -2.4375
+offset_bottom = -57.0
+scale = Vector2(2, 2)
+theme = ExtResource("6_lqwqj")
+alignment = 1
+flat = true
+script = SubResource("GDScript_nldwe")

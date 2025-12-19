@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b30fegt361tmj"]
+
+[ext_resource type="Script" uid="uid://dn71o0lc5bgoh" path="res://components/xitbox_area_c.gd" id="1_1bhcj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdcny"]
+
+[node name="XitboxArea_C" type="Area2D"]
+script = ExtResource("1_1bhcj")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wdcny")

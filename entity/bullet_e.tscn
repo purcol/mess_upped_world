@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvsoecqtrdlco"]
+
+[ext_resource type="Script" uid="uid://dj54gyo7b4va5" path="res://bullet_e.gd" id="1_jt8qi"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_g544m"]
+[ext_resource type="Texture2D" uid="uid://bmvrri7y5kr22" path="res://assets/textures/bullet/bullet.png" id="2_iyypy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htrrd"]
+
+[sub_resource type="GDScript" id="GDScript_g544m"]
+script/source = "extends Timer
+
+
+func _on_timeout() -> void:
+	$\"..\".queue_free()
+"
+
+[node name="Bullet_E" type="CharacterBody2D"]
+script = ExtResource("1_jt8qi")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+scale = Vector2(3.333333, 3.333333)
+texture = ExtResource("2_iyypy")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("2_g544m")]
+collision_layer = 5
+collision_mask = 5
+entity_id = "Bullet_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("RectangleShape2D_htrrd")
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+script = SubResource("GDScript_g544m")
+
+[connection signal="area_entered" from="Components/XitboxArea_C" to="." method="_on_xitbox_area_c_area_entered"]
+[connection signal="timeout" from="LifeTime" to="LifeTime" method="_on_timeout"]

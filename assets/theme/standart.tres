@@ -1,0 +1,143 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://c3jix8nnbwx53"]
+
+[ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="1_ddybn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_thipi"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.43529412, 0.43529412, 0.43529412, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3c58"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6bfw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_totlp"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aukxq"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y2bx"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddybn"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofhm3"]
+content_margin_left = 9.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxgoq"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dooqo"]
+bg_color = Color(1, 1, 1, 1)
+
+[resource]
+default_font = ExtResource("1_ddybn")
+Button/colors/font_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
+Button/colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/font_hover_pressed_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_ddybn")
+Button/styles/disabled = SubResource("StyleBoxFlat_thipi")
+Button/styles/focus = SubResource("StyleBoxFlat_g3c58")
+Button/styles/hover = SubResource("StyleBoxFlat_g3c58")
+Button/styles/normal = SubResource("StyleBoxFlat_g3c58")
+Button/styles/pressed = SubResource("StyleBoxFlat_g3c58")
+HSplitContainer/constants/separation = 0
+LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+LineEdit/colors/font_uneditable_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/fonts/font = ExtResource("1_ddybn")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_i6bfw")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_totlp")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_aukxq")
+Panel/styles/panel = SubResource("StyleBoxFlat_1y2bx")
+TextEdit/colors/caret_background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_color = Color(0.88, 0.88, 0.88, 0)
+TextEdit/colors/current_line_color = Color(0.24959998, 0.24959998, 0.26, 0)
+TextEdit/colors/font_readonly_color = Color(0.88, 0.88, 0.88, 1)
+TextEdit/colors/search_result_border_color = Color(0.3, 0.3, 0.3, 0)
+TextEdit/colors/search_result_color = Color(0.3, 0.3, 0.3, 0)
+TextEdit/colors/selection_color = Color(0.5, 0.5, 0.5, 0)
+TextEdit/colors/word_highlighted_color = Color(0.5, 0.5, 0.5, 0)
+TextEdit/font_sizes/font_size = 16
+TextEdit/fonts/font = ExtResource("1_ddybn")
+TextEdit/styles/focus = SubResource("StyleBoxFlat_ddybn")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_ofhm3")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_fxgoq")
+VBoxContainer/constants/separation = 0
+VSplitContainer/constants/minimum_grab_thickness = 0
+VSplitContainer/constants/separation = 0
+VSplitContainer/styles/split_bar_background = SubResource("StyleBoxFlat_dooqo")

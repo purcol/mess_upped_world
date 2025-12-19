@@ -1,0 +1,234 @@
+[gd_scene load_steps=15 format=3 uid="uid://db013jklnuapp"]
+
+[ext_resource type="Script" uid="uid://c5and7wsgtdne" path="res://entity/tuturial_boss_e.gd" id="1_4bngd"]
+[ext_resource type="Texture2D" uid="uid://p55jgj0ijdgx" path="res://icon.svg" id="2_75fbt"]
+[ext_resource type="Texture2D" uid="uid://hao4vs043bes" path="res://assets/textures/tutorial_boss/tutorial_boss.png" id="2_onpvo"]
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="3_3i624"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="4_onpvo"]
+[ext_resource type="PackedScene" uid="uid://cq8253bg8fa6u" path="res://components/shoter_c.tscn" id="5_75fbt"]
+[ext_resource type="PackedScene" uid="uid://dom8lmm4lym5n" path="res://components/lazer_shoter_c.tscn" id="6_3i624"]
+[ext_resource type="Texture2D" uid="uid://c5tum33rqae7i" path="res://assets/textures/tutorial_boss/lazer.png" id="8_0t4qp"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="8_myusl"]
+[ext_resource type="Texture2D" uid="uid://bkhon3h23qr80" path="res://assets/textures/tutorial_boss/storm.png" id="9_tbsq1"]
+[ext_resource type="Texture2D" uid="uid://clvfwufq7qt17" path="res://assets/textures/tutorial_boss/lazer_cover_up.png" id="10_2hu8v"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_onpvo"]
+points = PackedVector2Array(72, -192, 192, -72, 192, 72, 72, 192, -72, 192, -192, 72, -192, -72, -72, -192)
+
+[sub_resource type="GDScript" id="GDScript_75fbt"]
+script/source = "extends LineEdit
+
+func _process(_delta: float) -> void:
+	global_position = $\"..\".global_position + Vector2(-138.0,-320)
+	rotation = -$\"..\".rotation
+	text = str($\"../Components/Healf_C\".healf)
+"
+
+[sub_resource type="GDScript" id="GDScript_0t4qp"]
+script/source = "extends Sprite2D
+
+var nodes_name
+
+func array_to_string(arr: Array) -> String:
+	var s = \"\"
+	for i in arr:
+		s += String(i)
+	return s
+
+func _process(_delta: float) -> void:
+	visible = false
+	for node in get_node(\"../Components\").get_children():
+		nodes_name = node.name.split()
+		nodes_name.remove_at(nodes_name.size()-1)
+		if array_to_string(nodes_name) == \"LazerShoter_C_cross\":
+			if node.is_on:
+				visible = true
+	rotation = -$\"..\".rotation
+"
+
+[node name="TuturialBoss_E" type="CharacterBody2D" groups=["Boss"]]
+script = ExtResource("1_4bngd")
+speed = 10.0
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("2_onpvo")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="Healf_C" parent="Components" instance=ExtResource("3_3i624")]
+healf = 100.0
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("4_onpvo")]
+collision_layer = 2
+collision_mask = 2
+entity_id = "TuturialBoss_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("ConvexPolygonShape2D_onpvo")
+
+[node name="Shoter_C" parent="Components" instance=ExtResource("5_75fbt")]
+position = Vector2(160, -1)
+speed = 600.0
+speed_modificator = 0.25
+damage = 1.5
+aim_player = true
+on_timer = true
+is_palyer = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Components/Shoter_C"]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_75fbt")
+
+[node name="Shoter_C_storm" parent="Components" instance=ExtResource("5_75fbt")]
+position = Vector2(1, 139)
+direction = Vector2(-1, -1)
+speed = 400.0
+speed_modificator = 0.01
+damage = 0.5
+aim_player = true
+on_timer = true
+cooldown = 0.5
+local_bullets = true
+is_palyer = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Components/Shoter_C_storm"]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_75fbt")
+
+[node name="Shoter_C_storm2" parent="Components" instance=ExtResource("5_75fbt")]
+position = Vector2(0, -169)
+rotation = 4.712389
+direction = Vector2(1, 1)
+speed = 400.0
+speed_modificator = 0.01
+damage = 0.5
+aim_player = true
+on_timer = true
+cooldown = 0.5
+local_bullets = true
+is_palyer = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Components/Shoter_C_storm2"]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_75fbt")
+
+[node name="Shoter_C_storm3" parent="Components" instance=ExtResource("5_75fbt")]
+position = Vector2(-136, 0)
+direction = Vector2(-1, 0)
+speed_modificator = -0.1
+damage = 0.5
+aim_player = true
+on_timer = true
+cooldown = 0.5
+local_bullets = true
+is_palyer = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Components/Shoter_C_storm3"]
+visible = false
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("2_75fbt")
+
+[node name="LazerShoter_C_cross1" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 0)
+length = 1500.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+
+[node name="LazerShoter_C_cross2" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+length = 1500.0
+rotatate_lazer = 90.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+
+[node name="LazerShoter_C_cross3" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+length = 1500.0
+rotatate_lazer = 180.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+
+[node name="LazerShoter_C_cross4" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+length = 1500.0
+rotatate_lazer = 270.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+
+[node name="LazerShoter_C_cross5" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 0)
+damage = 2.0
+length = 1500.0
+rotatate_lazer = 45.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+delay = 2.0
+
+[node name="LazerShoter_C_cross6" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+damage = 2.0
+length = 1500.0
+rotatate_lazer = 135.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+delay = 2.0
+
+[node name="LazerShoter_C_cross7" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+damage = 2.0
+length = 1500.0
+rotatate_lazer = 225.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+delay = 2.0
+
+[node name="LazerShoter_C_cross8" parent="Components" instance=ExtResource("6_3i624")]
+direction = Vector2(1, 1)
+damage = 2.0
+length = 1500.0
+rotatate_lazer = 315.0
+aim_player = true
+on_timer = true
+cooldown = 4.0
+delay = 2.0
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = -138.0
+offset_top = -318.0
+offset_right = -69.4375
+offset_bottom = -287.0
+scale = Vector2(4, 4)
+theme = ExtResource("8_myusl")
+alignment = 1
+flat = true
+script = SubResource("GDScript_75fbt")
+
+[node name="LazerSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("8_0t4qp")
+script = SubResource("GDScript_0t4qp")
+
+[node name="StormSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("9_tbsq1")
+
+[node name="lazerCoverUpSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("10_2hu8v")

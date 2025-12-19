@@ -1,0 +1,607 @@
+[gd_scene load_steps=30 format=3 uid="uid://cw4sj4xjkq8o2"]
+
+[ext_resource type="PackedScene" uid="uid://ca8xi5jgrhfou" path="res://templates/beackroung.tscn" id="1_5v8yi"]
+[ext_resource type="Script" uid="uid://bs2w2dtn6hcd" path="res://worlds/pease.gd" id="1_fociy"]
+[ext_resource type="Script" uid="uid://ctt4ohvuu1rca" path="res://templates/follow_mouse_camera/follow_mouse_camera.gd" id="2_dkbyk"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="4_upm6v"]
+[ext_resource type="Script" uid="uid://brd3dt2uk6u6c" path="res://buttons_scripts/start_tutorial_boss.gd" id="5_4c2l3"]
+[ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="6_4c2l3"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="7_eid6d"]
+[ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="7_q1xvs"]
+[ext_resource type="PackedScene" uid="uid://bvlw1exf02m2s" path="res://worlds/battel_zone.tscn" id="7_uf2t8"]
+[ext_resource type="Texture2D" uid="uid://dwnaymwbxalt8" path="res://assets/nodes/beginigs_of_rampage.png" id="8_4ig3j"]
+[ext_resource type="Texture2D" uid="uid://w5dprfajikot" path="res://assets/textures/weapons/bullet.png" id="8_e37mn"]
+[ext_resource type="Texture2D" uid="uid://b6wk13du00sgc" path="res://assets/textures/achievements/first_pancake.png" id="8_jnctx"]
+[ext_resource type="Texture2D" uid="uid://dym7rhfn8145" path="res://assets/textures/weapons/charged_bullet.png" id="9_m411v"]
+
+[sub_resource type="Theme" id="Theme_eid6d"]
+LineEdit/font_sizes/font_size = 26
+LineEdit/fonts/font = ExtResource("6_4c2l3")
+
+[sub_resource type="Animation" id="Animation_fociy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTutorialBoss/Polygon2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(58.666676, -11.555556)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartTutorialBoss/Polygon2D2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(56.000008, 36.444443)]
+}
+
+[sub_resource type="Animation" id="Animation_dkbyk"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StartTutorialBoss/Polygon2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(58.666676, -11.555556), Vector2(58.666676, -3.5555563), Vector2(58.666676, -11.555556)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StartTutorialBoss/Polygon2D2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(56.000008, 36.444443), Vector2(56.000008, 23.11111), Vector2(56.000008, 36.444443)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v8yi"]
+_data = {
+&"RESET": SubResource("Animation_fociy"),
+&"idle": SubResource("Animation_dkbyk")
+}
+
+[sub_resource type="GDScript" id="GDScript_e37mn"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eid6d"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_eid6d"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	if G.selected_weapons.has(\"shoter\"):
+		G.selected_weapons.erase(\"shoter\")
+	else:
+		G.selected_weapons.append(\"shoter\")
+	focus_mode = Control.FOCUS_NONE
+
+func _process(_delta: float) -> void:
+	super(_delta)
+	focus_mode = Control.FOCUS_NONE
+	if is_hovered() and !disabled or G.selected_weapons.has(\"shoter\"):
+		$Control/SelectionArrow.visible = true
+	else:
+		$Control/SelectionArrow.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_uf2t8"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	if G.selected_weapons.has(\"cahrged_shoter\"):
+		G.selected_weapons.erase(\"cahrged_shoter\")
+	else:
+		G.selected_weapons.append(\"cahrged_shoter\")
+	focus_mode = Control.FOCUS_NONE
+
+func _process(_delta: float) -> void:
+	super(_delta)
+	focus_mode = Control.FOCUS_NONE
+	if is_hovered() and !disabled or G.selected_weapons.has(\"cahrged_shoter\"):
+		$Control/SelectionArrow.visible = true
+	else:
+		$Control/SelectionArrow.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_upm6v"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q1xvs"]
+
+[sub_resource type="GDScript" id="GDScript_q1xvs"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_87map"]
+script/source = "extends TextEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = str(G.selected_weapons)+\" \\n\"+str(G.total_time)+\" \\n\"+str(G.died_to)+\" \\n\"+str(G.win_to)
+"
+
+[sub_resource type="GDScript" id="GDScript_m411v"]
+script/source = "extends SimpleAchiementButton
+
+func unlock_condision() -> void:
+	if G.died_to[\"total\"] >= 1:
+		is_unlocked = true
+"
+
+[sub_resource type="GDScript" id="GDScript_4ig3j"]
+script/source = "extends SimpleAchiementButton
+
+func unlock_condision() -> void:
+	if G.win_to[\"TuturialBoss_E\"] >= 1:
+		is_unlocked = true
+"
+
+[sub_resource type="GDScript" id="GDScript_4c2l3"]
+script/source = "extends GameMenuButton
+
+@onready var text_size:Vector2 = $TextEdit.size
+
+func _toggled(_toggled_on: bool) -> void:
+	if _toggled_on:
+		$TextEdit.visible = true
+		get_tree().create_tween().tween_property($TextEdit, \"size\", text_size, 0.5)
+	else:
+		get_tree().create_tween().tween_property($TextEdit, \"size\", Vector2(text_size.x,0), 0.5)
+		await get_tree().create_timer(0.5).timeout
+		$TextEdit.visible = false
+	
+	focus_mode = Control.FOCUS_NONE
+
+func _ready() -> void:
+	text_size = $TextEdit.size
+	$TextEdit.size = Vector2(text_size.x,0)
+	$TextEdit.visible = false
+
+func _process(_delta: float) -> void:
+	focus_mode = Control.FOCUS_NONE
+	if is_hovered() and !disabled:
+		$Control/SelectionArrow.visible = true
+	else:
+		$Control/SelectionArrow.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_jnctx"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	G.update_and_save()
+	get_tree().quit()
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[node name="Pease" type="Node2D"]
+script = ExtResource("1_fociy")
+
+[node name="Beackroung" parent="." instance=ExtResource("1_5v8yi")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_dkbyk")
+
+[node name="UpArrow" type="Polygon2D" parent="Camera2D"]
+position = Vector2(0, -500)
+rotation = -3.1415927
+scale = Vector2(3, 3)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -2.6666718, -10.666666, -18.666672, -10.666666)
+
+[node name="DownArrow" type="Polygon2D" parent="Camera2D"]
+position = Vector2(0, 500)
+rotation = -3.1415927
+scale = Vector2(3, 3)
+color = Color(0.4186, 0.42619, 0.46, 1)
+offset = Vector2(10.665016, 13.345919)
+polygon = PackedVector2Array(-10.666671, -13.33333, -2.6666718, -5.33333, -18.666672, -5.33333)
+
+[node name="LeftArrow" type="Polygon2D" parent="Camera2D"]
+position = Vector2(-900, 0)
+rotation = -1.5707964
+scale = Vector2(3, 3)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666671, -13.33333, -2.6666718, -5.33333, -18.666672, -5.33333)
+
+[node name="RightArrow" type="Polygon2D" parent="Camera2D"]
+position = Vector2(900, 0)
+rotation = -1.5707964
+scale = Vector2(3, 3)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666672, -5.3333225, -2.6666708, -13.333323, -18.666672, -13.333323)
+
+[node name="Help" type="LineEdit" parent="Camera2D"]
+offset_left = -256.0
+offset_top = 400.0
+offset_right = 280.0
+offset_bottom = 432.0
+theme = SubResource("Theme_eid6d")
+text = "На ведись на край экрана, чтобы перемещаться по меню"
+alignment = 1
+editable = false
+flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5v8yi")
+}
+autoplay = "idle"
+
+[node name="MainButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WIP" type="LineEdit" parent="MainButtons"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -288.0
+offset_right = 264.0
+offset_bottom = -256.0
+theme = SubResource("Theme_eid6d")
+text = "игра не доделана, прошу прощения, обновления будут"
+alignment = 1
+editable = false
+flat = true
+
+[node name="Weapons" parent="MainButtons" instance=ExtResource("4_upm6v")]
+layout_mode = 0
+offset_left = 88.0
+offset_top = -232.0
+offset_right = 183.0
+offset_bottom = -214.0
+pivot_offset = Vector2(56.000008, 10.666667)
+text = "Оружия"
+script = SubResource("GDScript_e37mn")
+is_panel_button = true
+
+[node name="Panel" type="Panel" parent="MainButtons/Weapons"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 118.33334
+offset_bottom = 36.444443
+grow_horizontal = 0
+theme = ExtResource("7_eid6d")
+
+[node name="Border" type="Panel" parent="MainButtons/Weapons/Panel"]
+layout_mode = 0
+offset_right = 118.33335
+offset_bottom = 36.444443
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eid6d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainButtons/Weapons/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bullet" parent="MainButtons/Weapons/Panel/VBoxContainer" instance=ExtResource("4_upm6v")]
+layout_mode = 2
+text = "пуля"
+script = SubResource("GDScript_eid6d")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="MainButtons/Weapons/Panel/VBoxContainer/Bullet" instance=ExtResource("7_q1xvs")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 150.44444
+grow_horizontal = 0
+icon = ExtResource("8_e37mn")
+_title = "Пуля"
+description = "Стреляет в ближайшую цель.
+
+Становится сильнее с потерей хп."
+
+[node name="ChargedBullet" parent="MainButtons/Weapons/Panel/VBoxContainer" instance=ExtResource("4_upm6v")]
+layout_mode = 2
+text = "заряженная пуля"
+script = SubResource("GDScript_uf2t8")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="MainButtons/Weapons/Panel/VBoxContainer/ChargedBullet" instance=ExtResource("7_q1xvs")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 174.11111
+grow_horizontal = 0
+icon = ExtResource("9_m411v")
+_title = "Заряж. пуля"
+description = "Стреляет в ближайшую цель. Нужно заряжать зажатием ПКМ (мак. 3с). 
+
+Становится сильнее с потерей хп."
+
+[node name="Bosses" parent="MainButtons" instance=ExtResource("4_upm6v")]
+layout_mode = 0
+offset_left = -119.99998
+offset_top = -168.0
+offset_right = -59.999977
+offset_bottom = -150.0
+pivot_offset = Vector2(56.000008, 10.666667)
+disabled = true
+text = "Боссы"
+script = SubResource("GDScript_upm6v")
+
+[node name="Polygon2D" type="Polygon2D" parent="MainButtons/Bosses"]
+position = Vector2(1.0172526e-05, -0.8888906)
+color = Color(0.43529412, 0.43529412, 0.43529412, 1)
+polygon = PackedVector2Array(-2.6666565, 9.777775, -2.6666565, 12.444443, 64.000015, 12.444443, 64.000015, 9.777775)
+
+[node name="Nodes" parent="MainButtons" instance=ExtResource("4_upm6v")]
+layout_mode = 0
+offset_left = -120.00001
+offset_top = -232.0
+offset_right = -60.000008
+offset_bottom = -214.0
+pivot_offset = Vector2(56.000008, 10.666667)
+disabled = true
+text = "Ноды"
+script = SubResource("GDScript_upm6v")
+
+[node name="Polygon2D" type="Polygon2D" parent="MainButtons/Nodes"]
+position = Vector2(1.0172526e-05, -0.8888906)
+color = Color(0.43529412, 0.43529412, 0.43529412, 1)
+polygon = PackedVector2Array(-2.6666565, 9.777775, -2.6666565, 12.444443, 64.000015, 12.444443, 64.000015, 9.777775)
+
+[node name="Achievements" parent="MainButtons" instance=ExtResource("4_upm6v")]
+layout_mode = 0
+offset_left = 88.00003
+offset_top = -168.0
+offset_right = 183.00003
+offset_bottom = -150.0
+pivot_offset = Vector2(56.000008, 10.666667)
+text = "Достижения"
+script = SubResource("GDScript_upm6v")
+is_panel_button = true
+
+[node name="Panel" type="Panel" parent="MainButtons/Achievements"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 359.33334
+offset_bottom = 339.1111
+grow_horizontal = 0
+theme = ExtResource("7_eid6d")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q1xvs")
+
+[node name="Border" type="Panel" parent="MainButtons/Achievements/Panel"]
+visible = false
+layout_mode = 0
+offset_right = 118.33335
+offset_bottom = 36.444443
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eid6d")
+
+[node name="Container" type="VBoxContainer" parent="MainButtons/Achievements/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33800003
+anchor_bottom = 0.30100003
+offset_top = -0.66666794
+offset_right = -0.12133789
+offset_bottom = -3.7331161
+theme_override_constants/separation = 1
+
+[node name="Stats" parent="MainButtons/Achievements/Panel/Container" instance=ExtResource("4_upm6v")]
+layout_mode = 2
+text = "Дата сохранения"
+script = SubResource("GDScript_q1xvs")
+is_panel_button = true
+
+[node name="Panel" type="Panel" parent="MainButtons/Achievements/Panel/Container/Stats"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 118.33334
+offset_bottom = 125.333336
+grow_horizontal = 0
+theme = ExtResource("7_eid6d")
+
+[node name="StatsDisplay" type="TextEdit" parent="MainButtons/Achievements/Panel/Container/Stats/Panel"]
+layout_mode = 1
+offset_right = 237.33337
+offset_bottom = 250.66667
+scale = Vector2(0.5, 0.5)
+text = "ssdfsdf"
+wrap_mode = 1
+script = SubResource("GDScript_87map")
+
+[node name="Border" type="Panel" parent="MainButtons/Achievements/Panel/Container/Stats/Panel"]
+layout_mode = 0
+offset_right = 118.33335
+offset_bottom = 125.333336
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eid6d")
+
+[node name="achivement2" parent="MainButtons/Achievements/Panel/Container" instance=ExtResource("4_upm6v")]
+layout_mode = 2
+text = "Блин комом"
+script = SubResource("GDScript_m411v")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="MainButtons/Achievements/Panel/Container/achivement2" instance=ExtResource("7_q1xvs")]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 237.33334
+offset_bottom = 138.44446
+grow_horizontal = 0
+icon = ExtResource("8_jnctx")
+_title = "Блин комом"
+description = "Умрите первый раз.
+Не смотри на смерть как на провал, считай что это - прогресс! "
+
+[node name="achivement" parent="MainButtons/Achievements/Panel/Container" instance=ExtResource("4_upm6v")]
+layout_mode = 2
+text = "Начало Резни"
+script = SubResource("GDScript_4ig3j")
+is_panel_button = true
+is_hower_button = true
+animation_time = 0.25
+
+[node name="Panel" parent="MainButtons/Achievements/Panel/Container/achivement" instance=ExtResource("7_q1xvs")]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 219.0
+offset_bottom = 159.11111
+grow_horizontal = 0
+icon = ExtResource("8_4ig3j")
+_title = "Начало резьни"
+description = "убей обучающего боса хотя бы один раз.
+Первая хоть и маленькая победа, продолжай в том же духе!"
+
+[node name="StartTutorialBoss" parent="." instance=ExtResource("4_upm6v")]
+offset_left = -56.0
+offset_top = -10.5
+offset_bottom = 7.5
+pivot_offset = Vector2(56.000008, 10.666667)
+text = "Обучающий Босс"
+script = ExtResource("5_4c2l3")
+needs_weapons = true
+change_scene = ExtResource("7_uf2t8")
+
+[node name="Polygon2D" type="Polygon2D" parent="StartTutorialBoss"]
+position = Vector2(58.666676, -11.555556)
+offset = Vector2(8.000004, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Polygon2D2" type="Polygon2D" parent="StartTutorialBoss"]
+position = Vector2(56.000008, 36.444443)
+rotation = 3.1415925
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Help" parent="." instance=ExtResource("4_upm6v")]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 134.0
+offset_bottom = 82.0
+text = "помощь"
+script = SubResource("GDScript_4c2l3")
+
+[node name="TextEdit" type="TextEdit" parent="Help"]
+layout_mode = 0
+offset_left = 69.33333
+offset_right = 352.0
+offset_bottom = 224.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("7_eid6d")
+text = "Управление:
+ наведение - игрок движется к мышке
+ Если игрок выйден за аренну он начнёт
+ получать урон!
+Оружия:
+ пуля - автоматически
+  стреляет в ближайшую
+  цель. Становится сильнее с потерей хп.
+ "
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+middle_mouse_paste_enabled = false
+empty_selection_clipboard_enabled = false
+wrap_mode = 1
+
+[node name="Exit" parent="." instance=ExtResource("4_upm6v")]
+offset_left = -256.0
+offset_top = 64.0
+offset_right = -193.0
+offset_bottom = 82.0
+text = "Выход"
+script = SubResource("GDScript_jnctx")

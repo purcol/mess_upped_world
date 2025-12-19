@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbf0pffx8h485"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_thipi"]
+
+[sub_resource type="GDScript" id="GDScript_7catf"]
+script/source = "extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_thipi"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _input(_event: InputEvent) -> void:
+	pass
+"
+
+[node name="Button" type="Button"]
+offset_right = 61.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+theme = ExtResource("1_thipi")
+toggle_mode = true
+text = "кнопка"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = SubResource("GDScript_7catf")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+grow_horizontal = 0
+script = SubResource("GDScript_thipi")
+
+[node name="SelectionArrow" type="Polygon2D" parent="Control"]
+position = Vector2(49.333332, 9.333333)
+rotation = 1.5707964
+scale = Vector2(0.8133335, 0.8133335)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)

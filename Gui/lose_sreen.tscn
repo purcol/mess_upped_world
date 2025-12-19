@@ -1,0 +1,118 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccetrkam57grx"]
+
+[ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="1_qdh3c"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_pukmo"]
+
+[sub_resource type="Theme" id="Theme_tadup"]
+LineEdit/font_sizes/font_size = 26
+LineEdit/fonts/font = ExtResource("1_qdh3c")
+
+[sub_resource type="GDScript" id="GDScript_qdh3c"]
+script/source = "extends Button
+
+
+func _toggled(_toggled_on: bool) -> void:
+	get_tree().paused = false
+	G.update_and_save()
+	get_tree().reload_current_scene()
+	focus_mode = Control.FOCUS_NONE
+
+func _process(_delta: float) -> void:
+	focus_mode = Control.FOCUS_NONE
+	if is_hovered() and !disabled:
+		$Control/SelectionArrow.visible = true
+	else:
+		$Control/SelectionArrow.visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_pukmo"]
+script/source = "extends Button
+
+
+func _toggled(_toggled_on: bool) -> void:
+	get_tree().paused = false
+	G.update_and_save()
+	get_tree().change_scene_to_file(\"res://worlds/pease.tscn\")
+	focus_mode = Control.FOCUS_NONE
+
+func _process(_delta: float) -> void:
+	focus_mode = Control.FOCUS_NONE
+	if is_hovered() and !disabled:
+		$Control/SelectionArrow.visible = true
+	else:
+		$Control/SelectionArrow.visible = false
+"
+
+[node name="LoseSreen" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 0, 0, 0.40392157)
+polygon = PackedVector2Array(-784, -552, 2104, -552, 2112, 1192, -776, 1192)
+
+[node name="Title" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -108.0
+offset_right = 133.33325
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(125.666664, 17)
+theme = SubResource("Theme_tadup")
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Поражение"
+alignment = 1
+editable = false
+flat = true
+
+[node name="SubTitle" type="LineEdit" parent="Title"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -126.41665
+offset_top = 19.15
+offset_right = 126.916595
+offset_bottom = 51.15
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+pivot_offset = Vector2(125.666664, 17)
+theme = SubResource("Theme_tadup")
+text = "Не здавайся!"
+alignment = 1
+editable = false
+flat = true
+
+[node name="Respawn" parent="Title" instance=ExtResource("2_pukmo")]
+layout_mode = 0
+offset_left = 96.25
+offset_top = 41.15
+offset_right = 193.25
+offset_bottom = 59.15
+scale = Vector2(0.6, 0.6)
+text = "Возрродится"
+script = SubResource("GDScript_qdh3c")
+
+[node name="MainMenu" parent="Title" instance=ExtResource("2_pukmo")]
+layout_mode = 0
+offset_left = 94.25
+offset_top = 55.15
+offset_right = 197.25
+offset_bottom = 73.15
+scale = Vector2(0.6, 0.6)
+text = "На глав. меню"
+script = SubResource("GDScript_pukmo")

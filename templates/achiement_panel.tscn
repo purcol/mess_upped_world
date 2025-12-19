@@ -1,0 +1,96 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdfq02cmo0luf"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_u5pl4"]
+[ext_resource type="Script" uid="uid://d1i4bo0qcnmyb" path="res://templates/achiement_panel.gd" id="2_n5pnc"]
+[ext_resource type="Texture2D" uid="uid://bq8ejf3oqig38" path="res://assets/nodes/achivment_buttom.png" id="2_uev4s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uev4s"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5pnc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5pl4"]
+content_margin_left = 9.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5kc5"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[node name="Panel" type="Panel"]
+clip_contents = true
+anchors_preset = -1
+anchor_right = 0.24000001
+anchor_bottom = 0.21000001
+offset_right = 0.519989
+offset_bottom = 2.9199982
+theme = ExtResource("1_u5pl4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_uev4s")
+script = ExtResource("2_n5pnc")
+icon = ExtResource("2_uev4s")
+description = "test deck"
+
+[node name="VSplitContainer" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -2.0
+theme = ExtResource("1_u5pl4")
+split_offset = 45
+dragging_enabled = false
+drag_area_highlight_in_editor = true
+
+[node name="Header" type="HSplitContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme = ExtResource("1_u5pl4")
+dragging_enabled = false
+
+[node name="Icon" type="TextureRect" parent="VSplitContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_uev4s")
+expand_mode = 2
+
+[node name="Title" type="LineEdit" parent="VSplitContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_u5pl4")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/read_only = SubResource("StyleBoxFlat_n5pnc")
+placeholder_text = "Достижение"
+editable = false
+
+[node name="Description" type="TextEdit" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5pl4")
+placeholder_text = "описание"
+editable = false
+wrap_mode = 1
+
+[node name="Border" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 277.0
+offset_bottom = 138.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w5kc5")

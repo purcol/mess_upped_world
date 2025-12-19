@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckwlxch4goqnn"]
+
+[ext_resource type="Script" uid="uid://c0n07a7sy8l4n" path="res://components/healf_c.gd" id="1_78kd4"]
+
+[node name="Healf_C" type="Node"]
+script = ExtResource("1_78kd4")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dom8lmm4lym5n"]
+
+[ext_resource type="Script" uid="uid://c0w0k38xi67de" path="res://components/lazer_shoter_c.gd" id="1_rejyj"]
+[ext_resource type="Texture2D" uid="uid://p55jgj0ijdgx" path="res://icon.svg" id="2_tendi"]
+
+[node name="LazerShoter_C" type="Node2D"]
+script = ExtResource("1_rejyj")
+
+[node name="Marker" type="Marker2D" parent="."]
+position = Vector2(127, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Marker"]
+visible = false
+scale = Vector2(0.125, 0.109375)
+texture = ExtResource("2_tendi")

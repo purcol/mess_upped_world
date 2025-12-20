@@ -28,13 +28,9 @@ func _physics_process(_delta: float) -> void:
 #добавление оружий
 func add_weapons():
 	for weapon in weapons:
-		var weapon_exemplar = load("res://components/"+weapon+"_c.tscn")
+		var weapon_exemplar = load("res://components/weapons_shoters/"+weapon+"_c.tscn")
 		var weapon_inst = weapon_exemplar.instantiate()
 		weapon_inst.on_timer = true
-		if weapon == "shoter":
-			weapon_inst.speed_modificator = 0.5
-		if weapon_inst.damage == 0:
-			weapon_inst.damage = 1
 		$Components.add_child(weapon_inst)
 
 #наведение на курсор

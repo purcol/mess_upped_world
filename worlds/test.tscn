@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://bevk6chmsn2gs"]
+
+[ext_resource type="PackedScene" uid="uid://cbtfeh2i3pig5" path="res://entity/player_e.tscn" id="1_3nl8l"]
+[ext_resource type="Script" uid="uid://c5and7wsgtdne" path="res://entity/tuturial_boss_e.gd" id="3_1rpqn"]
+[ext_resource type="Texture2D" uid="uid://hao4vs043bes" path="res://assets/textures/tutorial_boss/tutorial_boss.png" id="4_1gpai"]
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="5_5cdre"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="6_ift5m"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="7_3fjf0"]
+[ext_resource type="Texture2D" uid="uid://c5tum33rqae7i" path="res://assets/textures/tutorial_boss/lazer.png" id="8_k3461"]
+[ext_resource type="Texture2D" uid="uid://bkhon3h23qr80" path="res://assets/textures/tutorial_boss/storm.png" id="9_ycvr3"]
+[ext_resource type="Texture2D" uid="uid://clvfwufq7qt17" path="res://assets/textures/tutorial_boss/lazer_cover_up.png" id="10_liidv"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_onpvo"]
+points = PackedVector2Array(72, -192, 192, -72, 192, 72, 72, 192, -72, 192, -192, 72, -192, -72, -72, -192)
+
+[sub_resource type="GDScript" id="GDScript_75fbt"]
+script/source = "extends LineEdit
+
+func _process(_delta: float) -> void:
+	global_position = $\"..\".global_position + Vector2(-138.0,-320)
+	rotation = -$\"..\".rotation
+	text = str($\"../Components/Healf_C\".healf)
+"
+
+[sub_resource type="GDScript" id="GDScript_0t4qp"]
+script/source = "extends Sprite2D
+
+var nodes_name
+
+func array_to_string(arr: Array) -> String:
+	var s = \"\"
+	for i in arr:
+		s += String(i)
+	return s
+
+func _process(_delta: float) -> void:
+	visible = false
+	for node in get_node(\"../Components\").get_children():
+		nodes_name = node.name.split()
+		nodes_name.remove_at(nodes_name.size()-1)
+		if array_to_string(nodes_name) == \"LazerShoter_C_cross\":
+			if node.is_on:
+				visible = true
+	rotation = -$\"..\".rotation
+"
+
+[node name="Node2D" type="Node2D" groups=["World"]]
+
+[node name="Player_E" parent="." instance=ExtResource("1_3nl8l")]
+
+[node name="FunctionalEntities" type="Node2D" parent="."]
+
+[node name="TuturialBoss_E" type="CharacterBody2D" parent="." groups=["Boss"]]
+process_mode = 3
+script = ExtResource("3_1rpqn")
+speed = 10.0
+
+[node name="Sprite" type="Sprite2D" parent="TuturialBoss_E"]
+scale = Vector2(6, 6)
+texture = ExtResource("4_1gpai")
+
+[node name="Components" type="Node2D" parent="TuturialBoss_E"]
+
+[node name="Healf_C" parent="TuturialBoss_E/Components" instance=ExtResource("5_5cdre")]
+healf = 100.0
+
+[node name="XitboxArea_C" parent="TuturialBoss_E/Components" instance=ExtResource("6_ift5m")]
+collision_layer = 2
+collision_mask = 2
+entity_id = "TuturialBoss_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="TuturialBoss_E/Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("ConvexPolygonShape2D_onpvo")
+
+[node name="LineEdit" type="LineEdit" parent="TuturialBoss_E"]
+offset_left = -138.0
+offset_top = -318.0
+offset_right = -69.4375
+offset_bottom = -287.0
+scale = Vector2(4, 4)
+theme = ExtResource("7_3fjf0")
+alignment = 1
+flat = true
+script = SubResource("GDScript_75fbt")
+
+[node name="LazerSprite" type="Sprite2D" parent="TuturialBoss_E"]
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("8_k3461")
+script = SubResource("GDScript_0t4qp")
+
+[node name="StormSprite" type="Sprite2D" parent="TuturialBoss_E"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("9_ycvr3")
+
+[node name="lazerCoverUpSprite" type="Sprite2D" parent="TuturialBoss_E"]
+z_index = 1
+scale = Vector2(6, 6)
+texture = ExtResource("10_liidv")
+
+[editable path="Player_E"]

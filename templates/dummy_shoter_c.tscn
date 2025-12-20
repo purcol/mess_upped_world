@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgsbt80n6p8ex"]
+
+[ext_resource type="PackedScene" uid="uid://cvsoecqtrdlco" path="res://entity/bullet_e.tscn" id="1_huee2"]
+
+[sub_resource type="GDScript" id="GDScript_o54v2"]
+script/source = "extends GameWeaponShoter
+
+func shot_condition() -> void:
+	if Input.is_action_just_pressed(\"shot\"):
+		shot_condition_flag = true
+	else: shot_condition_flag = false
+"
+
+[node name="DummyShoter_c" type="Node2D"]
+script = SubResource("GDScript_o54v2")
+bullet_scene = ExtResource("1_huee2")

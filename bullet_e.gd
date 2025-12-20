@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var direction_:Vector2 = Vector2(0,0)
-@export var speed_:float = 300
+#@export var direction_:Vector2 = Vector2(0,0)
+#@export var speed_:float = 300
 @export var damage:float = 1.0
 
 var target_player:bool = false
@@ -11,6 +11,7 @@ var target_player:bool = false
 	#velocity = direction_ *speed_
 
 func _physics_process(_delta: float) -> void:
+	#print("get   : ", velocity)
 	move_and_slide()
 
 #func _on_timer_timeout() -> void:

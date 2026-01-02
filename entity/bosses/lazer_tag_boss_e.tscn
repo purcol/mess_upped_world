@@ -1,0 +1,217 @@
+[gd_scene load_steps=11 format=3 uid="uid://4gkxe3tlv4bp"]
+
+[ext_resource type="Texture2D" uid="uid://b77kdesornnnu" path="res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase1.png" id="1_ay8uf"]
+[ext_resource type="Script" uid="uid://dkiism24mrqwk" path="res://entity/bosses/lazer_tag_boss_e.tres.gd" id="1_ky2bt"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_ky2bt"]
+[ext_resource type="PackedScene" uid="uid://bl86ix2q3yg28" path="res://components/weapons_shoters/lazer_shoter_c.tscn" id="3_ejckt"]
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="4_msj1o"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="5_0gbgh"]
+[ext_resource type="PackedScene" uid="uid://do8es0m2igrel" path="res://components/weapons_shoters/wave_shoter_c.tscn" id="6_ejckt"]
+
+[sub_resource type="GDScript" id="GDScript_5r2tb"]
+script/source = "extends Sprite2D
+
+@onready var stage_sptite:Dictionary[int,Texture2D] = {
+	1:load(\"res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase1.png\"),
+	2:load(\"res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase2.png\"),
+	3:load(\"res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase3.png\"),
+	4:load(\"res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase4.png\")
+}
+
+func _process(_delta: float) -> void:
+	texture = stage_sptite[$\"..\".current_stage]
+"
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ky2bt"]
+points = PackedVector2Array(0, 192, -192, 0, 0, -192, 192, 0)
+
+[sub_resource type="GDScript" id="GDScript_75fbt"]
+script/source = "@tool
+extends HealfText
+"
+
+[node name="LazerTagBoss_E" type="CharacterBody2D" groups=["Boss", "Entity"]]
+script = ExtResource("1_ky2bt")
+speed = Dictionary[int, float]({
+1: 0.0,
+2: 100.0,
+3: 200.0,
+4: 290.0
+})
+stages = Dictionary[int, float]({
+1: 0.999,
+2: 0.85,
+3: 0.55,
+4: 0.35
+})
+stage_stats = Dictionary[int, Dictionary]({
+1: {
+"LazerShoterCN1": false,
+"LazerShoterCN2": false,
+"LazerShoterCN3": false,
+"LazerShoterCN4": false,
+"LazerShoterCN5": false,
+"LazerShoterCN6": false,
+"LazerShoterCN7": false,
+"LazerShoterCN8": false,
+"LazerShoterCR1": false,
+"WaveShoterCW": true
+},
+2: {
+"LazerShoterCN1": true,
+"LazerShoterCN2": true,
+"LazerShoterCN3": true,
+"LazerShoterCN4": true,
+"LazerShoterCN5": true,
+"LazerShoterCN6": true,
+"LazerShoterCN7": true,
+"LazerShoterCN8": true,
+"LazerShoterCR1": true,
+"WaveShoterCW": false
+},
+3: {
+"LazerShoterCN1": false,
+"LazerShoterCN2": false,
+"LazerShoterCN3": false,
+"LazerShoterCN4": false,
+"LazerShoterCN5": false,
+"LazerShoterCN6": false,
+"LazerShoterCN7": false,
+"LazerShoterCN8": false,
+"LazerShoterCR1": false,
+"WaveShoterCW": true
+},
+4: {
+"LazerShoterCN1": true,
+"LazerShoterCN2": true,
+"LazerShoterCN3": false,
+"LazerShoterCN4": false,
+"LazerShoterCN5": false,
+"LazerShoterCN6": false,
+"LazerShoterCN7": false,
+"LazerShoterCN8": true,
+"LazerShoterCR1": false,
+"WaveShoterCW": false
+}
+})
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("1_ay8uf")
+script = SubResource("GDScript_5r2tb")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="Healf_C" parent="Components" instance=ExtResource("4_msj1o")]
+healf = 72.0
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("2_ky2bt")]
+collision_layer = 2
+collision_mask = 2
+entity_id = "TuturialBoss_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+shape = SubResource("ConvexPolygonShape2D_ky2bt")
+
+[node name="NormalLazerAttack" type="Node2D" parent="Components"]
+
+[node name="LazerShoterCN1" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+stop_follow = 0.66
+is_local = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN2" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.02
+cast_rotation = 45.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN3" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.03
+cast_rotation = 90.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN4" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.04
+cast_rotation = 135.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN5" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.05
+cast_rotation = 180.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN6" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.06
+cast_rotation = 225.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN7" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.07
+cast_rotation = 270.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="LazerShoterCN8" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 1.08
+cast_rotation = 315.0
+stop_follow = 0.66
+is_local = false
+is_on = false
+is_nasted = true
+cooldown = 2.5
+
+[node name="RailGunAttack" type="Node2D" parent="Components"]
+
+[node name="LazerShoterCR1" parent="Components/RailGunAttack" instance=ExtResource("3_ejckt")]
+cast_delay = 0.4
+stop_follow = 0.085
+width = 20
+is_nasted = true
+speed = 1800.0
+damage = 2.5
+cooldown = 6.0
+
+[node name="WaveAttack" type="Node2D" parent="Components"]
+
+[node name="WaveShoterCW" parent="Components/WaveAttack" instance=ExtResource("6_ejckt")]
+duration = 1.0
+wait_after_time_out_time = 0.0
+is_nasted = true
+cooldown = 3.0
+
+[node name="HealfText" type="LineEdit" parent="."]
+offset_left = -137.125
+offset_top = -300.0
+offset_right = -68.5625
+offset_bottom = -269.0
+scale = Vector2(4, 4)
+theme = ExtResource("5_0gbgh")
+text = "72.0"
+alignment = 1
+flat = true
+script = SubResource("GDScript_75fbt")
+offset = Vector2(0, -300)

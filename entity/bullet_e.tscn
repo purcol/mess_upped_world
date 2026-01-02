@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvsoecqtrdlco"]
 
-[ext_resource type="Script" uid="uid://dj54gyo7b4va5" path="res://bullet_e.gd" id="1_jt8qi"]
+[ext_resource type="Script" uid="uid://dj54gyo7b4va5" path="res://entity/bullet_e.gd" id="1_jt8qi"]
 [ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_g544m"]
 [ext_resource type="Texture2D" uid="uid://bmvrri7y5kr22" path="res://assets/textures/bullet/bullet.png" id="2_iyypy"]
 
@@ -14,7 +14,7 @@ func _on_timeout() -> void:
 	$\"..\".queue_free()
 "
 
-[node name="Bullet_E" type="CharacterBody2D"]
+[node name="Bullet_E" type="CharacterBody2D" groups=["Entity"]]
 script = ExtResource("1_jt8qi")
 
 [node name="Bullet" type="Sprite2D" parent="."]

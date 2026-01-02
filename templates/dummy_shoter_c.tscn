@@ -13,4 +13,5 @@ func shot_condition() -> void:
 
 [node name="DummyShoter_c" type="Node2D"]
 script = SubResource("GDScript_o54v2")
+is_local = true
 bullet_scene = ExtResource("1_huee2")

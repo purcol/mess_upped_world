@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl86ix2q3yg28"]
+
+[ext_resource type="Script" uid="uid://c4xdr4vlrdths" path="res://components/weapons_shoters/lazer_shoter_c.gd" id="1_blj2r"]
+[ext_resource type="PackedScene" uid="uid://v0hrrlqogwpf" path="res://entity/lazer_e.tscn" id="2_blj2r"]
+[ext_resource type="Texture2D" uid="uid://da88fbe5ueirg" path="res://assets/textures/player/player_lazer.png" id="3_g5w2m"]
+[ext_resource type="Script" uid="uid://dx0jd1th4uux4" path="res://templates/player_sprites.gd" id="4_tj72h"]
+
+[node name="LazerShoterC" type="Node2D"]
+script = ExtResource("1_blj2r")
+aim_oppenent = true
+is_local = true
+bullet_scene = ExtResource("2_blj2r")
+direction = Vector2(0, 0)
+speed = 1300.0
+damage = 1.0
+on_timer = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(1.6249999, 1.6249999)
+texture = ExtResource("3_g5w2m")
+script = ExtResource("4_tj72h")

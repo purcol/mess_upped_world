@@ -3,7 +3,8 @@
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_thipi"]
 
 [sub_resource type="GDScript" id="GDScript_7catf"]
-script/source = "extends GameMenuButton
+script/source = "@tool
+extends GameMenuButton
 
 
 func _toggled(_toggled_on: bool) -> void:

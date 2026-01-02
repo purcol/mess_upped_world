@@ -1,0 +1,198 @@
+[gd_scene load_steps=17 format=3 uid="uid://dr73wiuefcobr"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_ig2u2"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_bcmbp"]
+[ext_resource type="PackedScene" uid="uid://s5cc8ff3x1d3" path="res://components/weapons_shoters/charged_shoter_c.tscn" id="3_1xajr"]
+[ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="3_a7b7o"]
+[ext_resource type="Texture2D" uid="uid://dym7rhfn8145" path="res://assets/textures/weapons/charged_bullet.png" id="4_1xajr"]
+[ext_resource type="Texture2D" uid="uid://w5dprfajikot" path="res://assets/textures/weapons/bullet.png" id="5_2l06o"]
+[ext_resource type="PackedScene" uid="uid://5ayi1qxc5kkf" path="res://components/weapons_shoters/shoter_c.tscn" id="6_1xajr"]
+[ext_resource type="Texture2D" uid="uid://b1r271vmbnkps" path="res://assets/textures/weapons/lazer.png" id="6_ljxy6"]
+[ext_resource type="PackedScene" uid="uid://bl86ix2q3yg28" path="res://components/weapons_shoters/lazer_shoter_c.tscn" id="8_1xajr"]
+
+[sub_resource type="GDScript" id="GDScript_cyxjy"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_thipi"]
+script/source = "extends Control
+
+func _input(_event: InputEvent) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7iwkv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ms84"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="GDScript" id="GDScript_l55oe"]
+script/source = "@tool
+extends GameMenuWeaponButton
+"
+
+[sub_resource type="GDScript" id="GDScript_8rnsk"]
+script/source = "@tool
+extends GameMenuWeaponButton
+
+func disable_check() -> bool:
+	if !Engine.is_editor_hint():
+		if G.win_to[\"TutorialBoss_E\"] <= 0:
+			return true
+	return super()
+"
+
+[sub_resource type="GDScript" id="GDScript_c7kc1"]
+script/source = "@tool
+extends GameMenuWeaponButton
+"
+
+[node name="Weapons" type="Button"]
+offset_right = 95.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(0.037043333, 0.23456478)
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("1_ig2u2")
+toggle_mode = true
+text = "Оружия"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = SubResource("GDScript_cyxjy")
+is_panel_button = true
+calc_panel_size = true
+forus_camera = true
+forus_camera_offset = Vector2(270, 111)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+grow_horizontal = 0
+script = SubResource("GDScript_thipi")
+
+[node name="SelectionArrow" type="Polygon2D" parent="Control"]
+visible = false
+position = Vector2(49.333332, 9.333333)
+rotation = 1.5707964
+scale = Vector2(0.8133335, 0.8133335)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 328.33334
+offset_bottom = 203.15637
+grow_horizontal = 0
+theme = ExtResource("1_ig2u2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7iwkv")
+
+[node name="Border" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_right = 328.33334
+offset_bottom = 3.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ms84")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ChargedBullet" parent="Panel/VBoxContainer" instance=ExtResource("2_bcmbp")]
+layout_mode = 2
+focus_mode = 0
+text = "заряженная пуля"
+script = SubResource("GDScript_l55oe")
+weapon = ExtResource("3_1xajr")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="Panel/VBoxContainer/ChargedBullet" instance=ExtResource("3_a7b7o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 176.82304
+grow_horizontal = 0
+icon = ExtResource("4_1xajr")
+_title = "Заряж. пуля"
+description = "Стреляет в ближайшую цель. Нужно заряжать зажатием ПКМ (мак. 3с). 
+
+Становится сильнее с потерей хп."
+
+[node name="Bullet" parent="Panel/VBoxContainer" instance=ExtResource("2_bcmbp")]
+layout_mode = 2
+focus_mode = 0
+text = "пуля                       "
+script = SubResource("GDScript_8rnsk")
+weapon = ExtResource("6_1xajr")
+needs_weapons = true
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="Panel/VBoxContainer/Bullet" instance=ExtResource("3_a7b7o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 145.82304
+grow_horizontal = 0
+icon = ExtResource("5_2l06o")
+_title = "Пуля"
+description = "Стреляет в ближайшую цель.
+
+Становится сильнее с потерей хп."
+
+[node name="Lazer" parent="Panel/VBoxContainer" instance=ExtResource("2_bcmbp")]
+layout_mode = 2
+focus_mode = 0
+text = "лазер"
+script = SubResource("GDScript_c7kc1")
+weapon = ExtResource("8_1xajr")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="Panel/VBoxContainer/Lazer" instance=ExtResource("3_a7b7o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 130.15637
+grow_horizontal = 0
+icon = ExtResource("6_ljxy6")
+_title = "Лазер"
+description = "Выпускает лазер в ближайшую цель. Наводится на цель автоматически."

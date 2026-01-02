@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbtfeh2i3pig5"]
+[gd_scene load_steps=11 format=3 uid="uid://cbtfeh2i3pig5"]
 
 [ext_resource type="Script" uid="uid://0jnj8dxq3nj5" path="res://entity/player_e.gd" id="1_ljctn"]
 [ext_resource type="Texture2D" uid="uid://cfklqij3qwnt" path="res://assets/textures/player/player.png" id="2_p6v0q"]
@@ -27,14 +27,35 @@ func _process(_delta: float) -> void:
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_p6v0q"]
 points = PackedVector2Array(26, -10, 26, 10, 10, 26, -10, 26, -26, 10, -26, -10, -10, -26, 10, -26)
 
-[sub_resource type="GDScript" id="GDScript_nldwe"]
-script/source = "extends LineEdit
+[sub_resource type="GDScript" id="GDScript_y0meu"]
+script/source = "extends Camera2D
 
-func _process(_delta: float) -> void:
-	text = str($\"../Components/Healf_C\".healf)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if G.dev_mode:
+		zoom = Vector2(0.5,0.5)
+	var end_position = position
+	position.y = end_position.y-2000
+	
+	await get_tree().create_timer(0.001).timeout
+	if get_tree().get_first_node_in_group(\"Boss\") != null:
+		get_tree().get_first_node_in_group(\"Boss\").process_mode = Node.PROCESS_MODE_DISABLED
+	get_tree().get_first_node_in_group(\"Player\").process_mode = Node.PROCESS_MODE_DISABLED
+	var tween = get_tree().create_tween()
+	tween.tween_property(self,\"position\",end_position,1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(1).timeout
+	if get_tree().get_first_node_in_group(\"Boss\") != null:
+		get_tree().get_first_node_in_group(\"Boss\").process_mode = Node.PROCESS_MODE_INHERIT
+	get_tree().get_first_node_in_group(\"Player\").process_mode = Node.PROCESS_MODE_INHERIT
 "
 
-[node name="Player_E" type="CharacterBody2D" groups=["Player"]]
+[sub_resource type="GDScript" id="GDScript_nldwe"]
+script/source = "@tool
+extends HealfText
+"
+
+[node name="Player_E" type="CharacterBody2D" groups=["Entity", "Player"]]
 script = ExtResource("1_ljctn")
 weapons = Array[String](["cahrged_shoter", "shoter"])
 
@@ -53,20 +74,25 @@ process_mode = 4
 shape = SubResource("ConvexPolygonShape2D_p6v0q")
 
 [node name="Healf_C" parent="Components" instance=ExtResource("4_p6v0q")]
+healf = 5.0
 
-[node name="Camera" type="Camera2D" parent="Components"]
+[node name="Camera" type="Camera2D" parent="Components" groups=["Camera"]]
+process_mode = 3
+script = SubResource("GDScript_y0meu")
 
 [node name="LoseSreen" parent="Components/Camera" instance=ExtResource("5_nldwe")]
 process_mode = 2
 visible = false
 
-[node name="LineEdit" type="LineEdit" parent="."]
-offset_left = -71.0
-offset_top = -88.0
-offset_right = -2.4375
-offset_bottom = -57.0
+[node name="HealfText" type="LineEdit" parent="."]
+offset_left = -69.5
+offset_top = -80.0
+offset_bottom = -49.0
 scale = Vector2(2, 2)
+size_flags_horizontal = 4
 theme = ExtResource("6_lqwqj")
+text = "5.0"
 alignment = 1
 flat = true
 script = SubResource("GDScript_nldwe")
+offset = Vector2(0, -80)

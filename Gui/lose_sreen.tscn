@@ -54,7 +54,7 @@ grow_vertical = 2
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 0.40392157)
-polygon = PackedVector2Array(-784, -552, 2104, -552, 2112, 1192, -776, 1192)
+polygon = PackedVector2Array(-2104, -552, 2104, -552, 2104, 1192, -2104, 1192)
 
 [node name="Title" type="LineEdit" parent="."]
 layout_mode = 1

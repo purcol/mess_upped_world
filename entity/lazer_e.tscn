@@ -1,31 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://swn8claig2vh"]
+[gd_scene load_steps=4 format=3 uid="uid://v0hrrlqogwpf"]
 
-[ext_resource type="Script" uid="uid://c4bneanhwmmbl" path="res://entity/lazer_e.gd" id="1_o3qck"]
+[ext_resource type="Script" uid="uid://csi3vauwouslk" path="res://entity/lazer_e.gd" id="1_o3qck"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o3qck"]
 size = Vector2(5, 20)
 
-[node name="Lazer_E" type="Node2D"]
+[sub_resource type="GDScript" id="GDScript_o3qck"]
+script/source = "extends Line2D
+
+var is_flikering
+
+func fiker() -> void:
+	is_flikering = true
+	default_color = Color(0.5,0.5,0.5)
+	while is_flikering:
+		await get_tree().create_timer($\"..\".cast_delay*0.05).timeout
+		default_color = Color(default_color.r,default_color.g,default_color.b,0)
+		await get_tree().create_timer($\"..\".cast_delay*0.05).timeout
+		default_color = Color(default_color.r,default_color.g,default_color.b,1)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	fiker()
+	await get_tree().create_timer(0.01).timeout
+	visible = true
+
+func _process(_delta: float) -> void:
+	points = [Vector2(0,0),$\"../RayCast\".target_position]
+"
+
+[node name="Lazer_E" type="Node2D" groups=["Entity"]]
 script = ExtResource("1_o3qck")
-direction = Vector2(1, 0)
-damage = 1.0
-length = 1000.0
 
 [node name="RayCast" type="ShapeCast2D" parent="."]
+enabled = false
 shape = SubResource("RectangleShape2D_o3qck")
 target_position = Vector2(0, 100)
 max_results = 16
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="Timer" type="Timer" parent="."]
-
-[node name="CooldownTimer" type="Timer" parent="."]
-
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 107)
-begin_cap_mode = 1
-end_cap_mode = 1
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]
+[node name="Shape" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(0, 105, 0, 0)
+script = SubResource("GDScript_o3qck")

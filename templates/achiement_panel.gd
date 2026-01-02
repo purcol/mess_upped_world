@@ -5,7 +5,6 @@ extends Panel
 @export var _title:String = ""
 @export_multiline() var description:String = ""
 
-
 func _ready() -> void:
 	$VSplitContainer/Header/Icon.texture = icon
 	$VSplitContainer/Header/Title.text = _title

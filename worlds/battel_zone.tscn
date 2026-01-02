@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvlw1exf02m2s"]
 
+[ext_resource type="Script" uid="uid://dy34rydqpv37y" path="res://worlds/battel_zone.gd" id="1_dwl4r"]
 [ext_resource type="PackedScene" uid="uid://ca8xi5jgrhfou" path="res://templates/beackroung.tscn" id="1_vo7c2"]
 [ext_resource type="PackedScene" uid="uid://cbtfeh2i3pig5" path="res://entity/player_e.tscn" id="2_dwl4r"]
-[ext_resource type="PackedScene" uid="uid://db013jklnuapp" path="res://entity/tuturial_boss_e.tscn" id="3_8i00r"]
 
 [sub_resource type="GDScript" id="GDScript_fociy"]
 script/source = "extends Timer
@@ -27,13 +27,12 @@ func _on_timeout() -> void:
 [node name="BattelZone" type="Node2D" groups=["World"]]
 editor_description = "no more Pease
 "
+script = ExtResource("1_dwl4r")
 
 [node name="Beackroung" parent="." instance=ExtResource("1_vo7c2")]
 
 [node name="Player_E" parent="." instance=ExtResource("2_dwl4r")]
-
-[node name="TuturialBoss_E" parent="." instance=ExtResource("3_8i00r")]
-position = Vector2(0, -468)
+position = Vector2(499, 2)
 
 [node name="FunctionalEntities" type="Node2D" parent="."]
 

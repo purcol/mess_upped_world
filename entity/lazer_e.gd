@@ -1,50 +1,54 @@
 extends Node2D
 
-@export var direction:Vector2 = Vector2(0,0)
-@export var damage:float = 0.0
-@export var length:float = 0.0
-@export var rotation_spped:float = 0.0
-@export var add_rotation:float = 0.0
-@export var aim_player:bool = false
+var damage:float = 1
+var cast_delay:float = 0.5
+var stop_follow:float = 1.0
+var aim_oppenent:bool = false
+var oppenent:Node
+#var direction:Vector2 = Vector2(0,0)
+var cast_rotation:float = 0.0
+@onready var defalt_rotation:float = rotation_degrees
+var length:float = 0.0
+var is_local:bool = false
 
-@export_category("Timer")
-@export var on_timer:bool = true
-@export var one_shot:bool = false
-@export var cooldown:float = 1.0
-@export var shoot_delay:float = 0.5
-
-var target_player:bool = false
-var clolor:Color = Color.DARK_GRAY
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	if on_timer:
-		$Timer.start(cooldown)
-	$RayCast.target_position = direction*length
-	$Line2D.points[1] = $RayCast.target_position
-
-func _process(_delta: float) -> void:
-	$Line2D.default_color = Color.DARK_GRAY
-	if aim_player:
-		direction = Vector2(1.0,0.0)
-		if get_tree().get_first_node_in_group("Player") != null:
-			look_at(get_tree().get_first_node_in_group("Player").position)
-		rotation_degrees += add_rotation
-
-func _on_timer_timeout() -> void:
-	if aim_player:
-		aim_player = false
-	get_tree().create_tween().tween_property($Line2D,"default_color",Color.WHITE,shoot_delay*2)
-	get_tree().create_tween().tween_property($Line2D,"width",20,shoot_delay*2)
-	$CooldownTimer.start(shoot_delay)
-
-func _on_cooldown_timer_timeout() -> void:
-	aim_player = true
-	clolor = Color.DARK_GRAY
+func hit(lazzer_damage:float=1.0) -> void:
+	$RayCast.enabled = true
 	$RayCast.force_shapecast_update()
-	if $RayCast.is_colliding():
-		if $RayCast.get_collider(0).get_name() == "XitboxArea_C":
-			target_player = $RayCast.get_collider(0).is_player()
-		if target_player:
-			$RayCast.get_collider(0).hit(1)
+	
+	if !$RayCast.is_colliding(): return
+	if !$RayCast.get_collider(0).get_name() == "XitboxArea_C": return
+	$RayCast.get_collider(0).hit(lazzer_damage*0.5)
+
+func stop_aim() -> void:
+	await get_tree().create_timer(cast_delay*stop_follow).timeout
+	aim_oppenent = false
+	if is_local:
+		defalt_rotation = get_node("../../../..").rotation_degrees
+
+func _ready() -> void:
+	stop_aim()
+	await get_tree().create_timer(cast_delay*0.8).timeout
+	hit(damage)
+	$Shape.is_flikering = false
+	$Shape.default_color = Color(1,1,1,1)
+	await get_tree().create_timer(cast_delay*0.2).timeout
 	queue_free()
+
+func _physics_process(_delta: float) -> void:
+	#queue_redraw()
+	if aim_oppenent:
+		$RayCast.target_position = (((oppenent.global_position-self.global_position).normalized())*length)#-global_position
+		if is_local:
+			rotation_degrees = -get_node("../../../..").rotation_degrees + cast_rotation
+		else:
+			rotation_degrees = defalt_rotation + cast_rotation
+	elif is_local:
+		rotation_degrees = defalt_rotation+(-get_node("../../../..").rotation_degrees-defalt_rotation)
+		#rotation = deg_to_rad(defalt_rotation)+(-get_node("../../../..").rotation-deg_to_rad(defalt_rotation))
+
+#func _draw() -> void:
+	#draw_arc(position,360,0,deg_to_rad(defalt_rotation)+(get_node("../../../..").rotation-deg_to_rad(defalt_rotation)),100,Color.PURPLE,3)
+	#draw_arc(position,330,0,get_node("../../../..").rotation-deg_to_rad(defalt_rotation),100,Color.WEB_PURPLE,3)
+	#draw_arc(position,300,0,deg_to_rad(defalt_rotation),100,Color.BURLYWOOD,3)
+	#draw_arc(position,250,0,-rotation,100,Color.POWDER_BLUE,3)
+	#draw_arc(position,200,0,get_node("../../../..").rotation,100,Color.WHEAT,3)

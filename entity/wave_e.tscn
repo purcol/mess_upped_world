@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://snmpfht7l46k"]
+
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_f8orx"]
+[ext_resource type="Texture2D" uid="uid://bmvrri7y5kr22" path="res://assets/textures/bullet/bullet.png" id="2_wptkd"]
+
+[sub_resource type="GDScript" id="GDScript_wb572"]
+script/source = "extends CharacterBody2D
+
+#@export var direction_:Vector2 = Vector2(0,0)
+#@export var speed_:float = 300
+@export var damage:float = 1.0
+var target_player:bool = false
+
+var duration = 1
+var wait_after_time_out_time = 0.5
+var width:float = 50
+
+func _ready() -> void:
+	$LifeTime.wait_time = duration
+	$LifeTime.start()
+	scale = Vector2.ZERO
+	width = 0
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var tween2 =  get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,\"scale\",Vector2(1,1),duration)
+	tween2.tween_property(self,\"width\",75,duration*0.5)
+	await get_tree().create_timer(duration*0.5).timeout
+	var tween3 =  get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween3.tween_property(self,\"width\",0,duration*0.3)
+
+func _physics_process(_delta: float) -> void:
+	print(\"get vel : \", velocity, \"\\n\",
+		  \"get pos : \", position)
+	#move_and_slide()
+
+func _on_xitbox_area_c_area_entered(area: Area2D) -> void:
+	#print(area.entity_id)
+	if area.entity_id == \"Bullet_E\":
+		return
+	if area.get_name() == \"XitboxArea_C\":
+		target_player = area.is_player()
+	area.hit(damage)
+	if target_player:
+		print(\"!\")
+	#queue_free()
+
+func _process(_delta: float) -> void:
+	queue_redraw()
+	if width <= 15: $Components/XitboxArea_C/Collision.disabled = true
+	else: $Components/XitboxArea_C/Collision.disabled = false
+
+func _draw() -> void:
+	draw_arc(Vector2.ZERO,385-width*0.5,-1,7,24,Color.WHITE,width)
+	
+	
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb572"]
+radius = 384.0833
+
+[sub_resource type="GDScript" id="GDScript_g544m"]
+script/source = "extends Timer
+
+#func _process(_delta: float) -> void:
+	#$\"../\".scale = Vector2(1,1)*( 1-(time_left/(wait_time*0.01))*0.01 )
+	#$\"../Bullet\".visible = true
+	#print(Vector2(1,1)*( 1-((time_left/(wait_time*0.01))*0.01)) )
+
+func _on_timeout() -> void:
+	await get_tree().create_timer($\"..\".wait_after_time_out_time).timeout
+	$\"..\".queue_free()
+"
+
+[node name="Wave_E" type="CharacterBody2D" groups=["Entity"]]
+script = SubResource("GDScript_wb572")
+
+[node name="Bullet" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(120, 120)
+texture = ExtResource("2_wptkd")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("2_f8orx")]
+collision_layer = 5
+collision_mask = 5
+entity_id = "Bullet_E"
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("CircleShape2D_wb572")
+
+[node name="LifeTime" type="Timer" parent="."]
+one_shot = true
+script = SubResource("GDScript_g544m")
+
+[node name="Wave" type="Polygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(0, -384, -100, -371, -192, -332, -271, -272, -333, -192, -371, -99, -384, 0, -371, 99, -333, 192, -272, 271, -192, 333, -98, 372, -1, 384, 99, 371, 192, 333, 271, 272, 333, 193, 371, 100, 384, 0, 371, -98, 334, -190, 272, -272, 192, -333, 99, -371)
+
+[connection signal="area_entered" from="Components/XitboxArea_C" to="." method="_on_xitbox_area_c_area_entered"]
+[connection signal="timeout" from="LifeTime" to="LifeTime" method="_on_timeout"]

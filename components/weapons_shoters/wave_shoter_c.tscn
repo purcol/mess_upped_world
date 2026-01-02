@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8es0m2igrel"]
+
+[ext_resource type="PackedScene" uid="uid://snmpfht7l46k" path="res://entity/wave_e.tscn" id="1_cqnbq"]
+
+[sub_resource type="GDScript" id="GDScript_o54v2"]
+script/source = "@tool
+extends GameWeaponWaveShoter
+"
+
+[node name="WaveShoter_c" type="Node2D"]
+script = SubResource("GDScript_o54v2")
+duration = null
+wait_after_time_out_time = null
+bullet_scene = ExtResource("1_cqnbq")
+damage = 1.0
+on_timer = true

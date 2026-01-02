@@ -1,0 +1,199 @@
+[gd_scene load_steps=15 format=3 uid="uid://baet8hpwqljsu"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_iqriw"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_3girt"]
+[ext_resource type="PackedScene" uid="uid://bvlw1exf02m2s" path="res://worlds/battel_zone.tscn" id="3_dkosk"]
+[ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="4_rxeom"]
+[ext_resource type="Script" uid="uid://cebykbmcpxg5f" path="res://templates/boss_panel.gd" id="5_dkosk"]
+[ext_resource type="Texture2D" uid="uid://clm8t48win8e3" path="res://assets/textures/bosses_icon/tutorial.png" id="6_4ip5l"]
+[ext_resource type="Texture2D" uid="uid://brmfcrcefknlo" path="res://assets/textures/bosses_icon/lazer_tag.png" id="7_4ip5l"]
+
+[sub_resource type="GDScript" id="GDScript_cyxjy"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+
+#func panel_setup():
+	#pass
+
+#func _ready():
+	#pass
+
+#func disable_check():
+	#pass
+	#
+#func _draw():
+	#pass
+#
+#func toggle_panel(toggled_on:bool,open_panel_size:Vector2,anim_time:float=0.5,closed_panel_size:Vector2=Vector2(-1,-1)):
+	#pass
+"
+
+[sub_resource type="GDScript" id="GDScript_thipi"]
+script/source = "extends Control
+
+func _input(_event: InputEvent) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7iwkv"]
+
+[sub_resource type="GDScript" id="GDScript_4ip5l"]
+script/source = "@tool
+extends Panel
+#
+#@onready var og_size = size
+#func _ready() -> void:
+	#if Engine.is_editor_hint():
+		#size = og_size 
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ms84"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="GDScript" id="GDScript_hcu57"]
+script/source = "@tool
+extends GameMenuBossButton
+"
+
+[sub_resource type="GDScript" id="GDScript_nsab0"]
+script/source = "@tool
+extends GameMenuBossButton 
+
+func unlock_check() -> bool:
+	if G.win_to[\"TutorialBoss_E\"] > 0:
+		return true
+	return false
+"
+
+[node name="Bosses" type="Button"]
+offset_right = 60.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(0.037043333, 0.23456478)
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+theme = ExtResource("1_iqriw")
+toggle_mode = true
+text = "Боссы"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = SubResource("GDScript_cyxjy")
+needs_weapons = true
+is_panel_button = true
+forus_camera = true
+forus_camera_offset = Vector2(270, 111)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+grow_horizontal = 0
+script = SubResource("GDScript_thipi")
+
+[node name="SelectionArrow" type="Polygon2D" parent="Control"]
+visible = false
+position = Vector2(49.333332, 9.333333)
+rotation = 1.5707964
+scale = Vector2(0.8133335, 0.8133335)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 324.0247
+offset_bottom = 167.15637
+grow_horizontal = 0
+theme = ExtResource("1_iqriw")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7iwkv")
+script = SubResource("GDScript_4ip5l")
+
+[node name="Border" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_right = 297.33334
+offset_bottom = 160.15637
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ms84")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 142.15637
+
+[node name="TutorialBoss" parent="Panel/VBoxContainer" instance=ExtResource("2_3girt")]
+layout_mode = 2
+focus_mode = 0
+text = "Обучающий"
+script = SubResource("GDScript_hcu57")
+boss = 1
+needs_weapons = true
+is_panel_button = true
+is_hower_button = true
+change_scene = ExtResource("3_dkosk")
+
+[node name="Panel" parent="Panel/VBoxContainer/TutorialBoss" instance=ExtResource("4_rxeom")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.02468872
+offset_top = 0.15637636
+offset_right = 207.35803
+offset_bottom = 143.82304
+grow_horizontal = 0
+script = ExtResource("5_dkosk")
+icon = ExtResource("6_4ip5l")
+_title = "Обучающий"
+description = "Первый босс игры. Ничего особенного
+
+Награда за победу: Пуля"
+
+[node name="LazerTag" parent="Panel/VBoxContainer" instance=ExtResource("2_3girt")]
+layout_mode = 2
+focus_mode = 0
+text = "ЛазерТаг"
+script = SubResource("GDScript_nsab0")
+boss = 2
+needs_weapons = true
+is_panel_button = true
+is_hower_button = true
+change_scene = ExtResource("3_dkosk")
+
+[node name="Panel" parent="Panel/VBoxContainer/LazerTag" instance=ExtResource("4_rxeom")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 130.82304
+grow_horizontal = 0
+script = ExtResource("5_dkosk")
+icon = ExtResource("7_4ip5l")
+_title = "ЛазерТаг"
+description = "Босс построенный на лазерах.
+
+Награда за победу: Лазер"

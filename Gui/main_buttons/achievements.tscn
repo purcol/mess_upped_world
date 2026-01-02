@@ -1,0 +1,331 @@
+[gd_scene load_steps=18 format=3 uid="uid://kqurvydy150r"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_8731w"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_ox66g"]
+[ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="3_svlxo"]
+[ext_resource type="Texture2D" uid="uid://b6wk13du00sgc" path="res://assets/textures/achievements/first_pancake.png" id="4_kfc12"]
+[ext_resource type="Texture2D" uid="uid://dwnaymwbxalt8" path="res://assets/nodes/beginigs_of_rampage.png" id="5_w1qag"]
+[ext_resource type="Texture2D" uid="uid://ify5j36ftwr1" path="res://assets/textures/achievements/ray_banding.png" id="6_ox66g"]
+
+[sub_resource type="GDScript" id="GDScript_6fven"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_thipi"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _input(_event: InputEvent) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tcx5b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2kc5"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="GDScript" id="GDScript_m6ed5"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="GDScript" id="GDScript_3x0i2"]
+script/source = "extends TextEdit
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = str(G.selected_weapons)+\" \\n\"+str(G.total_time)+\" \\n\"+str(G.died_to)+\" \\n\"+str(G.win_to)
+"
+
+[sub_resource type="GDScript" id="GDScript_2gmo2"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	G.reset_save()
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiulj"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_c5q3k"]
+script/source = "@tool
+extends SimpleAchiementButton
+
+func unlock_check() -> bool:
+	if G.died_to[\"total\"] > 0:
+		return true
+	return false
+"
+
+[sub_resource type="GDScript" id="GDScript_hg11w"]
+script/source = "@tool
+extends SimpleAchiementButton
+
+func unlock_check() -> bool:
+	if G.win_to[\"TutorialBoss_E\"] > 0:
+		return true
+	return false
+"
+
+[sub_resource type="GDScript" id="GDScript_svlxo"]
+script/source = "@tool
+extends SimpleAchiementButton
+
+func unlock_check() -> bool:
+	if G.win_to[\"LazerTagBoss_E\"] > 0:
+		return true
+	return false
+"
+
+[node name="Achievements" type="Button"]
+offset_right = 95.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(7.6293945e-06, -0.2222228)
+focus_mode = 0
+theme = ExtResource("1_8731w")
+toggle_mode = true
+text = "Достижения"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = SubResource("GDScript_6fven")
+is_panel_button = true
+forus_camera = true
+forus_camera_offset = Vector2(270, 111)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+grow_horizontal = 0
+script = SubResource("GDScript_thipi")
+
+[node name="SelectionArrow" type="Polygon2D" parent="Control"]
+visible = false
+position = Vector2(49.333332, 9.333333)
+rotation = 1.5707964
+scale = Vector2(0.8133335, 0.8133335)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 399.33334
+offset_bottom = 253.51852
+grow_horizontal = 0
+theme = ExtResource("1_8731w")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tcx5b")
+
+[node name="Border" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_right = 399.33334
+offset_bottom = 234.85185
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2kc5")
+
+[node name="Container" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.33800003
+anchor_bottom = 0.30100003
+offset_top = -0.66666794
+offset_right = -0.12133789
+offset_bottom = -3.7331161
+theme_override_constants/separation = 1
+
+[node name="Stats" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "Дата сохранения"
+script = SubResource("GDScript_m6ed5")
+is_panel_button = true
+forus_camera = true
+
+[node name="Panel" type="Panel" parent="Panel/Container/Stats"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 118.33334
+offset_bottom = 125.333336
+grow_horizontal = 0
+theme = ExtResource("1_8731w")
+
+[node name="StatsDisplay" type="TextEdit" parent="Panel/Container/Stats/Panel"]
+layout_mode = 1
+offset_right = 237.33337
+offset_bottom = 250.66667
+scale = Vector2(0.5, 0.5)
+text = "ssdfsdf"
+wrap_mode = 1
+script = SubResource("GDScript_3x0i2")
+
+[node name="Border" type="Panel" parent="Panel/Container/Stats/Panel"]
+layout_mode = 0
+offset_right = 118.33335
+offset_bottom = 125.333336
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2kc5")
+
+[node name="Reset" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "стереть сохранение"
+script = SubResource("GDScript_2gmo2")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" type="Panel" parent="Panel/Container/Reset"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 93.16667
+offset_bottom = 29.777779
+grow_horizontal = 0
+scale = Vector2(1.735, 1.735)
+theme = ExtResource("1_8731w")
+
+[node name="StatsDisplay" type="TextEdit" parent="Panel/Container/Reset/Panel"]
+layout_mode = 1
+offset_right = 211.33334
+offset_bottom = 59.555557
+scale = Vector2(0.5, 0.5)
+text = "ОСТОРОЖНО! Это стерёт товоё сохранение одним кликом!"
+wrap_mode = 1
+
+[node name="Border" type="Panel" parent="Panel/Container/Reset/Panel"]
+layout_mode = 0
+offset_right = 93.16667
+offset_bottom = 29.444445
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiulj")
+
+[node name="achivement2" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "Блин комом"
+script = SubResource("GDScript_c5q3k")
+is_panel_button = true
+is_hower_button = true
+forus_camera = true
+
+[node name="Panel" parent="Panel/Container/achivement2" instance=ExtResource("3_svlxo")]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 219.00037
+offset_bottom = 138.444
+grow_horizontal = 0
+icon = ExtResource("4_kfc12")
+_title = "Блин комом"
+description = "Умрите первый раз.
+Не смотри на смерть как на провал, считай что это - прогресс! "
+
+[node name="achivement" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "Начало Резни"
+script = SubResource("GDScript_hg11w")
+is_panel_button = true
+is_hower_button = true
+forus_camera = true
+
+[node name="Panel" parent="Panel/Container/achivement" instance=ExtResource("3_svlxo")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 219.0
+offset_bottom = 159.11111
+grow_horizontal = 0
+icon = ExtResource("5_w1qag")
+_title = "Начало резьни"
+description = "убей обучающего боса хотя бы один раз.
+Первая хоть и маленькая победа, продолжай в том же духе!"
+
+[node name="achivement3" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "Приломленый"
+script = SubResource("GDScript_svlxo")
+is_panel_button = true
+is_hower_button = true
+forus_camera = true
+
+[node name="Panel" parent="Panel/Container/achivement3" instance=ExtResource("3_svlxo")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 219.0
+offset_bottom = 165.18518
+grow_horizontal = 0
+icon = ExtResource("6_ox66g")
+_title = "Приломленый"
+description = "убей ЛазерТага хотя бы один раз.
+Ты доказал что ты достоит слы лучей. (в отличии от разрабочика)"
+
+[node name="MeasureButtons" type="Panel" parent="Panel"]
+process_mode = 4
+visible = false
+layout_mode = 0
+offset_right = 120.66667
+offset_bottom = 56.11111

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://4gkxe3tlv4bp"]
+[gd_scene load_steps=12 format=3 uid="uid://4gkxe3tlv4bp"]
 
 [ext_resource type="Texture2D" uid="uid://b77kdesornnnu" path="res://assets/textures/lazer_tag_boss/lazer_tag_boss_phase1.png" id="1_ay8uf"]
 [ext_resource type="Script" uid="uid://dkiism24mrqwk" path="res://entity/bosses/lazer_tag_boss_e.tres.gd" id="1_ky2bt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="4_msj1o"]
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="5_0gbgh"]
 [ext_resource type="PackedScene" uid="uid://do8es0m2igrel" path="res://components/weapons_shoters/wave_shoter_c.tscn" id="6_ejckt"]
+[ext_resource type="PackedScene" uid="uid://bo13rp13e80ob" path="res://components/weapons_shoters/lazer_mine_shoter_c.tscn" id="7_msj1o"]
 
 [sub_resource type="GDScript" id="GDScript_5r2tb"]
 script/source = "extends Sprite2D
@@ -46,6 +47,10 @@ stages = Dictionary[int, float]({
 })
 stage_stats = Dictionary[int, Dictionary]({
 1: {
+"LazerMineShoterC": false,
+"LazerMineShoterC2": false,
+"LazerShoterCMS1": false,
+"LazerShoterCMS2": false,
 "LazerShoterCN1": false,
 "LazerShoterCN2": false,
 "LazerShoterCN3": false,
@@ -55,9 +60,14 @@ stage_stats = Dictionary[int, Dictionary]({
 "LazerShoterCN7": false,
 "LazerShoterCN8": false,
 "LazerShoterCR1": false,
-"WaveShoterCW": true
+"WaveShoterCW": true,
+"WaveShoterMW1": false
 },
 2: {
+"LazerMineShoterC": false,
+"LazerMineShoterC2": false,
+"LazerShoterCMS1": false,
+"LazerShoterCMS2": false,
 "LazerShoterCN1": true,
 "LazerShoterCN2": true,
 "LazerShoterCN3": true,
@@ -67,9 +77,14 @@ stage_stats = Dictionary[int, Dictionary]({
 "LazerShoterCN7": true,
 "LazerShoterCN8": true,
 "LazerShoterCR1": true,
-"WaveShoterCW": false
+"WaveShoterCW": false,
+"WaveShoterMW1": false
 },
 3: {
+"LazerMineShoterC": true,
+"LazerMineShoterC2": true,
+"LazerShoterCMS1": true,
+"LazerShoterCMS2": true,
 "LazerShoterCN1": false,
 "LazerShoterCN2": false,
 "LazerShoterCN3": false,
@@ -79,9 +94,14 @@ stage_stats = Dictionary[int, Dictionary]({
 "LazerShoterCN7": false,
 "LazerShoterCN8": false,
 "LazerShoterCR1": false,
-"WaveShoterCW": true
+"WaveShoterCW": true,
+"WaveShoterMW1": false
 },
 4: {
+"LazerMineShoterC": true,
+"LazerMineShoterC2": true,
+"LazerShoterCMS1": true,
+"LazerShoterCMS2": true,
 "LazerShoterCN1": true,
 "LazerShoterCN2": true,
 "LazerShoterCN3": false,
@@ -91,7 +111,8 @@ stage_stats = Dictionary[int, Dictionary]({
 "LazerShoterCN7": false,
 "LazerShoterCN8": true,
 "LazerShoterCR1": false,
-"WaveShoterCW": false
+"WaveShoterCW": false,
+"WaveShoterMW1": false
 }
 })
 
@@ -117,9 +138,14 @@ shape = SubResource("ConvexPolygonShape2D_ky2bt")
 
 [node name="LazerShoterCN1" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 stop_follow = 0.66
+use_predict = true
 is_local = false
+is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN2" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.02
@@ -128,7 +154,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN3" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.03
@@ -137,7 +166,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN4" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.04
@@ -146,7 +178,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN5" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.05
@@ -155,7 +190,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN6" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.06
@@ -164,7 +202,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN7" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.07
@@ -173,7 +214,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="LazerShoterCN8" parent="Components/NormalLazerAttack" instance=ExtResource("3_ejckt")]
 cast_delay = 1.08
@@ -182,7 +226,10 @@ stop_follow = 0.66
 is_local = false
 is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 cooldown = 2.5
+use_speed_mod_on_cooldown = true
 
 [node name="RailGunAttack" type="Node2D" parent="Components"]
 
@@ -190,18 +237,104 @@ cooldown = 2.5
 cast_delay = 0.4
 stop_follow = 0.085
 width = 20
+is_on = false
 is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
 speed = 1800.0
 damage = 2.5
+one_shot = true
 cooldown = 6.0
+use_speed_mod_on_cooldown = true
 
 [node name="WaveAttack" type="Node2D" parent="Components"]
 
 [node name="WaveShoterCW" parent="Components/WaveAttack" instance=ExtResource("6_ejckt")]
 duration = 1.0
-wait_after_time_out_time = 0.0
+is_local = true
+is_on = false
 is_nasted = true
+speed_multiplayer = 3.0
+max_modifire = 1.0
+time_offset = 3.0
+one_shot = true
 cooldown = 3.0
+use_speed_mod_on_cooldown = true
+
+[node name="LazerMineAttak" type="Node2D" parent="Components"]
+
+[node name="LazerMineShoterC" parent="Components/LazerMineAttak" instance=ExtResource("7_msj1o")]
+position = Vector2(0, 128)
+final_position = Vector2(1800, -135)
+duration = 10.0
+aim = 2
+is_local = false
+is_on = false
+is_nasted = true
+speed_multiplayer = 3.0
+max_modifire = 0.0
+time_offset = 3.0
+direction = Vector2(1, 0)
+speed = 1800.0
+one_shot = true
+cooldown = 1.25
+
+[node name="LazerMineShoterC2" parent="Components/LazerMineAttak" instance=ExtResource("7_msj1o")]
+position = Vector2(0, -128)
+final_position = Vector2(1800, 135)
+duration = 10.0
+aim = 2
+is_local = false
+is_on = false
+is_nasted = true
+speed_multiplayer = 3.0
+max_modifire = 0.0
+time_offset = 3.0
+direction = Vector2(1, 0)
+speed = 1800.0
+one_shot = true
+cooldown = 1.25
+
+[node name="MineSupportAttak" type="Node2D" parent="Components"]
+
+[node name="LazerShoterCMS1" parent="Components/MineSupportAttak" instance=ExtResource("3_ejckt")]
+cast_delay = 2.0
+cast_rotation = 14.0
+stop_follow = 0.0
+is_local = false
+is_on = false
+is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
+cooldown = 1.25
+use_speed_mod_on_cooldown = true
+
+[node name="LazerShoterCMS2" parent="Components/MineSupportAttak" instance=ExtResource("3_ejckt")]
+cast_delay = 2.0
+cast_rotation = -14.0
+stop_follow = 0.0
+is_local = false
+is_on = false
+is_nasted = true
+max_modifire = 0.0
+time_offset = 3.0
+cooldown = 1.25
+use_speed_mod_on_cooldown = true
+
+[node name="MiniWaveAttak" type="Node2D" parent="Components"]
+
+[node name="WaveShoterMW1" parent="Components/MiniWaveAttak" instance=ExtResource("6_ejckt")]
+duration = 1.0
+final_scale = Vector2(0.3, 0.3)
+is_local = true
+is_on = false
+is_nasted = true
+speed_multiplayer = 3.0
+max_modifire = 1.0
+time_offset = 3.0
+one_shot = true
+cooldown = 0.5
+use_speed_mod_on_cooldown = true
 
 [node name="HealfText" type="LineEdit" parent="."]
 offset_left = -137.125
@@ -209,6 +342,8 @@ offset_top = -300.0
 offset_right = -68.5625
 offset_bottom = -269.0
 scale = Vector2(4, 4)
+mouse_filter = 2
+mouse_default_cursor_shape = 0
 theme = ExtResource("5_0gbgh")
 text = "72.0"
 alignment = 1

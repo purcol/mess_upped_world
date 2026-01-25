@@ -48,6 +48,9 @@ func _ready() -> void:
 	if get_tree().get_first_node_in_group(\"Boss\") != null:
 		get_tree().get_first_node_in_group(\"Boss\").process_mode = Node.PROCESS_MODE_INHERIT
 	get_tree().get_first_node_in_group(\"Player\").process_mode = Node.PROCESS_MODE_INHERIT
+
+func _process(_delta: float) -> void:
+	offset = get_global_mouse_position()*0.01
 "
 
 [sub_resource type="GDScript" id="GDScript_nldwe"]
@@ -90,6 +93,8 @@ offset_top = -80.0
 offset_bottom = -49.0
 scale = Vector2(2, 2)
 size_flags_horizontal = 4
+mouse_filter = 2
+mouse_default_cursor_shape = 0
 theme = ExtResource("6_lqwqj")
 text = "5.0"
 alignment = 1

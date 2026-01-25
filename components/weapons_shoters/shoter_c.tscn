@@ -7,12 +7,11 @@
 
 [node name="Shoter_C" type="Node2D"]
 script = ExtResource("1_yto3j")
-aim_oppenent = true
+aim = 1
 speed_multiplayer = 0.05
 bullet_scene = ExtResource("2_3tb7i")
 direction = Vector2(0, 0)
 speed = 300.0
-damage = 1.0
 on_timer = true
 
 [node name="Sprite" type="Sprite2D" parent="."]

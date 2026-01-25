@@ -15,6 +15,8 @@ extends Button
 @export_category("Actions")
 ## если не `null`, то при нажатии изменяет текущую сценну на указаную 
 @export var change_scene:PackedScene
+@export_enum("NONE","EXIT_ANIM","SOUNDS") var flip_setting = 0
+@export var settings_list:Dictionary[int,String] = {0:"none",1:"exit_animation",2:"sounds"}
 
 @export_category("Other")
 ## если `true` наводит камеру на себя при нажатии
@@ -91,13 +93,35 @@ func _toggled(toggled_on: bool) -> void:
 		toggle_panel(toggled_on,panel_size,animation_time)
 	#region Action
 	if change_scene and !Engine.is_editor_hint():
-		G.update_and_save()
-		var camera = get_tree().get_first_node_in_group("Camera")
-		get_tree().create_tween().tween_property(camera,"position",Vector2(camera.position.x,camera.position.y+2000),1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-		await get_tree().create_timer(1.5).timeout
-		get_tree().change_scene_to_file(change_scene.resource_path)
+		change_scene_action(change_scene)
+	
+	if flip_setting != 0:
+		match flip_setting:
+			1: flip_setting_action("exit_animation")
+			2:flip_setting_action("sounds")
 	#endregion
 	focus_mode = Control.FOCUS_NONE
+
+#region Action functions
+func change_scene_action(to_what:PackedScene,save:bool=true) -> void:
+	$Control/SelectionArrow.can_fliker = false
+	process_mode = Node.PROCESS_MODE_DISABLED
+	if save: G.update_and_save()
+	var camera = get_tree().get_first_node_in_group("Camera")
+	get_tree().create_tween().tween_property(camera,"position",Vector2(camera.position.x,camera.position.y+2000),1).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(1.5).timeout
+	get_tree().change_scene_to_file(to_what.resource_path)
+
+##переключает настроку с именем `setting`. Если настройка разна null или не является bool выбрасывает ошибку.
+func flip_setting_action(setting:String) -> void:
+	if G.settings[setting] == null: push_error("ERROR!| setting \"", setting,"\" is null!"); return
+	if !(G.settings[setting] is bool): push_error("ERROR!| setting \"", setting,"\" is not type of bool!"); return
+	if G.settings[setting]: G.settings[setting] = false
+	else:                   G.settings[setting] = true
+	#if G.get(setting) == null: push_error("ERROR!| setting \"", setting,"\" is null!"); return
+	#if G.get(setting): G.set(setting, false)
+	#else:              G.set(setting, true)
+#endregion
 
 func disable_check() -> bool:
 	#print_debug("disable_check")
@@ -122,12 +146,15 @@ func _process(_delta: float) -> void:
 		#region hover button process 
 		if is_hovered() and !disabled:
 			if $Control/SelectionArrow != null:
+				if $Control/SelectionArrow.filker != null: $Control/SelectionArrow.filker = true
 				$Control/SelectionArrow.visible = true
 			if is_hower_button and !Engine.is_editor_hint():
 				#print_debug("_process is_hower_button !editor_hint !disabled")
 				toggle_panel(true,panel_size,animation_time)
 		else:
 			if $Control/SelectionArrow != null:
+				#print("!!!",name)
+				if $Control/SelectionArrow.filker != null: $Control/SelectionArrow.filker = false
 				$Control/SelectionArrow.visible = false
 			if is_hower_button and !Engine.is_editor_hint():
 				#print_debug("_process is_hower_button !editor_hint")

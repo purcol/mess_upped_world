@@ -1,7 +1,8 @@
 extends CharacterBody2D
 
 @export var margin_of_error:int = 20
-@export_enum("hower_mouse","jump") var MovementType: int = 0
+##HOWER_MOUSE - наведение на курсор, STATIONARY - без движение + тп на курсор при стрельбе
+@export_enum("HOWER_MOUSE","STATIONARY","JUMPING") var MovementType: int = 0
 @export var weapons:Array[String] = ["shoter"]
 
 @export var speed = 300.0
@@ -19,13 +20,15 @@ func _ready() -> void:
 	#$Sprite2D.look_at(get_global_mouse_position())
 
 func _physics_process(_delta: float) -> void:
+	G.selected_movement = MovementType
 	match MovementType:
 		0: hower_mouse_movement()
-		1: pass
+		1: stationary_movement()
+		2: pass
 
 	move_and_slide()
 
-#добавление оружий
+##добавление оружий
 func add_weapons():
 	for weapon in weapons:
 		var weapon_exemplar = load("res://components/weapons_shoters/"+weapon+"_c.tscn")
@@ -33,10 +36,17 @@ func add_weapons():
 		weapon_inst.on_timer = true
 		$Components.add_child(weapon_inst)
 
-#наведение на курсор
+##обработка HOWER_MOUSE
 func hower_mouse_movement() -> void:
 	var mouse_pos = get_local_mouse_position()
 	var distanse = abs(global_position - get_global_mouse_position())
 	velocity = mouse_pos.normalized()*speed
 	velocity.x *= clamp(distanse.x*weakering_radius,0,1)
 	velocity.y *= clamp(distanse.y*weakering_radius,0,1)
+
+##обработка STATIONARY
+func stationary_movement():
+	velocity = Vector2.ZERO
+	if !G.dev_mode: return
+	if Input.is_action_just_pressed("shot"):
+		global_position = get_global_mouse_position()

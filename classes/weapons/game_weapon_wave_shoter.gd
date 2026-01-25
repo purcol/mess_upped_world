@@ -5,6 +5,7 @@ extends GameWeaponShoter
 @export_category("Wave Config")
 @export var duration:float = 1.0
 @export var wait_after_time_out_time:float = 0.0
+@export var final_scale:Vector2 = Vector2(1,1)
 
 func wave_shot(wave:Resource,_wave_direction:Vector2,_wave_speed:float,wave_damage:float,
 		wave_duration:float,wave_wait_after_time_out_time:float,
@@ -22,6 +23,7 @@ func wave_shot(wave:Resource,_wave_direction:Vector2,_wave_speed:float,wave_dama
 	wave_inst.velocity = Vector2.ZERO
 	wave_inst.duration = wave_duration
 	wave_inst.wait_after_time_out_time = wave_wait_after_time_out_time
+	wave_inst.final_scale = final_scale
 	
 	parent_node.add_child(wave_inst)
 	return
@@ -38,5 +40,5 @@ func shot_condition() -> void:
 
 func _validate_property(property: Dictionary):
 	#print(property)
-	if property.name == "direction" or property.name == "speed" or property.name == "aim_oppenent":
+	if property.name == "direction" or property.name == "speed" or property.name == "aim_oppenent"  or property.name == "aim":
 		property.usage = PROPERTY_USAGE_NONE

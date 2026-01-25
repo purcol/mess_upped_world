@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://kqurvydy150r"]
+[gd_scene load_steps=19 format=3 uid="uid://kqurvydy150r"]
 
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_8731w"]
 [ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_ox66g"]
+[ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_svlxo"]
 [ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="3_svlxo"]
 [ext_resource type="Texture2D" uid="uid://b6wk13du00sgc" path="res://assets/textures/achievements/first_pancake.png" id="4_kfc12"]
 [ext_resource type="Texture2D" uid="uid://dwnaymwbxalt8" path="res://assets/nodes/beginigs_of_rampage.png" id="5_w1qag"]
@@ -62,7 +63,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	text = str(G.selected_weapons)+\" \\n\"+str(G.total_time)+\" \\n\"+str(G.died_to)+\" \\n\"+str(G.win_to)
+	text = str(G.selected_restricted_weapons)+\" \\n\"+str(G.selected_weapons)+\" \\n\"+str(G.total_time)+\" \\n\"+str(G.died_to)+\" \\n\"+str(G.win_to)+\" \\n\"+str(G.settings)+\" \\n\\n\"+str(G.contents_to_save)
 "
 
 [sub_resource type="GDScript" id="GDScript_2gmo2"]
@@ -123,6 +124,7 @@ offset_bottom = 18.0
 scale = Vector2(3, 3)
 pivot_offset = Vector2(7.6293945e-06, -0.2222228)
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_8731w")
 toggle_mode = true
 text = "Достижения"
@@ -150,6 +152,11 @@ rotation = 1.5707964
 scale = Vector2(0.8133335, 0.8133335)
 offset = Vector2(10.666672, 2.666666)
 polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+script = ExtResource("2_svlxo")
+metadata/_custom_type_script = "uid://bxnp20up2ajx"
+
+[node name="Timer" type="Timer" parent="Control/SelectionArrow"]
+wait_time = 0.3
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -201,6 +208,13 @@ offset_bottom = 125.333336
 grow_horizontal = 0
 theme = ExtResource("1_8731w")
 
+[node name="Border" type="Panel" parent="Panel/Container/Stats/Panel"]
+layout_mode = 0
+offset_right = 118.33335
+offset_bottom = 125.333336
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2kc5")
+
 [node name="StatsDisplay" type="TextEdit" parent="Panel/Container/Stats/Panel"]
 layout_mode = 1
 offset_right = 237.33337
@@ -210,14 +224,8 @@ text = "ssdfsdf"
 wrap_mode = 1
 script = SubResource("GDScript_3x0i2")
 
-[node name="Border" type="Panel" parent="Panel/Container/Stats/Panel"]
-layout_mode = 0
-offset_right = 118.33335
-offset_bottom = 125.333336
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_i2kc5")
-
 [node name="Reset" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+visible = false
 layout_mode = 2
 text = "стереть сохранение"
 script = SubResource("GDScript_2gmo2")
@@ -225,7 +233,6 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" type="Panel" parent="Panel/Container/Reset"]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -286,6 +293,7 @@ is_hower_button = true
 forus_camera = true
 
 [node name="Panel" parent="Panel/Container/achivement" instance=ExtResource("3_svlxo")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -323,9 +331,33 @@ _title = "Приломленый"
 description = "убей ЛазерТага хотя бы один раз.
 Ты доказал что ты достоит слы лучей. (в отличии от разрабочика)"
 
+[node name="achivement4" parent="Panel/Container" instance=ExtResource("2_ox66g")]
+layout_mode = 2
+text = "Любитель убивать"
+script = SubResource("GDScript_svlxo")
+is_panel_button = true
+is_hower_button = true
+forus_camera = true
+
+[node name="Panel" parent="Panel/Container/achivement4" instance=ExtResource("3_svlxo")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 264.6667
+offset_bottom = 165.18518
+grow_horizontal = 0
+icon = ExtResource("6_ox66g")
+_title = "Любитель убивать"
+description = "убей боссов в общей сложности 10 раз или больше."
+
 [node name="MeasureButtons" type="Panel" parent="Panel"]
 process_mode = 4
 visible = false
 layout_mode = 0
 offset_right = 120.66667
 offset_bottom = 56.11111
+
+[connection signal="timeout" from="Control/SelectionArrow/Timer" to="Control/SelectionArrow" method="_on_timer_timeout"]

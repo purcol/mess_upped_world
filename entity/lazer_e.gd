@@ -1,6 +1,6 @@
 extends Node2D
 
-var damage:float = 1
+var damage:float = 1.0
 var cast_delay:float = 0.5
 var stop_follow:float = 1.0
 var aim_oppenent:bool = false
@@ -16,8 +16,11 @@ func hit(lazzer_damage:float=1.0) -> void:
 	$RayCast.force_shapecast_update()
 	
 	if !$RayCast.is_colliding(): return
-	if !$RayCast.get_collider(0).get_name() == "XitboxArea_C": return
-	$RayCast.get_collider(0).hit(lazzer_damage*0.5)
+		#if $RayCast.get_collider(collider_index).get_name() == "XitboxArea_C" and $RayCast.get_collider(collider_index).get_node("../..").is_in_groop(""):
+	for collider_index in range($RayCast.get_collision_count()):
+		if $RayCast.get_collider(collider_index) != null:
+			#print($RayCast.get_collider(collider_index).get_name())
+			$RayCast.get_collider(collider_index).hit(lazzer_damage*0.5)
 
 func stop_aim() -> void:
 	await get_tree().create_timer(cast_delay*stop_follow).timeout

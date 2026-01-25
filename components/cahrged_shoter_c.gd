@@ -37,7 +37,7 @@ func shot(bullet_direction:Vector2=Vector2(0,0),bullet_speed:float=300,bullet_da
 	else: 
 		aim_player_f(); bullet.get_node("Components/XitboxArea_C").set_collision_mask(5)
 		bullet.velocity = ($Marker.global_position - global_position).normalized()*bullet_speed+bullet_direction
-	print(bullet.get_node("Components/XitboxArea_C").get_collision_mask())
+	#print(bullet.get_node("Components/XitboxArea_C").get_collision_mask())
 	bullet.direction_ = bullet_direction
 	bullet.speed_ = bullet_speed
 	bullet.damage = bullet_damage

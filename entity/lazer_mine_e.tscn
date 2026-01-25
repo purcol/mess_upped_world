@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://g6ldgeylh4s0"]
+
+[ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="1_hn6v5"]
+[ext_resource type="Script" uid="uid://c1tukjbhh551n" path="res://entity/lazer_mine_e.gd" id="1_iwvad"]
+[ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="2_iwvad"]
+[ext_resource type="PackedScene" uid="uid://bl86ix2q3yg28" path="res://components/weapons_shoters/lazer_shoter_c.tscn" id="3_4w416"]
+[ext_resource type="Texture2D" uid="uid://bmvrri7y5kr22" path="res://assets/textures/bullet/bullet.png" id="4_durte"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htrrd"]
+size = Vector2(10, 10)
+
+[node name="LazerMine_E" type="CharacterBody2D"]
+script = ExtResource("1_iwvad")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="Healf_C" parent="Components" instance=ExtResource("1_hn6v5")]
+
+[node name="XitboxArea_C" parent="Components" instance=ExtResource("2_iwvad")]
+
+[node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
+process_mode = 4
+shape = SubResource("RectangleShape2D_htrrd")
+
+[node name="LazerShoterC" parent="Components" groups=["Player"] instance=ExtResource("3_4w416")]
+stop_follow = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.6249999, 1.6249999)
+texture = ExtResource("4_durte")
+
+[connection signal="on_shot" from="Components/LazerShoterC" to="." method="_on_lazer_shoter_c_on_shot"]

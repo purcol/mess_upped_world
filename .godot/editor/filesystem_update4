@@ -1,0 +1,14 @@
+res://classes/weapons/game_weapon_lazer_shoter.gd
+res://components/weapons_shoters/lazer_shoter_c.gd
+res://worlds/battel_zone.tscn
+res://assets/beackroung.tres
+res://assets/theme/standart.tres
+res://shaders/distortion.gdshader
+res://shaders/inv_vinete.gdshader
+res://entity/lazer_e.gd
+res://Gui/classes/menu_boss_button.gd
+res://entity/bosses/lazer_tag_boss_e.tscn
+res://classes/weapons/game_weapon_shoter.gd
+res://Gui/main_buttons/bosses.tscn
+res://worlds/pease.tscn
+res://worlds/global.gd

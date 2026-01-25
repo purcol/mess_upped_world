@@ -1,16 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://do8es0m2igrel"]
+[gd_scene load_steps=5 format=3 uid="uid://do8es0m2igrel"]
 
 [ext_resource type="PackedScene" uid="uid://snmpfht7l46k" path="res://entity/wave_e.tscn" id="1_cqnbq"]
+[ext_resource type="Texture2D" uid="uid://cfklqij3qwnt" path="res://assets/textures/player/player.png" id="2_6cbol"]
 
 [sub_resource type="GDScript" id="GDScript_o54v2"]
 script/source = "@tool
 extends GameWeaponWaveShoter
+
+##если true делает волну имбой (для игрока)
+var busted:bool = false
+
+func _ready() -> void:
+	if entity.is_in_group(\"Player\") and !busted:
+		final_scale = Vector2(0.5,0.5)
+		damage = 2.5
+		cooldown = 4
+		duration = 5
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_3yqoc"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	visible = false
+	if $\"../../..\" != null:
+		if $\"../../..\".get_name() == \"Player_E\":
+				visible = true
+
+func _process(_delta: float) -> void:
+	if $\"../../..\" != null:
+		if $\"../../..\".get_name() == \"Player_E\":
+			rotate(0.02)
 "
 
 [node name="WaveShoter_c" type="Node2D"]
 script = SubResource("GDScript_o54v2")
-duration = null
-wait_after_time_out_time = null
+duration = 10.0
 bullet_scene = ExtResource("1_cqnbq")
-damage = 1.0
 on_timer = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(1.6249999, 1.6249999)
+texture = ExtResource("2_6cbol")
+script = SubResource("GDScript_3yqoc")

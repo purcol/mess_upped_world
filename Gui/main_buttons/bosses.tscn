@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://baet8hpwqljsu"]
+[gd_scene load_steps=16 format=3 uid="uid://baet8hpwqljsu"]
 
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_iqriw"]
 [ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_3girt"]
+[ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_hcu57"]
 [ext_resource type="PackedScene" uid="uid://bvlw1exf02m2s" path="res://worlds/battel_zone.tscn" id="3_dkosk"]
 [ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="4_rxeom"]
 [ext_resource type="Script" uid="uid://cebykbmcpxg5f" path="res://templates/boss_panel.gd" id="5_dkosk"]
@@ -86,6 +87,7 @@ pivot_offset = Vector2(0.037043333, 0.23456478)
 size_flags_horizontal = 8
 size_flags_vertical = 4
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_iqriw")
 toggle_mode = true
 text = "Боссы"
@@ -114,6 +116,11 @@ rotation = 1.5707964
 scale = Vector2(0.8133335, 0.8133335)
 offset = Vector2(10.666672, 2.666666)
 polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+script = ExtResource("2_hcu57")
+metadata/_custom_type_script = "uid://bxnp20up2ajx"
+
+[node name="Timer" type="Timer" parent="Control/SelectionArrow"]
+wait_time = 0.3
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -123,7 +130,7 @@ anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_right = 324.0247
-offset_bottom = 167.15637
+offset_bottom = 212.82304
 grow_horizontal = 0
 theme = ExtResource("1_iqriw")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7iwkv")
@@ -166,7 +173,7 @@ grow_horizontal = 0
 script = ExtResource("5_dkosk")
 icon = ExtResource("6_4ip5l")
 _title = "Обучающий"
-description = "Первый босс игры. Ничего особенного
+description = "Первый босс игры. Ничего особенного.
 
 Награда за победу: Пуля"
 
@@ -189,11 +196,13 @@ anchor_right = 1.0
 anchor_bottom = 0.0
 offset_left = 0.3333435
 offset_right = 207.66669
-offset_bottom = 130.82304
+offset_bottom = 149.48972
 grow_horizontal = 0
 script = ExtResource("5_dkosk")
 icon = ExtResource("7_4ip5l")
 _title = "ЛазерТаг"
 description = "Босс построенный на лазерах.
 
-Награда за победу: Лазер"
+Награда за победу: Лазер и Волна."
+
+[connection signal="timeout" from="Control/SelectionArrow/Timer" to="Control/SelectionArrow" method="_on_timer_timeout"]

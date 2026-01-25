@@ -13,7 +13,7 @@ func _init() -> void:
 	var panel_inst = load("res://templates/achiement_panel.tscn").instantiate()
 	var template_inst = load("res://templates/button_template.tscn").instantiate()
 	var control_inst = template_inst.get_node("Control")
-	print(control_inst)
+	#print(control_inst)
 	control_inst.reparent(self)
 	panel_inst.icon = achievement_icon
 	panel_inst._title = title

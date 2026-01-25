@@ -9,6 +9,7 @@ script/source = "extends CharacterBody2D
 #@export var direction_:Vector2 = Vector2(0,0)
 #@export var speed_:float = 300
 @export var damage:float = 1.0
+@export var final_scale:Vector2 = Vector2(1.0,1.0)
 var target_player:bool = false
 
 var duration = 1
@@ -22,15 +23,15 @@ func _ready() -> void:
 	width = 0
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	var tween2 =  get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self,\"scale\",Vector2(1,1),duration)
+	tween.tween_property(self,\"scale\",final_scale,duration)
 	tween2.tween_property(self,\"width\",75,duration*0.5)
 	await get_tree().create_timer(duration*0.5).timeout
 	var tween3 =  get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween3.tween_property(self,\"width\",0,duration*0.3)
 
-func _physics_process(_delta: float) -> void:
-	print(\"get vel : \", velocity, \"\\n\",
-		  \"get pos : \", position)
+#func _physics_process(_delta: float) -> void:
+	#print(\"get vel : \", velocity, \"\\n\",
+		  #\"get pos : \", position)
 	#move_and_slide()
 
 func _on_xitbox_area_c_area_entered(area: Area2D) -> void:

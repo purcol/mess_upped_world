@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func _toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		@warning_ignore("int_as_enum_without_cast")
 		G.selected_boss = boss as int
 	super(toggled_on)
 

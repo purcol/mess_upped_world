@@ -53,6 +53,20 @@ func _process(_delta: float) -> void:
 	if !is_locked:
 		mouse_move()
 		keyboard_move()
+		offset = get_global_mouse_position()*0.01
+
+func _ready() -> void:
+	if G.settings["exit_animation"]:
+		is_locked = true
+		var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		position.y = position.y-250000
+		tween.tween_property(self,"position",Vector2(position.x,position.y+250000),3)
+		var _modulate = Color(0,0,0,0)
+		for nodes in get_children():
+			nodes.modulate = Color(1,1,1,0)
+			get_tree().create_tween().tween_property(nodes,"modulate",Color(1,1,1,1),3)
+		await get_tree().create_timer(3).timeout
+		is_locked = false
 
 	#print(in_up,"|",in_down,"|",in_left,"|",in_right)
 	#if position != target and target != Vector2(0,0):

@@ -1,0 +1,235 @@
+[gd_scene load_steps=14 format=3 uid="uid://jrsnf42cl25b"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_yv2yj"]
+[ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_3v5xi"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="3_gejfu"]
+[ext_resource type="PackedScene" uid="uid://df67o4tnqfcj1" path="res://templates/descripton_panel.tscn" id="4_tlxo0"]
+
+[sub_resource type="GDScript" id="GDScript_cyxjy"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+
+#func panel_setup():
+	#pass
+
+#func _ready():
+	#pass
+
+#func disable_check():
+	#pass
+	#
+#func _draw():
+	#pass
+#
+#func toggle_panel(toggled_on:bool,open_panel_size:Vector2,anim_time:float=0.5,closed_panel_size:Vector2=Vector2(-1,-1)):
+	#pass
+"
+
+[sub_resource type="GDScript" id="GDScript_thipi"]
+script/source = "extends Control
+
+func _input(_event: InputEvent) -> void:
+	pass
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7iwkv"]
+
+[sub_resource type="GDScript" id="GDScript_4ip5l"]
+script/source = "@tool
+extends Panel
+#
+#@onready var og_size = size
+#func _ready() -> void:
+	#if Engine.is_editor_hint():
+		#size = og_size 
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ms84"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 0)
+
+[sub_resource type="GDScript" id="GDScript_yv2yj"]
+script/source = "@tool
+extends GameMenuOptionsButton
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlxo0"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="GDScript" id="GDScript_tlxo0"]
+script/source = "@tool
+extends GameMenuButton
+
+
+func _toggled(_toggled_on: bool) -> void:
+	G.reset_save()
+	super(_toggled_on)
+	
+func _process(_delta: float) -> void:
+	super(_delta)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3edf"]
+bg_color = Color(0, 0, 0, 1)
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+
+[node name="Options" type="Button"]
+offset_right = 60.0
+offset_bottom = 18.0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(0.037043333, 0.23456478)
+size_flags_horizontal = 8
+size_flags_vertical = 4
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_yv2yj")
+toggle_mode = true
+text = "Настройки"
+alignment = 0
+icon_alignment = 2
+expand_icon = true
+script = SubResource("GDScript_cyxjy")
+is_panel_button = true
+forus_camera = true
+forus_camera_offset = Vector2(270, 111)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -63.0
+grow_horizontal = 0
+script = SubResource("GDScript_thipi")
+
+[node name="SelectionArrow" type="Polygon2D" parent="Control"]
+visible = false
+position = Vector2(49.333332, 9.333333)
+rotation = 1.5707964
+scale = Vector2(0.8133335, 0.8133335)
+offset = Vector2(10.666672, 2.666666)
+polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+script = ExtResource("2_3v5xi")
+metadata/_custom_type_script = "uid://bxnp20up2ajx"
+
+[node name="Timer" type="Timer" parent="Control/SelectionArrow"]
+wait_time = 0.3
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 324.0247
+offset_bottom = 167.15637
+grow_horizontal = 0
+theme = ExtResource("1_yv2yj")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7iwkv")
+script = SubResource("GDScript_4ip5l")
+
+[node name="Border" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_right = 297.33334
+offset_bottom = 160.15637
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5ms84")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 90.0
+offset_bottom = 142.15637
+
+[node name="ExitAnimation" parent="Panel/VBoxContainer" instance=ExtResource("3_gejfu")]
+layout_mode = 2
+focus_mode = 0
+text = "Анимация выхода"
+script = SubResource("GDScript_yv2yj")
+is_panel_button = true
+is_hower_button = true
+flip_setting = 1
+
+[node name="Panel" parent="Panel/VBoxContainer/ExitAnimation" instance=ExtResource("4_tlxo0")]
+visible = false
+layout_mode = 1
+offset_right = 187.02469
+offset_bottom = 136.48972
+theme_override_styles/panel = SubResource("StyleBoxFlat_tlxo0")
+text = "если выключить анимация выхода будет пропущенна.
+Альтернативно можно использовать безопасный выход на Shift+Backspace."
+
+[node name="Sounds" parent="Panel/VBoxContainer" instance=ExtResource("3_gejfu")]
+layout_mode = 2
+focus_mode = 0
+text = "Звуки"
+script = SubResource("GDScript_yv2yj")
+is_panel_button = true
+is_hower_button = true
+flip_setting = 2
+
+[node name="Panel" parent="Panel/VBoxContainer/Sounds" instance=ExtResource("4_tlxo0")]
+visible = false
+layout_mode = 1
+offset_right = 187.02469
+offset_bottom = 89.489716
+text = "звуков конечно и так нет... но ты всё равно можешь потыкать эту кнопку!"
+
+[node name="Reset" parent="Panel/VBoxContainer" instance=ExtResource("3_gejfu")]
+layout_mode = 2
+text = "стереть сохранение"
+script = SubResource("GDScript_tlxo0")
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" type="Panel" parent="Panel/VBoxContainer/Reset"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 93.16667
+offset_bottom = 29.777779
+grow_horizontal = 0
+scale = Vector2(1.735, 1.735)
+theme = ExtResource("1_yv2yj")
+
+[node name="Description" type="TextEdit" parent="Panel/VBoxContainer/Reset/Panel"]
+layout_mode = 1
+offset_right = 211.33334
+offset_bottom = 59.555557
+scale = Vector2(0.5, 0.5)
+text = "ОСТОРОЖНО! Это стерёт товоё сохранение одним кликом!"
+wrap_mode = 1
+
+[node name="Border" type="Panel" parent="Panel/VBoxContainer/Reset/Panel"]
+layout_mode = 0
+offset_right = 93.16667
+offset_bottom = 29.444445
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3edf")
+
+[connection signal="timeout" from="Control/SelectionArrow/Timer" to="Control/SelectionArrow" method="_on_timer_timeout"]

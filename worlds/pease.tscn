@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cw4sj4xjkq8o2"]
+[gd_scene load_steps=21 format=3 uid="uid://cw4sj4xjkq8o2"]
 
 [ext_resource type="PackedScene" uid="uid://ca8xi5jgrhfou" path="res://templates/beackroung.tscn" id="1_5v8yi"]
 [ext_resource type="Script" uid="uid://bs2w2dtn6hcd" path="res://worlds/pease.gd" id="1_fociy"]
@@ -9,7 +9,9 @@
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="7_eid6d"]
 [ext_resource type="PackedScene" uid="uid://bvlw1exf02m2s" path="res://worlds/battel_zone.tscn" id="7_uf2t8"]
 [ext_resource type="PackedScene" uid="uid://baet8hpwqljsu" path="res://Gui/main_buttons/bosses.tscn" id="9_jnctx"]
+[ext_resource type="PackedScene" uid="uid://jrsnf42cl25b" path="res://Gui/main_buttons/options.tscn" id="10_87map"]
 [ext_resource type="PackedScene" uid="uid://kqurvydy150r" path="res://Gui/main_buttons/achievements.tscn" id="11_e37mn"]
+[ext_resource type="Material" uid="uid://brl4jgrsxtima" path="res://shaders/distortion_material.tres" id="11_m411v"]
 [ext_resource type="PackedScene" uid="uid://dr73wiuefcobr" path="res://Gui/main_buttons/weapons.tscn" id="16_cpd08"]
 
 [sub_resource type="Theme" id="Theme_eid6d"]
@@ -84,17 +86,19 @@ extends GameMenuButton
 
 func _toggled(_toggled_on: bool) -> void:
 	G.update_and_save()
-	var camera = get_tree().get_first_node_in_group(\"Camera\")
-	camera.is_locked = true
-	var tween = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(camera,\"position\",Vector2(camera.position.x,800000),9)
-	var _modulate = Color(0,0,0,0)
-	for nodes in camera.get_children():
-		_modulate = nodes.modulate
-		get_tree().create_tween().tween_property(nodes,\"modulate\",Color(_modulate.r,_modulate.g,_modulate.b,0),2)
-	
-	await get_tree().create_timer(4).timeout
-	get_tree().quit()
+	if G.settings[\"exit_animation\"]:
+		var camera = get_tree().get_first_node_in_group(\"Camera\")
+		camera.is_locked = true
+		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(camera,\"position\",Vector2(camera.position.x,800000),9)
+		var _modulate = Color(0,0,0,0)
+		for nodes in camera.get_children():
+			_modulate = nodes.modulate
+			get_tree().create_tween().tween_property(nodes,\"modulate\",Color(_modulate.r,_modulate.g,_modulate.b,0),2)
+		
+		await get_tree().create_timer(4).timeout
+		get_tree().quit()
+	else: get_tree().quit()
 	super(_toggled_on)
 	
 func _process(_delta: float) -> void:
@@ -208,7 +212,35 @@ focus_mode = 0
 text = "Выход"
 script = SubResource("GDScript_jnctx")
 
-[node name="Help" parent="." instance=ExtResource("4_upm6v")]
+[node name="MainButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WIP" type="LineEdit" parent="MainButtons"]
+layout_mode = 0
+offset_left = -240.0
+offset_top = -288.0
+offset_right = 264.0
+offset_bottom = -256.0
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+theme = SubResource("Theme_eid6d")
+text = "игра не доделана, прошу прощения, обновления будут"
+alignment = 1
+editable = false
+flat = true
+
+[node name="Options" parent="MainButtons" instance=ExtResource("10_87map")]
+layout_mode = 0
+offset_left = -112.0
+offset_top = -16.0
+offset_right = -28.0
+offset_bottom = 2.0
+
+[node name="Help" parent="MainButtons" instance=ExtResource("4_upm6v")]
+layout_mode = 0
 offset_left = -117.0
 offset_top = -128.0
 offset_right = -47.0
@@ -218,7 +250,7 @@ text = "помощь"
 script = SubResource("GDScript_4c2l3")
 forus_camera = true
 
-[node name="TextEdit" type="TextEdit" parent="Help"]
+[node name="TextEdit" type="TextEdit" parent="MainButtons/Help"]
 visible = false
 layout_mode = 0
 offset_left = 69.33333
@@ -249,24 +281,6 @@ middle_mouse_paste_enabled = false
 empty_selection_clipboard_enabled = false
 wrap_mode = 1
 
-[node name="MainButtons" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="WIP" type="LineEdit" parent="MainButtons"]
-layout_mode = 0
-offset_left = -240.0
-offset_top = -288.0
-offset_right = 264.0
-offset_bottom = -256.0
-theme = SubResource("Theme_eid6d")
-text = "игра не доделана, прошу прощения, обновления будут"
-alignment = 1
-editable = false
-flat = true
-
 [node name="Bosses" parent="MainButtons" instance=ExtResource("9_jnctx")]
 layout_mode = 0
 offset_left = -408.0
@@ -282,6 +296,7 @@ offset_right = 368.0
 offset_bottom = -214.0
 pivot_offset = Vector2(56.000008, 10.666667)
 focus_mode = 0
+mouse_default_cursor_shape = 8
 disabled = true
 text = "Ноды"
 script = SubResource("GDScript_upm6v")
@@ -309,6 +324,7 @@ offset_bottom = -238.0
 pivot_offset = Vector2(-0.063097, -0.15272522)
 
 [node name="StartTutorialBoss" parent="." instance=ExtResource("4_upm6v")]
+material = ExtResource("11_m411v")
 offset_left = -56.0
 offset_top = 1240.0
 offset_bottom = 1258.0
@@ -320,15 +336,52 @@ needs_weapons = true
 change_scene = ExtResource("7_uf2t8")
 
 [node name="Polygon2D" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
 position = Vector2(58.666676, -11.555556)
 offset = Vector2(8.000004, 2.666666)
 polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
 
 [node name="Polygon2D2" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
 position = Vector2(56.000008, 36.444443)
 rotation = 3.1415925
 offset = Vector2(10.666672, 2.666666)
 polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+
+[node name="Polygon2D3" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(5.3333435, 4.444458, 8.000011, 1.777771, 10.666676, -3.555542, 5.3333435, -11.555542, 1.1444092e-05, -6.222229, 5.3333435, -8.8888855, 8.000011, -3.555542, 5.3333435, 1.777771)
+
+[node name="Polygon2D4" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(37.333344, 4.444458, 32.00001, 1.777771, 40.00001, -14.222229, 48.00001, -11.555542, 45.333344, -6.222229, 42.66668, -11.555542, 37.333344, -6.222229, 40.00001, 1.777771, 34.66668, 1.777771)
+
+[node name="Polygon2D5" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(85.33334, 4.444458, 106.66668, 1.777771, 98.66668, -16.888885, 80.000015, -19.555542, 77.33334, -6.222229, 85.33334, -14.222229, 96.000015, -11.555542, 98.66668, -3.555542, 101.33334, -0.8888855, 98.66668, 1.777771)
+
+[node name="Polygon2D6" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+position = Vector2(-0.33333206, 0)
+polygon = PackedVector2Array(109.33334, 4.444458, 117.33334, 1.777771, 117.33334, 9.777771, 122.66669, 7.1111145, 128.00002, -22.222229, 120.000015, -14.222229, 125.33334, -16.888885, 120.000015, -6.222229, 112.000015, -19.555542, 109.33334, -8.8888855, 112.000015, -11.555542, 114.66668, -6.222229, 114.66668, 1.777771)
+
+[node name="Polygon2D7" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(26.666677, 15.1111145, 5.3333435, 23.111115, 29.333344, 33.77777, 48.00001, 23.111115, 29.333344, 28.444458, 16.000011, 23.111115)
+
+[node name="Polygon2D8" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(2.6666756, 15.1111145, -5.3333244, 7.1111145, -13.333324, 9.777771, -13.333324, 17.777771, -10.66666, 12.444458, -5.3333244, 9.777771, 1.1444092e-05, 20.444458, 16.000011, 17.777771)
+
+[node name="Polygon2D9" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+position = Vector2(42.666676, -27.555542)
+rotation = 0.2617994
+polygon = PackedVector2Array(74.66668, 17.777771, 80.000015, 31.111115, 120.000015, 25.777771, 109.33334, 20.444458, 109.33334, 25.777771, 82.66668, 23.111115, 85.33334, 17.777771, 77.33334, 15.1111145)
+
+[node name="Polygon2D10" type="Polygon2D" parent="StartTutorialBoss"]
+modulate = Color(1, 1, 1, 0.453)
+polygon = PackedVector2Array(96.000015, 15.1111145, 89.36018, 18.377354, 85.33334, 28.444458, 66.66668, 31.111115, 66.66668, 25.777771, 72.000015, 28.444458, 85.33334, 23.111115, 82.66668, 17.777771)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-8, 9808)

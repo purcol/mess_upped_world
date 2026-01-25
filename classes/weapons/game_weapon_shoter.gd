@@ -6,8 +6,9 @@ extends Node2D
 
 ## конфигурация стрелка
 @export_category("Sooter config")
-## если `true` целится в оппонента
-@export var aim_oppenent:bool = false
+## NONE - не целится. OPPENENT - целется в опонента. ALLY - целется в союзника.
+@export_enum("NONE","OPPENENT","ALLY") var aim = 0
+@export var use_predict:bool = false
 ## добавляет пулю не в `FunctionalEntities`, а в себя
 @export var is_local:bool = false
 ## включает выключает стрельбу
@@ -31,9 +32,9 @@ extends Node2D
 ## скорость пули (если сценой для призыва будет лазером работает как длина (для лазеров нужно использовать `GameWeaponLazerShoter` класс))
 @export var speed:float = 200
 ## урон пули
-@export var damage:float :
+@export var damage:float = 1.0 :
 	get: return damage
-	set(amount): damage = abs(amount)
+	set(amount): damage = abs(amount) #1 if abs(amount) <=0 else abs(amount)
 
 ## конфигурации связанные со временем
 @export_category("Timer")
@@ -62,8 +63,11 @@ var is_auto_shoot_on:bool = false
 ## когда true стрельяет
 var shot_condition_flag:bool = false
 
+signal on_shot
+
 
 func get_bullet_collision() -> int:
+	if get_node(".").has_node("RayCast") and !is_palyer: return 1
 	if is_palyer: return 6
 	return 5
 
@@ -76,23 +80,57 @@ func get_speed_modifire(max_hp:float,hp:float,speed_per_hp:float,max_value:float
 ##возращает ускорение текущей сущьности
 func get_entity_speed_modifire() -> float:
 	if Engine.is_editor_hint(): return 1.0
-	if entity.get_node("Components").has_node("Healf_C"):
+	var components = entity
+	if entity.name == "Components":
+		components = entity.get_node("../")
+	if components == null: push_error("ERROR: ",entity," dose not have Components"); return 1.0
+	if components.has_node("Healf_C"):
 		var hp_node = entity.get_node("Components/Healf_C")
 		return get_speed_modifire(hp_node.max_healf, hp_node.healf, speed_multiplayer,max_modifire)
 	return 1.0
 #endregion
 
+#region aim
+##возвращает противника
 func get_oppenent() -> Node:
 	var oppenent = get_tree().get_first_node_in_group("Player")
 	if is_palyer: oppenent = get_tree().get_first_node_in_group("Boss")
 	if oppenent == null: oppenent = get_tree().get_first_node_in_group("World"); push_warning("Warning | Oppenent is null!")
 	return oppenent
 
+##возвращает союзника
+func get_ally() -> Node:
+	var ally:Node
+	if is_palyer: ally = get_tree().get_first_node_in_group("Player")
+	else: ally = get_tree().get_first_node_in_group("Boss")
+	if ally == null: ally = get_tree().get_first_node_in_group("World"); push_warning("Warning | Ally is null!")
+	#print(ally,"  ", aim)
+	return ally
+
+func get_target(who:int) -> Node:
+	match who:
+		0: push_error("Can't aim at NONE."); return null
+		1: return get_oppenent()
+		2: return get_ally()
+	push_error("ERROR!|Undefined target with value of: ",who,"!")
+	return null
+
+##предугадывает позицию противника. in_frames определяет через скольько кадров.
+func get_predicted_location(who:int,in_frames:int=1) -> Vector2:
+	var oppenent = get_target(who)
+	if !is_palyer: return oppenent.global_position + (oppenent.velocity*in_frames)
+	elif is_palyer: return oppenent.global_position + (oppenent.velocity*in_frames) if oppenent.velocity != null else oppenent.global_position
+	push_error("ERROR!| Оppenent is null.")
+	return Vector2(0,0)
+#endregion
+
 #region стрельба
 ##вызывает выстрел
-func shot(bullet:Resource,bullet_direction:Vector2,bullet_speed:float,bullet_damage:float,is_targeting_opponent:bool=false,spawn_as_local:bool=false,_num:int=-1) -> void:
+func shot(bullet:Resource,bullet_direction:Vector2,bullet_speed:float,bullet_damage:float,
+		  targeting:int=0,spawn_as_local:bool=false,_num:int=-1) -> void:
 	if Engine.is_editor_hint(): return
 	if !is_on: return
+	on_shot.emit()
 	#print("INFO| shot happend ",num)
 	var bullet_inst = bullet.instantiate()
 	
@@ -101,14 +139,17 @@ func shot(bullet:Resource,bullet_direction:Vector2,bullet_speed:float,bullet_dam
 	if spawn_as_local: parent_node = get_node("."); bullet_inst.position = Vector2(0,0)
 	bullet_inst.get_node("Components/XitboxArea_C").set_collision_mask(get_bullet_collision())
 	bullet_inst.velocity = bullet_direction*bullet_speed
-	if is_targeting_opponent: bullet_inst.velocity = ((get_oppenent().global_position-self.global_position).normalized())*bullet_speed + bullet_direction*bullet_speed
+	if use_predict:
+		bullet_inst.velocity = ((get_predicted_location(targeting)-self.global_position).normalized())*bullet_speed + bullet_direction*bullet_speed
+	else:
+		bullet_inst.velocity = ((get_target(targeting).global_position-self.global_position).normalized())*bullet_speed + bullet_direction*bullet_speed
 	bullet_inst.damage = bullet_damage
 	
 	parent_node.add_child(bullet_inst)
 	return
 
 func defalt_shot(num:int=0) -> void:
-	shot(bullet_scene,direction,speed*get_entity_speed_modifire(),damage*get_entity_speed_modifire(),aim_oppenent,is_local,num)
+	shot(bullet_scene,direction,speed*get_entity_speed_modifire(),damage*get_entity_speed_modifire(),aim,is_local,num)
 	#print("INFO| defalt_shot")
 	return
 #endregion

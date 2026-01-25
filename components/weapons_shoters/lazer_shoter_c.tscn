@@ -8,6 +8,7 @@
 [node name="LazerShoterC" type="Node2D"]
 script = ExtResource("1_blj2r")
 aim_oppenent = true
+aim = 1
 is_local = true
 bullet_scene = ExtResource("2_blj2r")
 direction = Vector2(0, 0)

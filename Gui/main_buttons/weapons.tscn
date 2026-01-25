@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr73wiuefcobr"]
+[gd_scene load_steps=20 format=3 uid="uid://dr73wiuefcobr"]
 
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_ig2u2"]
+[ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_2l06o"]
 [ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_bcmbp"]
 [ext_resource type="PackedScene" uid="uid://s5cc8ff3x1d3" path="res://components/weapons_shoters/charged_shoter_c.tscn" id="3_1xajr"]
 [ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="3_a7b7o"]
@@ -9,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://5ayi1qxc5kkf" path="res://components/weapons_shoters/shoter_c.tscn" id="6_1xajr"]
 [ext_resource type="Texture2D" uid="uid://b1r271vmbnkps" path="res://assets/textures/weapons/lazer.png" id="6_ljxy6"]
 [ext_resource type="PackedScene" uid="uid://bl86ix2q3yg28" path="res://components/weapons_shoters/lazer_shoter_c.tscn" id="8_1xajr"]
+[ext_resource type="PackedScene" uid="uid://do8es0m2igrel" path="res://components/weapons_shoters/wave_shoter_c.tscn" id="9_cyxjy"]
+[ext_resource type="Texture2D" uid="uid://dwupi74w6lwo3" path="res://assets/textures/weapons/wave.png" id="10_7iwkv"]
 
 [sub_resource type="GDScript" id="GDScript_cyxjy"]
 script/source = "@tool
@@ -69,6 +72,7 @@ pivot_offset = Vector2(0.037043333, 0.23456478)
 size_flags_horizontal = 8
 size_flags_vertical = 4
 focus_mode = 0
+mouse_default_cursor_shape = 2
 theme = ExtResource("1_ig2u2")
 toggle_mode = true
 text = "Оружия"
@@ -97,6 +101,11 @@ rotation = 1.5707964
 scale = Vector2(0.8133335, 0.8133335)
 offset = Vector2(10.666672, 2.666666)
 polygon = PackedVector2Array(-10.666676, -2.666666, -5.333342, -13.333332, -16.00001, -13.333332)
+script = ExtResource("2_2l06o")
+metadata/_custom_type_script = "uid://bxnp20up2ajx"
+
+[node name="Timer" type="Timer" parent="Control/SelectionArrow"]
+wait_time = 0.3
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -133,6 +142,7 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/VBoxContainer/ChargedBullet" instance=ExtResource("3_a7b7o")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -159,6 +169,7 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/VBoxContainer/Bullet" instance=ExtResource("3_a7b7o")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -184,6 +195,7 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/VBoxContainer/Lazer" instance=ExtResource("3_a7b7o")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -196,3 +208,29 @@ grow_horizontal = 0
 icon = ExtResource("6_ljxy6")
 _title = "Лазер"
 description = "Выпускает лазер в ближайшую цель. Наводится на цель автоматически."
+
+[node name="Wawe" parent="Panel/VBoxContainer" instance=ExtResource("2_bcmbp")]
+layout_mode = 2
+focus_mode = 0
+text = "волна"
+script = SubResource("GDScript_8rnsk")
+weapon = ExtResource("9_cyxjy")
+needs_weapons = true
+is_panel_button = true
+is_hower_button = true
+
+[node name="Panel" parent="Panel/VBoxContainer/Wawe" instance=ExtResource("3_a7b7o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.3333435
+offset_right = 207.66669
+offset_bottom = 145.82304
+grow_horizontal = 0
+icon = ExtResource("10_7iwkv")
+_title = "Волна"
+description = "пассивно выпускает волну вокруг игрока."
+
+[connection signal="timeout" from="Control/SelectionArrow/Timer" to="Control/SelectionArrow" method="_on_timer_timeout"]

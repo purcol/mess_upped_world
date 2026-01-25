@@ -13,6 +13,8 @@ config_version=5
 config/name="mess upped world"
 run/main_scene="uid://cw4sj4xjkq8o2"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -24,6 +26,8 @@ G="*res://worlds/global.tscn"
 window/size/mode=3
 window/size/transparent=true
 window/per_pixel_transparency/allowed=true
+mouse_cursor/custom_image="uid://1eydemn3da4k"
+mouse_cursor/custom_image_hotspot=Vector2(19.5, 19.5)
 
 [file_customization]
 

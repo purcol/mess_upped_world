@@ -22,13 +22,14 @@ func _ready() -> void:
 [sub_resource type="GDScript" id="GDScript_3yqoc"]
 script/source = "extends Sprite2D
 
+const PLAYER_WAVE = preload(\"uid://c0xxmi7a8a1cy\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	visible = false
 	if $\"../../..\" != null:
 		if $\"../../..\".get_name() == \"Player_E\":
-				visible = true
+				$\"../../..\".get_node(\"Sprite2D\").texture = PLAYER_WAVE
 
 func _process(_delta: float) -> void:
 	if $\"../../..\" != null:

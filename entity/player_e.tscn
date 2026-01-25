@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbtfeh2i3pig5"]
+[gd_scene load_steps=14 format=3 uid="uid://cbtfeh2i3pig5"]
 
 [ext_resource type="Script" uid="uid://0jnj8dxq3nj5" path="res://entity/player_e.gd" id="1_ljctn"]
 [ext_resource type="Texture2D" uid="uid://cfklqij3qwnt" path="res://assets/textures/player/player.png" id="2_p6v0q"]
@@ -53,6 +53,12 @@ func _process(_delta: float) -> void:
 	offset = get_global_mouse_position()*0.01
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lqwqj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y0meu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhxsk"]
+
 [sub_resource type="GDScript" id="GDScript_nldwe"]
 script/source = "@tool
 extends HealfText
@@ -86,6 +92,20 @@ script = SubResource("GDScript_y0meu")
 [node name="LoseSreen" parent="Components/Camera" instance=ExtResource("5_nldwe")]
 process_mode = 2
 visible = false
+
+[node name="Warning" type="LineEdit" parent="Components/Camera"]
+visible = false
+offset_left = 522.0
+offset_top = -344.0
+offset_right = 1072.0
+offset_bottom = -126.0
+mouse_filter = 1
+theme = ExtResource("6_lqwqj")
+theme_override_font_sizes/font_size = 241
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lqwqj")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y0meu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yhxsk")
+text = "!"
 
 [node name="HealfText" type="LineEdit" parent="."]
 offset_left = -69.5

@@ -17,7 +17,11 @@ func shot_condition() -> void:
 	if entity.is_in_group("Player"):
 		shot_condition_flag = false
 	super()
-#
+
+func auto_shot() -> void:
+	if entity.is_in_group("Player"): pass
+	super()
+
 func _ready() -> void:
 	if entity.is_in_group("Player"):
 		on_timer = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dr73wiuefcobr"]
+[gd_scene load_steps=21 format=3 uid="uid://dr73wiuefcobr"]
 
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_ig2u2"]
 [ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_2l06o"]
@@ -62,6 +62,23 @@ func disable_check() -> bool:
 [sub_resource type="GDScript" id="GDScript_c7kc1"]
 script/source = "@tool
 extends GameMenuWeaponButton
+
+func disable_check() -> bool:
+	if !Engine.is_editor_hint():
+		if G.win_to[\"LazerTagBoss_E\"] <= 0:
+			return true
+	return super()
+"
+
+[sub_resource type="GDScript" id="GDScript_ljxy6"]
+script/source = "@tool
+extends GameMenuWeaponButton
+
+func disable_check() -> bool:
+	if !Engine.is_editor_hint():
+		if G.win_to[\"LazerTagBoss_E\"] <= 0:
+			return true
+	return super()
 "
 
 [node name="Weapons" type="Button"]
@@ -213,7 +230,7 @@ description = "Выпускает лазер в ближайшую цель. Н�
 layout_mode = 2
 focus_mode = 0
 text = "волна"
-script = SubResource("GDScript_8rnsk")
+script = SubResource("GDScript_ljxy6")
 weapon = ExtResource("9_cyxjy")
 needs_weapons = true
 is_panel_button = true

@@ -20,6 +20,10 @@ var is_timer_on:bool = false
 
 
 func _process(_delta: float) -> void:
+	if abs(get_tree().get_first_node_in_group(\"Player\").global_position.x) >= 2012.0 or abs(get_tree().get_first_node_in_group(\"Player\").global_position.y) >= 2012.0:
+		get_tree().get_first_node_in_group(\"Camera\").get_node(\"Warning\").visible = true
+	else: get_tree().get_first_node_in_group(\"Camera\").get_node(\"Warning\").visible = false
+	
 	if !is_timer_on:
 		if get_tree().get_first_node_in_group(\"Player\") != null: #2012
 			if abs(get_tree().get_first_node_in_group(\"Player\").global_position.x) >= 2012.0 or abs(get_tree().get_first_node_in_group(\"Player\").global_position.y) >= 2012.0:
@@ -39,6 +43,7 @@ editor_description = "no more Pease
 script = ExtResource("1_dwl4r")
 
 [node name="Beackroung" parent="." instance=ExtResource("1_vo7c2")]
+visible = false
 
 [node name="Player_E" parent="." instance=ExtResource("2_dwl4r")]
 position = Vector2(499, 2)

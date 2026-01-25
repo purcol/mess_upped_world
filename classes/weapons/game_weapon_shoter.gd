@@ -156,7 +156,7 @@ func defalt_shot(num:int=0) -> void:
 
 ##запускает авто стрельбу
 func auto_shot() -> void:
-	if Engine.is_editor_hint(): return
+	if Engine.is_editor_hint() or (entity.is_in_group("Player") and self.is_class("GameWeaponLazerShoter")): return
 	if !is_auto_shoot_on:
 		is_auto_shoot_on = true
 		while on_timer:

@@ -11,6 +11,7 @@ script/source = "extends Timer
 
 
 func _on_timeout() -> void:
+	G.print_log(\"EntityInteractions\", [\"From \",$\".\".name,\". Life time ended.\"])
 	$\"..\".queue_free()
 "
 

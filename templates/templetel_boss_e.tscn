@@ -82,7 +82,6 @@ texture = ExtResource("1_8e1il")
 [node name="Shoter_CN1" parent="Components/NormalAttak" instance=ExtResource("2_1qhl2")]
 position = Vector2(160, 0)
 script = SubResource("GDScript_oixnl")
-aim_oppenent = false
 speed_multiplayer = 0.0
 bullet_scene = null
 direction = Vector2(1, 0)
@@ -100,7 +99,7 @@ entity_id = "TuturialBoss_E"
 [node name="CollisionExemplar" type="CollisionShape2D" parent="Components/XitboxArea_C"]
 process_mode = 4
 
-[node name="HealfText" type="LineEdit" parent="."]
+[node name="HealfText" type="LineEdit" parent="." groups=["HealfText"]]
 offset_left = -137.125
 offset_top = -300.0
 offset_right = -68.5625

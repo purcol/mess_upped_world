@@ -15,9 +15,8 @@ extends CharacterBody2D
 func _ready() -> void:
 	weapons = G.selected_weapons
 	add_weapons()
-
-#func _process(_delta: float) -> void:
-	#$Sprite2D.look_at(get_global_mouse_position())
+	G.print_log("PlayerInit", ["Weapons added."])
+	G.print_log("PlayerInit", ["Movement type: ", MovementType])
 
 func _physics_process(_delta: float) -> void:
 	G.selected_movement = MovementType
@@ -25,7 +24,6 @@ func _physics_process(_delta: float) -> void:
 		0: hower_mouse_movement()
 		1: stationary_movement()
 		2: pass
-
 	move_and_slide()
 
 ##добавление оружий
@@ -35,6 +33,7 @@ func add_weapons():
 		var weapon_inst = weapon_exemplar.instantiate()
 		weapon_inst.on_timer = true
 		$Components.add_child(weapon_inst)
+		G.print_log("PlayerInit", ["Weapon added: ",weapon])
 
 ##обработка HOWER_MOUSE
 func hower_mouse_movement() -> void:

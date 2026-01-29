@@ -53,6 +53,8 @@ Boss=""
 Player=""
 Entity=""
 Camera=""
+HealfText=""
+Weapon=""
 
 [input]
 

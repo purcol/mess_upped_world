@@ -4,3 +4,16 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_xault")
+log = Dictionary[String, bool]({
+"ButtonInit": false,
+"EntityFrequentInteractions": false,
+"EntityInteractions": true,
+"PlayerInit": false,
+"SaveAndLoad": false,
+"StartupInit": false,
+"WorldActions": false
+})
+hide_backround = Dictionary[String, bool]({
+"BattelZone": true,
+"Pease": true
+})

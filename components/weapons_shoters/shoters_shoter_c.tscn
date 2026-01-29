@@ -5,22 +5,18 @@
 [ext_resource type="Texture2D" uid="uid://v8nkawy8717d" path="res://assets/textures/player/player_shoter.png" id="3_w5xpi"]
 [ext_resource type="Script" uid="uid://dx0jd1th4uux4" path="res://templates/player_sprites.gd" id="4_4w357"]
 
-[node name="ShotersShoter_C" type="Node2D"]
+[node name="ShotersShoter_C" type="Node2D" groups=["Weapon"]]
 script = ExtResource("1_c7lu6")
-aim_oppenent = true
 aim = 1
-is_local = 0
 is_on = false
 is_nasted = true
 time_offset = 3.0
 bullet_scene = ExtResource("2_aduvd")
-direction = ExtResource("2_aduvd")
 speed = 300.0
 damage = 200.0
-on_timer = null
 one_shot = true
-cooldown = false
-use_speed_mod_on_cooldown = 1.0
+cooldown = 0.0
+use_speed_mod_on_cooldown = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(1.6249999, 1.6249999)

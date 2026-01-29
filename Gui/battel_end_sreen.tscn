@@ -1,11 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccetrkam57grx"]
+[gd_scene load_steps=7 format=3 uid="uid://brh2y6hessddx"]
 
-[ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="1_qdh3c"]
-[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_pukmo"]
+[ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="1_gyorb"]
+[ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_2tk76"]
+
+[sub_resource type="GDScript" id="GDScript_gyorb"]
+script/source = "@tool
+extends Control
+
+@export_enum(\"LOSE\",\"WIN\") var type = 0
+
+@export var lose_title:String = \"Поражение\"
+@export var lose_subtitle:String = \"хоть ты и умер это на значит что это конец, продолжай борьбу!\"
+
+@export var win_title:String = \"Победа!\"
+@export var win_subtitle:String = \"так держать!\"
+
+func set_screen_text(screen_type:int):
+	match screen_type:
+		0: $Title.text = lose_title; $Title/SubTitle.text = lose_subtitle
+		1: $Title.text = win_title; $Title/SubTitle.text = win_subtitle
+
+func _process(_delta: float) -> void:
+	set_screen_text(type)
+
+func show_end_screen(screen_type:int):
+	type = screen_type
+	visible = true
+	Input.set_custom_mouse_cursor(G.CURSOR_ARROW,Input.CURSOR_ARROW)
+"
 
 [sub_resource type="Theme" id="Theme_tadup"]
 LineEdit/font_sizes/font_size = 26
-LineEdit/fonts/font = ExtResource("1_qdh3c")
+LineEdit/fonts/font = ExtResource("1_gyorb")
 
 [sub_resource type="GDScript" id="GDScript_qdh3c"]
 script/source = "extends Button
@@ -43,7 +69,7 @@ func _process(_delta: float) -> void:
 		$Control/SelectionArrow.visible = false
 "
 
-[node name="LoseSreen" type="Control"]
+[node name="EndSreen" type="Control"]
 z_index = 2
 layout_mode = 3
 anchors_preset = 15
@@ -51,6 +77,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_gyorb")
+lose_subtitle = "твоя смерть не конец! Продолжай борьбу!"
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0, 0, 0, 0.40392157)
@@ -71,6 +99,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
 pivot_offset = Vector2(125.666664, 17)
+mouse_filter = 1
+mouse_default_cursor_shape = 0
 theme = SubResource("Theme_tadup")
 theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
@@ -84,30 +114,41 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -126.41665
+offset_left = -163.21667
 offset_top = 19.15
-offset_right = 126.916595
+offset_right = 458.11682
 offset_bottom = 51.15
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
 pivot_offset = Vector2(125.666664, 17)
+mouse_filter = 1
+mouse_default_cursor_shape = 0
 theme = SubResource("Theme_tadup")
-text = "Не здавайся!"
+theme_override_colors/font_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/font_uneditable_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/font_selected_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/font_outline_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/font_placeholder_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/caret_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/selection_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/clear_button_color = Color(0.4392157, 0.4392157, 0.4392157, 1)
+theme_override_colors/clear_button_color_pressed = Color(0.4392157, 0.4392157, 0.4392157, 1)
+text = "твоя смерть не конец! Продолжай борьбу!"
 alignment = 1
 editable = false
 flat = true
 
-[node name="Respawn" parent="Title" instance=ExtResource("2_pukmo")]
+[node name="Respawn" parent="Title" instance=ExtResource("2_2tk76")]
 layout_mode = 0
 offset_left = 96.25
 offset_top = 41.15
 offset_right = 193.25
 offset_bottom = 59.15
 scale = Vector2(0.6, 0.6)
-text = "Возрродится"
+text = "Возродится"
 script = SubResource("GDScript_qdh3c")
 
-[node name="MainMenu" parent="Title" instance=ExtResource("2_pukmo")]
+[node name="MainMenu" parent="Title" instance=ExtResource("2_2tk76")]
 layout_mode = 0
 offset_left = 94.25
 offset_top = 55.15

@@ -5,14 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://da88fbe5ueirg" path="res://assets/textures/player/player_lazer.png" id="3_aebrj"]
 [ext_resource type="Script" uid="uid://dx0jd1th4uux4" path="res://templates/player_sprites.gd" id="4_bso0j"]
 
-[node name="LazerMineShoterC" type="Node2D"]
+[node name="LazerMineShoterC" type="Node2D" groups=["Weapon"]]
 script = ExtResource("1_mldpy")
 aim = 1
 is_local = true
 bullet_scene = ExtResource("2_mldpy")
 direction = Vector2(0, 0)
 speed = 1300.0
-damage = 1.0
 on_timer = true
 
 [node name="Sprite" type="Sprite2D" parent="."]

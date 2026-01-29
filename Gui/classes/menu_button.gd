@@ -33,6 +33,7 @@ var panel:Panel
 func panel_setup() -> void:
 	#region scary, unknow even to writer, stuff
 	if is_panel_button and has_node("Panel") and !Engine.is_editor_hint(): 
+		G.print_log("ButtonInit",["Panel setup of ", name, " started."])
 		panel = get_node("Panel")
 		if calc_panel_size:
 			var panel_last_child = panel.get_child(panel.get_child_count()-1)
@@ -52,6 +53,7 @@ func panel_setup() -> void:
 		panel.size.y = 3
 	else:
 		if !Engine.is_editor_hint():
+			G.print_log("ButtonInit",["Panel setup of ", name, " started."])
 			await get_tree().create_timer(0.001).timeout
 			if (is_panel_button or is_hower_button) and has_node("Panel"): 
 				panel = get_node("Panel")
@@ -79,6 +81,7 @@ func _ready() -> void:
 func _toggled(toggled_on: bool) -> void:
 	#region close oher buttons
 	if !Engine.is_editor_hint():
+		G.print_log("ButtonInit",[name, " toggeled."])
 		if G.opened_buton != NodePath("") and toggled_on:
 			if G.opened_buton != self.get_path() and G.opened_buton != owner.get_path():
 				get_tree().root.get_node(G.opened_buton)._toggled(false)
@@ -88,6 +91,7 @@ func _toggled(toggled_on: bool) -> void:
 	#endregion
 	if forus_camera:
 		var global_scale = get_global_transform().get_scale()
+		G.print_log("ButtonInit",[name, " focused camera on ",self.global_position+((self.size*global_scale)*0.5)+forus_camera_offset,"."])
 		get_tree().create_tween().tween_property(get_tree().get_first_node_in_group("World").get_node("Camera2D"), "position", self.global_position+((self.size*global_scale)*0.5)+forus_camera_offset, 1).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	if is_panel_button and !is_hower_button and !Engine.is_editor_hint():
 		toggle_panel(toggled_on,panel_size,animation_time)
@@ -104,6 +108,7 @@ func _toggled(toggled_on: bool) -> void:
 
 #region Action functions
 func change_scene_action(to_what:PackedScene,save:bool=true) -> void:
+	G.print_log("ButtonInit",["Changing scene to ",change_scene,"..."])
 	$Control/SelectionArrow.can_fliker = false
 	process_mode = Node.PROCESS_MODE_DISABLED
 	if save: G.update_and_save()
@@ -114,6 +119,7 @@ func change_scene_action(to_what:PackedScene,save:bool=true) -> void:
 
 ##переключает настроку с именем `setting`. Если настройка разна null или не является bool выбрасывает ошибку.
 func flip_setting_action(setting:String) -> void:
+	G.print_log("ButtonInit",[name, "fliped setting \"",setting,"\"."])
 	if G.settings[setting] == null: push_error("ERROR!| setting \"", setting,"\" is null!"); return
 	if !(G.settings[setting] is bool): push_error("ERROR!| setting \"", setting,"\" is not type of bool!"); return
 	if G.settings[setting]: G.settings[setting] = false
@@ -132,7 +138,14 @@ func disable_check() -> bool:
 				return true
 	return false
 
+func set_cursor_shape() -> void:
+	if disabled:
+		mouse_default_cursor_shape = Control.CURSOR_FORBIDDEN
+	else:
+		mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
 func _process(_delta: float) -> void:
+	set_cursor_shape()
 	if !Engine.is_editor_hint():
 		#region panel button stuff
 		if is_panel_button:
@@ -172,10 +185,12 @@ func toggle_panel(toggled_on:bool,open_panel_size:Vector2,anim_time:float=0.5,cl
 	if panel == null: return
 	if Engine.is_editor_hint(): return
 	if toggled_on and !Engine.is_editor_hint(): 
+		if !is_hower_button: G.print_log("ButtonInit",[name, " oppening panel."])
 		panel.visible = true
 		get_tree().create_tween().tween_property(panel,"size", open_panel_size, anim_time)
 	else:
 		if !Engine.is_editor_hint():
+			if !is_hower_button: G.print_log("ButtonInit",[name, " closing panel."])
 			if closed_panel_size == Vector2(-1,-1) and !Engine.is_editor_hint():
 				panel.size = close_size
 				get_tree().create_tween().tween_property(panel,"size", Vector2(open_panel_size.x, 3), anim_time)

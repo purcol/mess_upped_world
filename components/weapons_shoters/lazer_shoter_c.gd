@@ -24,7 +24,7 @@ func auto_shot() -> void:
 
 func _ready() -> void:
 	if entity.is_in_group("Player"):
-		on_timer = true
+		on_timer = false
 		cooldown = 1.5
 		damage = 2
 	super()

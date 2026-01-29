@@ -9,8 +9,9 @@ script/source = "extends Node2D
 
 
 func _process(_delta: float) -> void:
-	rotation = get_tree().get_first_node_in_group(\"Boss\").rotation
-	global_position = get_tree().get_first_node_in_group(\"Boss\").global_position
+	if get_tree().get_first_node_in_group(\"Boss\") != null:
+		rotation = get_tree().get_first_node_in_group(\"Boss\").rotation
+		global_position = get_tree().get_first_node_in_group(\"Boss\").global_position
 "
 
 [sub_resource type="GDScript" id="GDScript_fociy"]
@@ -43,7 +44,6 @@ editor_description = "no more Pease
 script = ExtResource("1_dwl4r")
 
 [node name="Beackroung" parent="." instance=ExtResource("1_vo7c2")]
-visible = false
 
 [node name="Player_E" parent="." instance=ExtResource("2_dwl4r")]
 position = Vector2(499, 2)

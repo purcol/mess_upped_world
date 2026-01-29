@@ -8,10 +8,13 @@ extends GameMenuButton
 var weapon_name:String = ""
 
 func _ready() -> void:
-	weapon_name = (weapon.resource_path)
-	print("INFO| weapon's in "+name+" path:         ",weapon_name)
-	weapon_name = (weapon.resource_path).replace("res://components/weapons_shoters/",""); weapon_name = weapon_name.replace("_c.tscn","")
-	print("INFO| weapon's in "+name+" cleared name: ",weapon_name)
+	if !Engine.is_editor_hint():
+		weapon_name = (weapon.resource_path)
+		G.print_log("ButtonInit",["weapon's in "+name+" path:         ",weapon_name])
+		#print("INFO| weapon's in "+name+" path:         ",weapon_name)
+		weapon_name = (weapon.resource_path).replace("res://components/weapons_shoters/",""); weapon_name = weapon_name.replace("_c.tscn","")
+		G.print_log("ButtonInit",["weapon's in "+name+" cleared name: ",weapon_name])
+		#print("INFO| weapon's in "+name+" cleared name: ",weapon_name)
 	
 func _toggled(_toggled_on: bool) -> void:
 	if !Engine.is_editor_hint():

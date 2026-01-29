@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfklqij3qwnt" path="res://assets/textures/player/player.png" id="2_p6v0q"]
 [ext_resource type="PackedScene" uid="uid://b30fegt361tmj" path="res://components/xitbox_area_c.tscn" id="3_p3qtw"]
 [ext_resource type="PackedScene" uid="uid://ckwlxch4goqnn" path="res://components/healf_c.tscn" id="4_p6v0q"]
-[ext_resource type="PackedScene" uid="uid://ccetrkam57grx" path="res://Gui/lose_sreen.tscn" id="5_nldwe"]
+[ext_resource type="PackedScene" uid="uid://brh2y6hessddx" path="res://Gui/battel_end_sreen.tscn" id="5_lqwqj"]
 [ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="6_lqwqj"]
 
 [sub_resource type="GDScript" id="GDScript_lqwqj"]
@@ -89,8 +89,7 @@ healf = 5.0
 process_mode = 3
 script = SubResource("GDScript_y0meu")
 
-[node name="LoseSreen" parent="Components/Camera" instance=ExtResource("5_nldwe")]
-process_mode = 2
+[node name="EndSreen" parent="Components/Camera" instance=ExtResource("5_lqwqj")]
 visible = false
 
 [node name="Warning" type="LineEdit" parent="Components/Camera"]
@@ -107,7 +106,7 @@ theme_override_styles/read_only = SubResource("StyleBoxEmpty_y0meu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yhxsk")
 text = "!"
 
-[node name="HealfText" type="LineEdit" parent="."]
+[node name="HealfText" type="LineEdit" parent="." groups=["HealfText"]]
 offset_left = -69.5
 offset_top = -80.0
 offset_bottom = -49.0

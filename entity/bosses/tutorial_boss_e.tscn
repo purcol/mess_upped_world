@@ -243,7 +243,7 @@ entity_id = "TutorialBoss_E"
 process_mode = 4
 shape = SubResource("ConvexPolygonShape2D_onpvo")
 
-[node name="HealfText" type="LineEdit" parent="."]
+[node name="HealfText" type="LineEdit" parent="." groups=["HealfText"]]
 offset_left = -137.125
 offset_top = -300.0
 offset_right = -68.5625

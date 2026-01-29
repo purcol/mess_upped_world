@@ -37,7 +37,7 @@ func _process(_delta: float) -> void:
 			rotate(0.02)
 "
 
-[node name="WaveShoter_c" type="Node2D"]
+[node name="WaveShoter_c" type="Node2D" groups=["Weapon"]]
 script = SubResource("GDScript_o54v2")
 duration = 10.0
 bullet_scene = ExtResource("1_cqnbq")

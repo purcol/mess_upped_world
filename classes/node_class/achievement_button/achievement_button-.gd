@@ -1,7 +1,7 @@
 @tool
 @icon("res://assets/nodes/achivment_buttom.png")
 
-class_name AchievementButton
+class_name AchievementButtonM
 extends GameMenuButton
 
 @export var achievement_icon:Texture2D

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cw4sj4xjkq8o2"]
+[gd_scene load_steps=23 format=3 uid="uid://cw4sj4xjkq8o2"]
 
 [ext_resource type="PackedScene" uid="uid://ca8xi5jgrhfou" path="res://templates/beackroung.tscn" id="1_5v8yi"]
 [ext_resource type="Script" uid="uid://bs2w2dtn6hcd" path="res://worlds/pease.gd" id="1_fociy"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://jrsnf42cl25b" path="res://Gui/main_buttons/options.tscn" id="10_87map"]
 [ext_resource type="PackedScene" uid="uid://kqurvydy150r" path="res://Gui/main_buttons/achievements.tscn" id="11_e37mn"]
 [ext_resource type="Material" uid="uid://brl4jgrsxtima" path="res://shaders/distortion_material.tres" id="11_m411v"]
+[ext_resource type="PackedScene" uid="uid://dcklbs58b1nmx" path="res://Gui/panels/achievement_panel.tscn" id="14_m411v"]
+[ext_resource type="PackedScene" uid="uid://cdwgb17m7hsla" path="res://Gui/panels/boss_selector_panel.tscn" id="15_yffol"]
 [ext_resource type="PackedScene" uid="uid://dr73wiuefcobr" path="res://Gui/main_buttons/weapons.tscn" id="16_cpd08"]
 
 [sub_resource type="Theme" id="Theme_eid6d"]
@@ -282,6 +284,7 @@ empty_selection_clipboard_enabled = false
 wrap_mode = 1
 
 [node name="Bosses" parent="MainButtons" instance=ExtResource("9_jnctx")]
+visible = false
 layout_mode = 0
 offset_left = -408.0
 offset_top = -128.0
@@ -309,11 +312,19 @@ offset = Vector2(-31.333336, -10.666664)
 polygon = PackedVector2Array(-2.6666565, 9.777775, -2.6666565, 12.444443, 130.79959, 9.244736, 130.61858, 6.584221)
 
 [node name="Achievements" parent="MainButtons" instance=ExtResource("11_e37mn")]
+visible = false
 layout_mode = 0
 offset_left = -192.0
 offset_top = -256.0
 offset_right = -97.0
 offset_bottom = -238.0
+
+[node name="AchievementPanel" parent="MainButtons" instance=ExtResource("14_m411v")]
+layout_mode = 1
+offset_left = -448.0
+offset_top = -640.0
+offset_right = 384.0
+offset_bottom = -368.0
 
 [node name="Weapons" parent="MainButtons" instance=ExtResource("16_cpd08")]
 layout_mode = 0
@@ -385,3 +396,9 @@ polygon = PackedVector2Array(96.000015, 15.1111145, 89.36018, 18.377354, 85.3333
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(-8, 9808)
+
+[node name="BossPanel" parent="." instance=ExtResource("15_yffol")]
+offset_left = -792.0
+offset_top = -120.0
+offset_right = -792.0
+offset_bottom = -120.0

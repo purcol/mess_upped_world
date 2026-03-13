@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dbf0pffx8h485" path="res://templates/button_template.tscn" id="2_ox66g"]
 [ext_resource type="Script" uid="uid://bxnp20up2ajx" path="res://Gui/classes/selection_arrow_polygon.gd" id="2_svlxo"]
 [ext_resource type="PackedScene" uid="uid://cdfq02cmo0luf" path="res://templates/achiement_panel.tscn" id="3_svlxo"]
-[ext_resource type="Texture2D" uid="uid://b6wk13du00sgc" path="res://assets/textures/achievements/first_pancake.png" id="4_kfc12"]
+[ext_resource type="Texture2D" uid="uid://b6wk13du00sgc" path="res://assets/textures/achievements/kick-starter.png" id="4_kfc12"]
 [ext_resource type="Texture2D" uid="uid://dwnaymwbxalt8" path="res://assets/nodes/beginigs_of_rampage.png" id="5_w1qag"]
 [ext_resource type="Texture2D" uid="uid://ify5j36ftwr1" path="res://assets/textures/achievements/ray_banding.png" id="6_ox66g"]
 
@@ -169,7 +169,6 @@ metadata/_custom_type_script = "uid://bxnp20up2ajx"
 wait_time = 0.3
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -278,7 +277,6 @@ is_hower_button = true
 forus_camera = true
 
 [node name="Panel" parent="Panel/Container/achivement2" instance=ExtResource("3_svlxo")]
-visible = false
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
 anchors_preset = 1
@@ -327,6 +325,7 @@ is_hower_button = true
 forus_camera = true
 
 [node name="Panel" parent="Panel/Container/achivement3" instance=ExtResource("3_svlxo")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -349,6 +348,7 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/Container/achivement4" instance=ExtResource("3_svlxo")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

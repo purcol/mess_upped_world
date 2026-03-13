@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://c3jix8nnbwx53"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://c3jix8nnbwx53"]
 
 [ext_resource type="FontFile" uid="uid://dos8l2uo4sdqr" path="res://assets/fonts/Ithaca/Ithaca.ttf" id="1_ddybn"]
 
@@ -56,12 +56,77 @@ border_color = Color(1, 1, 1, 1)
 corner_detail = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y2bx"]
+content_margin_left = 5.0
 bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
+border_width_left = 3
 border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
+border_width_right = 3
+border_width_bottom = 3
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hrqm"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejttr"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_okgqq"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgvgu"]
+content_margin_left = 7.0
+content_margin_right = 5.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_631yy"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7rys"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpk4i"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 7.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddybn"]
 content_margin_left = 5.0
@@ -101,6 +166,19 @@ corner_detail = 1
 expand_margin_bottom = 1.0
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5a25"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg2ax"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3pc3"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ejttr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okgqq"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dooqo"]
 bg_color = Color(1, 1, 1, 1)
 
@@ -116,6 +194,9 @@ Button/styles/focus = SubResource("StyleBoxFlat_g3c58")
 Button/styles/hover = SubResource("StyleBoxFlat_g3c58")
 Button/styles/normal = SubResource("StyleBoxFlat_g3c58")
 Button/styles/pressed = SubResource("StyleBoxFlat_g3c58")
+HBoxContainer/constants/separation = 0
+HFlowContainer/constants/h_separation = -4
+HFlowContainer/constants/v_separation = -4
 HSplitContainer/constants/separation = 0
 LineEdit/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 LineEdit/colors/font_uneditable_color = Color(0.88, 0.88, 0.88, 1)
@@ -124,8 +205,16 @@ LineEdit/styles/focus = SubResource("StyleBoxFlat_i6bfw")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_totlp")
 LineEdit/styles/read_only = SubResource("StyleBoxFlat_aukxq")
 Panel/styles/panel = SubResource("StyleBoxFlat_1y2bx")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2hrqm")
 RichTextLabel/styles/focus = SubResource("StyleBoxFlat_1y2bx")
 RichTextLabel/styles/normal = SubResource("StyleBoxFlat_1y2bx")
+TabContainer/fonts/font = ExtResource("1_ddybn")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_ejttr")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_okgqq")
+TabContainer/styles/tab_focus = SubResource("StyleBoxFlat_mgvgu")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_631yy")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_j7rys")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_rpk4i")
 TextEdit/colors/caret_background_color = Color(0, 0, 0, 0)
 TextEdit/colors/caret_color = Color(0.88, 0.88, 0.88, 0)
 TextEdit/colors/current_line_color = Color(0.24959998, 0.24959998, 0.26, 0)
@@ -140,6 +229,11 @@ TextEdit/styles/focus = SubResource("StyleBoxFlat_ddybn")
 TextEdit/styles/normal = SubResource("StyleBoxFlat_ofhm3")
 TextEdit/styles/read_only = SubResource("StyleBoxFlat_fxgoq")
 VBoxContainer/constants/separation = 0
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_p5a25")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_mg2ax")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_c3pc3")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_ejttr")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_okgqq")
 VSplitContainer/constants/minimum_grab_thickness = 0
 VSplitContainer/constants/separation = 0
 VSplitContainer/styles/split_bar_background = SubResource("StyleBoxFlat_dooqo")

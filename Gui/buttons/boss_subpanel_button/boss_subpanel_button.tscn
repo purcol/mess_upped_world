@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv5chl364b1q0"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_43apg"]
+[ext_resource type="ButtonGroup" uid="uid://c3fcdd5qe72yx" path="res://Gui/buttons/groups/boss_subpanel.tres" id="2_v2g5t"]
+[ext_resource type="Script" uid="uid://csb5yqom58tm8" path="res://Gui/buttons/boss_subpanel_button/boss_subpanel_button.gd" id="3_v2g5t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlac8"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_va1ui"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kx4c2"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k65ne"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kivo"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[node name="BossSubPanelButton" type="Button"]
+theme = ExtResource("1_43apg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_tlac8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_va1ui")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kx4c2")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_k65ne")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2kivo")
+toggle_mode = true
+button_group = ExtResource("2_v2g5t")
+text = "ID: 1 Dif: 0"
+alignment = 0
+script = ExtResource("3_v2g5t")
+Boss = 1

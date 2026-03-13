@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://cefjd7wquc308"]
+
+[ext_resource type="Texture2D" uid="uid://clm8t48win8e3" path="res://assets/textures/bosses_icon/tutorial.png" id="1_hv1iq"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="2_ea6h3"]
+[ext_resource type="PackedScene" uid="uid://bv5chl364b1q0" path="res://Gui/buttons/boss_subpanel_button/boss_subpanel_button.tscn" id="3_ea6h3"]
+
+[sub_resource type="GDScript" id="GDScript_icrti"]
+script/source = "@tool
+extends BossSubPanel
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_eicr2"]
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(200, 167)
+offset_right = 200.0
+offset_bottom = 167.0
+script = SubResource("GDScript_icrti")
+icon = ExtResource("1_hv1iq")
+title = "<текст>"
+unlock_comment = "<условия разблокировки>"
+description = "<описание>"
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 168.0
+split_offset = 145
+dragging_enabled = false
+dragger_visibility = 2
+drag_area_margin_begin = 185
+
+[node name="VSplit" type="VSplitContainer" parent="VSplit"]
+layout_mode = 2
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit/VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("1_hv1iq")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("2_ea6h3")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+text = "<текст>"
+
+[node name="Description" type="RichTextLabel" parent="VSplit/VSplit"]
+layout_mode = 2
+theme = ExtResource("2_ea6h3")
+bbcode_enabled = true
+text = "[color=red]<условия разблокировки>[/color]
+<описание>"
+
+[node name="BossSubPanelButton" parent="VSplit" instance=ExtResource("3_ea6h3")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_eicr2")
+text = "ID: 0 Dif: 0"
+Boss = 0

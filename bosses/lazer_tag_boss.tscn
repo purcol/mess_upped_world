@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxef7id1ylboo"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_nucqj"]
+[ext_resource type="Script" uid="uid://dog35gmmfp5pd" path="res://Gui/panels/boss_panel.gd" id="2_s55gm"]
+[ext_resource type="PackedScene" uid="uid://cefjd7wquc308" path="res://Gui/panels/boss_subpanel.tscn" id="3_l7go3"]
+[ext_resource type="Texture2D" uid="uid://brmfcrcefknlo" path="res://assets/textures/bosses_icon/lazer_tag.png" id="4_s55gm"]
+
+[node name="LazerTagTabPanel" type="TabContainer"]
+clip_contents = true
+offset_right = 200.0
+offset_bottom = 192.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_nucqj")
+current_tab = 0
+tabs_position = 1
+tab_focus_mode = 0
+script = ExtResource("2_s55gm")
+boss_name = "ЛазерТаг"
+
+[node name="A" parent="." instance=ExtResource("3_l7go3")]
+layout_mode = 2
+icon = ExtResource("4_s55gm")
+title = "ЛазерТаг"
+unlock_comment = "сначала победите Обучающего б."
+description = "[color=dark_gray]сложность: [color=light_green]нормальная[/color][/color]
+[color=dark_gray]Награда за победу: [color=gold]Лазер[/color], [color=gold]Волна[/color][/color]
+
+Босс построенный на лазерах.
+"
+Boss = 2
+metadata/_tab_index = 0
+
+[node name="B" parent="." instance=ExtResource("3_l7go3")]
+visible = false
+layout_mode = 2
+icon = ExtResource("4_s55gm")
+title = "ЛазерТаг"
+unlock_comment = "сначала победите преведуйщею сложность"
+description = "[color=dark_gray]сложность: [color=red]мастер[/color] [/color]
+[color=dark_gray]Награда за победу: [color=gold]Лазер[/color], [color=gold]Волна[/color][/color]
+
+Босс построенный на лазерах.
+"
+Boss = 2
+Difficulty = 1
+metadata/_tab_index = 1
+
+[node name="C" parent="." instance=ExtResource("3_l7go3")]
+visible = false
+layout_mode = 2
+icon = ExtResource("4_s55gm")
+title = "ЛазерТаг"
+unlock_comment = "сначала победите преведуйщею сложность"
+description = "[color=dark_gray]сложность: [color=dark_magenta]кошмар+[/color] [/color]
+[color=dark_gray]Награда за победу: [color=gold]Лазер[/color], [color=gold]Волна[/color][/color]
+
+Босс построенный на лазерах.
+"
+Boss = 2
+Difficulty = 2
+metadata/_tab_index = 2

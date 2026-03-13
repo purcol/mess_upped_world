@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqg3agbvqttaw"
-path="res://.godot/imported/beginigs_of_rampage.png-3fc5e635f767c3b83744b7e15694df5f.ctex"
+uid="uid://b6wk13du00sgc"
+path="res://.godot/imported/kick-starter.png-26e4b670b6cac3933960600604c762ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/achievements/beginigs_of_rampage.png"
-dest_files=["res://.godot/imported/beginigs_of_rampage.png-3fc5e635f767c3b83744b7e15694df5f.ctex"]
+source_file="res://assets/textures/achievements/kick-starter.png"
+dest_files=["res://.godot/imported/kick-starter.png-26e4b670b6cac3933960600604c762ec.ctex"]
 
 [params]
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://0au1c3yqjtn"]
+
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="1_i1l80"]
+[ext_resource type="Script" uid="uid://x3s4wwxxac6k" path="res://achievements/scripts/genocider.gd" id="2_i1l80"]
+[ext_resource type="PackedScene" uid="uid://dc8fhds2h6bwy" path="res://assets/achivement_panels/genocider.tscn" id="3_i1l80"]
+[ext_resource type="Texture2D" uid="uid://cqg3agbvqttaw" path="res://assets/textures/achievements/begin_murder_spree.png" id="4_vpp60"]
+
+[node name="Genocider" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("1_i1l80")
+script = ExtResource("2_i1l80")
+achievement = ExtResource("3_i1l80")
+metadata/_custom_type_script = "uid://dhgacudsoxec3"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_vpp60")

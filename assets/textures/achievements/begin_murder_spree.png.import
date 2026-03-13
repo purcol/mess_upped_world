@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6wk13du00sgc"
-path="res://.godot/imported/first_pancake.png-3aa9591f060cf843af71cda831831a93.ctex"
+uid="uid://cqg3agbvqttaw"
+path="res://.godot/imported/begin_murder_spree.png-addd5f164451232b498a20c2278298ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/achievements/first_pancake.png"
-dest_files=["res://.godot/imported/first_pancake.png-3aa9591f060cf843af71cda831831a93.ctex"]
+source_file="res://assets/textures/achievements/begin_murder_spree.png"
+dest_files=["res://.godot/imported/begin_murder_spree.png-addd5f164451232b498a20c2278298ac.ctex"]
 
 [params]
 

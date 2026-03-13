@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://ghowmfon24cd"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_icrti"]
+[ext_resource type="Texture2D" uid="uid://cfjqmb3xhcb3e" path="res://assets/textures/achievements/achivment_icon.png" id="1_ih5x4"]
+[ext_resource type="Script" uid="uid://bb5dieshmkoit" path="res://Gui/panels/achievement_subpanel.tres.gd" id="1_skddp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[node name="Panel" type="Panel"]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 192.0
+offset_bottom = 128.0
+script = ExtResource("1_skddp")
+title = "<текст>"
+description = "<описание>"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("1_ih5x4")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("1_icrti")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+text = "<текст>"
+
+[node name="Description" type="RichTextLabel" parent="VSplit"]
+layout_mode = 2
+theme = ExtResource("1_icrti")
+bbcode_enabled = true
+text = "<описание>"

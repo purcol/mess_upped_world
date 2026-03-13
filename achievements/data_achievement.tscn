@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://2wxug04gf0xx"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_4q56h"]
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="2_gso1s"]
+[ext_resource type="PackedScene" uid="uid://6elyb32g50tv" path="res://assets/achivement_panels/data_achivement.tscn" id="3_gso1s"]
+[ext_resource type="Texture2D" uid="uid://bep3nba22rnyn" path="res://assets/textures/achievements/data_achivment.png" id="4_gso1s"]
+
+[sub_resource type="GDScript" id="GDScript_txrj1"]
+script/source = "@tool
+extends AchievementButton_
+
+func is_unlocked() -> bool: return true
+"
+
+[node name="DataAchievement" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.056
+anchor_bottom = 0.09900001
+offset_right = -0.5119629
+offset_bottom = -0.15200806
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_4q56h")
+toggle_mode = true
+button_group = ExtResource("2_gso1s")
+script = SubResource("GDScript_txrj1")
+achievement = ExtResource("3_gso1s")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_gso1s")

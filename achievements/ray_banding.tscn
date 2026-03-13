@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv2pcsxqqrexg"]
+
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="1_5osgt"]
+[ext_resource type="Script" uid="uid://n7hm5utmmq6l" path="res://achievements/scripts/ray_banding.gd" id="2_5osgt"]
+[ext_resource type="PackedScene" uid="uid://cli85isg3wurf" path="res://assets/achivement_panels/ray_banding.tscn" id="3_5osgt"]
+[ext_resource type="Texture2D" uid="uid://cfjqmb3xhcb3e" path="res://assets/textures/achievements/achivment_icon.png" id="4_njdxu"]
+
+[node name="RayBanding" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("1_5osgt")
+script = ExtResource("2_5osgt")
+achievement = ExtResource("3_5osgt")
+metadata/_custom_type_script = "uid://dhgacudsoxec3"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_njdxu")

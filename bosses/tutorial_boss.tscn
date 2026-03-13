@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjj6bepf8gqyy"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_oa1lw"]
+[ext_resource type="Script" uid="uid://dog35gmmfp5pd" path="res://Gui/panels/boss_panel.gd" id="2_fntkg"]
+[ext_resource type="PackedScene" uid="uid://cefjd7wquc308" path="res://Gui/panels/boss_subpanel.tscn" id="3_e4yg6"]
+
+[node name="TutorialBossTabPanel" type="TabContainer"]
+clip_contents = true
+offset_right = 200.0
+offset_bottom = 192.0
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_oa1lw")
+current_tab = 0
+tabs_position = 1
+tab_focus_mode = 0
+script = ExtResource("2_fntkg")
+boss_name = "Обучающий босс"
+
+[node name="A" parent="." instance=ExtResource("3_e4yg6")]
+layout_mode = 2
+title = "Обучающий б."
+unlock_comment = ""
+description = "[color=dark_gray]сложность: [color=light_green]нормальная[/color][/color]
+[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+
+Первый босс игры. Ничего особенного.
+"
+Boss = 1
+metadata/_tab_index = 0
+
+[node name="B" parent="." instance=ExtResource("3_e4yg6")]
+visible = false
+layout_mode = 2
+title = "Обучающий б."
+unlock_comment = "сначала победите преведуйщею сложность"
+description = "[color=dark_gray]сложность: [color=red]мастер[/color] [/color]
+[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+
+Первый босс игры. Ничего особенного.
+"
+Boss = 1
+Difficulty = 1
+metadata/_tab_index = 1
+
+[node name="C" parent="." instance=ExtResource("3_e4yg6")]
+visible = false
+layout_mode = 2
+title = "Обучающий б."
+unlock_comment = "сначала победите преведуйщею сложность"
+description = "[color=dark_gray]сложность: [color=dark_magenta]кошмар+[/color] [/color]
+[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+
+Первый босс игры. Ничего особенного.
+"
+Boss = 1
+Difficulty = 2
+metadata/_tab_index = 2

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="mess upped world"
-config/version="2.2"
+config/name="mess upped world new GUI"
+config/version="3.0"
 run/main_scene="uid://cw4sj4xjkq8o2"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
@@ -34,7 +34,9 @@ mouse_cursor/custom_image_hotspot=Vector2(19.5, 19.5)
 
 folder_colors={
 "res://Gui/": "purple",
+"res://achievements/": "purple",
 "res://assets/": "teal",
+"res://bosses/": "purple",
 "res://buttons_scripts/": "blue",
 "res://classes/": "red",
 "res://classes/node_class/": "red",

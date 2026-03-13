@@ -13,7 +13,7 @@ func _ready() -> void:
 		return
 	if G.hide_backround.get("BattelZone"):
 		$Beackroung.visible = false
-	add_child(load(G.BOSSES[G.selected_boss]).instantiate())
+	add_child(load(G.BOSSES[G.selected_boss]+str(G.selected_difficulty)+".tscn").instantiate())
 	G.print_log("WorldActions", ["Boss added to the tree."])
 	boss = get_tree().get_first_node_in_group("Boss")
 	player = get_tree().get_first_node_in_group("Player")

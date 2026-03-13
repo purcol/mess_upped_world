@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddjhg1xrvm8ov"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="2_3as0w"]
+[ext_resource type="Script" uid="uid://dog35gmmfp5pd" path="res://Gui/panels/boss_panel.gd" id="2_ol7w7"]
+[ext_resource type="PackedScene" uid="uid://cefjd7wquc308" path="res://Gui/panels/boss_subpanel.tscn" id="2_qxufy"]
+
+[node name="BossTabPanel" type="TabContainer"]
+clip_contents = true
+offset_right = 192.0
+offset_bottom = 192.0
+theme = ExtResource("2_3as0w")
+current_tab = 0
+tabs_position = 1
+script = ExtResource("2_ol7w7")
+
+[node name="A" parent="." instance=ExtResource("2_qxufy")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="B" parent="." instance=ExtResource("2_qxufy")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="C" parent="." instance=ExtResource("2_qxufy")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

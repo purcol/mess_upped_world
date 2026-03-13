@@ -46,14 +46,22 @@ enum BossesID{
 	LAZER_TAG_BOSS_E = 2
 }
 
+enum BossDifficulty{
+	NORMAL = 0,
+	MASTER = 1,
+	NIGHTMARE = 2
+}
+
 ##пути к босам по их BossesID.
 const BOSSES:Dictionary = {
-	1:"res://entity/bosses/tutorial_boss_e.tscn",
-	2:"res://entity/bosses/lazer_tag_boss_e.tscn"
+	1:"res://entity/bosses/tutorial_boss_e/",
+	2:"res://entity/bosses/lazer_tag_boss_e/"
 }
 
 ##выбранный босс.
 var selected_boss = BossesID.NONE
+##выбранная сложность
+var selected_difficulty = BossDifficulty.NORMAL
 #endregion
 
 #region stats var
@@ -75,6 +83,12 @@ var win_to:Dictionary = {"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0}
 var settings:Dictionary = {"exit_animation":true,
 							"exit_animation_speed":1.0,
 							"sounds":true}
+##словарь с состояние разблокировки сложностей боссов
+##0 - NORMAL, 1 - MASTER, 2 - NIGHTMARE
+var unloked_bosses:Dictionary = {BossesID.NONE:{0:false,1:false,2:false},
+								 BossesID.TUTORIAL_BOSS_E:{0:true,1:false,2:false},
+								 BossesID.LAZER_TAG_BOSS_E:{0:false,1:false,2:false}
+								 }
 ##последняя нажатая(следовательно и окрытая) кнопка.
 var opened_buton:NodePath = ""
 #endregion
@@ -111,7 +125,8 @@ func set_cursor_textures() -> void:
 #endregion
 
 #region logs
-func print_log(log_type:String,string:Array):
+func print_log(log_type:String,string:Array) -> void:
+	if Engine.is_editor_hint(): return
 	if log.get(log_type):
 		var print_line:String = ""
 		var time = Time.get_time_dict_from_system()
@@ -231,6 +246,29 @@ func _notification(what):
 		G.print_log("SaveAndLoad",["Uninspected save started."])
 		update_and_save()
 		get_tree().quit() # default behavior
+
+func get_save(save_file:bool=false) -> Array:
+	if Engine.is_editor_hint(): return []
+	var save:Array
+	if save_file:
+		if FileAccess.file_exists(save_location):
+			var file = FileAccess.open(save_location,FileAccess.READ)
+			var data = file.get_var()
+			file.close()
+			var save_data = data.duplicate()
+			
+			save.append(save_data.selected_weapons)
+			save.append(save_data.selected_movement)
+			save.append(save_data.total_time)
+			save.append(save_data.died_to)
+			save.append(save_data.win_to)
+		return save
+	save.append(selected_weapons)
+	save.append(selected_movement)
+	save.append(total_time)
+	save.append(died_to)
+	save.append(win_to)
+	return save
 #endregion
 
 func _process(delta: float) -> void:

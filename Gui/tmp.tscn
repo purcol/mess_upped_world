@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnukrryn22xb1"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_xrn28"]
+
+[sub_resource type="GDScript" id="GDScript_qi8yc"]
+script/source = "extends FlowContainer
+
+var path_to_achievements = \"res://achievements/\"
+
+
+func _ready() -> void:
+	for scene in DirAccess.open(path_to_achievements).get_files():
+		if str(scene).split(\".\")[1] == \"tscn\":
+			print(scene)
+			var button:AchievementButton_ = load(str(path_to_achievements,scene)).instantiate()
+			button.button_group = load(\"res://Gui/buttons/groups/achievements.tres\")
+			self.add_child(button)
+"
+
+[node name="AchievementPanel" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.94400007
+anchor_bottom = 0.395
+offset_right = 0.5119629
+offset_bottom = 16.039993
+theme = ExtResource("1_xrn28")
+
+[node name="FlowContainer" type="FlowContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme = ExtResource("1_xrn28")
+vertical = true
+script = SubResource("GDScript_qi8yc")

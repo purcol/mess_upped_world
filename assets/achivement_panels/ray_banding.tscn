@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://cli85isg3wurf"]
+
+[ext_resource type="Script" uid="uid://bb5dieshmkoit" path="res://Gui/panels/achievement_subpanel.tres.gd" id="1_3g30m"]
+[ext_resource type="Texture2D" uid="uid://ify5j36ftwr1" path="res://assets/textures/achievements/ray_banding.png" id="2_3g30m"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="3_aioxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[node name="Panel" type="Panel"]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 280.0
+offset_bottom = 109.333336
+grow_horizontal = 0
+scale = Vector2(3, 3)
+script = ExtResource("1_3g30m")
+icon = ExtResource("2_3g30m")
+title = "Начало резьни"
+description = "[color=gray]убей [color=red]ЛазерТага[/color] хотя бы один раз.[/color]
+
+Ты доказал что ты достоит слы лучей.
+[color=dim_gray](в отличии от разрабочика)"
+metadata/_custom_type_script = "uid://bb5dieshmkoit"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("2_3g30m")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("3_aioxx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+text = "Начало резьни"
+
+[node name="Description" type="RichTextLabel" parent="VSplit"]
+layout_mode = 2
+theme = ExtResource("3_aioxx")
+bbcode_enabled = true
+text = "[color=gray]убей [color=red]ЛазерТага[/color] хотя бы один раз.[/color]
+
+Ты доказал что ты достоит слы лучей.
+[color=dim_gray](в отличии от разрабочика)"

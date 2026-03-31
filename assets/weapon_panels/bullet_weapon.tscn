@@ -1,0 +1,150 @@
+[gd_scene load_steps=18 format=3 uid="uid://c02ppg5jg06bi"]
+
+[ext_resource type="Script" uid="uid://guqqnfhxidct" path="res://Gui/panels/weapon_subpanel.gd" id="1_t4txv"]
+[ext_resource type="Texture2D" uid="uid://w5dprfajikot" path="res://assets/textures/weapons/bullet.png" id="2_4qms3"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="3_io7mk"]
+[ext_resource type="Script" uid="uid://cagdgubux6t5y" path="res://assets/bbcodes/bbc_weapon.gd" id="4_io7mk"]
+[ext_resource type="Script" uid="uid://buotvt3cc467y" path="res://assets/bbcodes/bbc_boss.gd" id="4_ru0r1"]
+[ext_resource type="Script" uid="uid://d1hk7urkpmfka" path="res://assets/bbcodes/bbc_difficulty.gd" id="6_ugce8"]
+[ext_resource type="Script" uid="uid://bduxvkxhor8ai" path="res://assets/bbcodes/bbc_warn.gd" id="7_abawp"]
+[ext_resource type="Script" uid="uid://nxxsfftpfegr" path="res://Gui/classes/rich_description.gd" id="8_tss1p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ru0r1"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugce8"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abawp"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tss1p"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ru0r1"]
+script = ExtResource("4_ru0r1")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ugce8"]
+script = ExtResource("4_io7mk")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_abawp"]
+script = ExtResource("6_ugce8")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tss1p"]
+script = ExtResource("7_abawp")
+
+[node name="Panel" type="Panel"]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 192.0
+offset_bottom = 128.0
+script = ExtResource("1_t4txv")
+icon = ExtResource("2_4qms3")
+title = "Пуля"
+description = "[weap]Пуля"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("2_4qms3")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("3_io7mk")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+text = "Пуля"
+
+[node name="VSplit" type="VSplitContainer" parent="VSplit"]
+layout_mode = 2
+theme = ExtResource("3_io7mk")
+collapsed = true
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Button" type="Button" parent="VSplit/VSplit"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ru0r1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ugce8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_abawp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tss1p")
+text = "Экипировать"
+
+[node name="Description" type="RichTextLabel" parent="VSplit/VSplit"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_io7mk")
+bbcode_enabled = true
+text = "[weap]Пуля"
+custom_effects = [SubResource("RichTextEffect_ru0r1"), SubResource("RichTextEffect_ugce8"), SubResource("RichTextEffect_abawp"), SubResource("RichTextEffect_tss1p")]
+script = ExtResource("8_tss1p")
+metadata/_custom_type_script = "uid://nxxsfftpfegr"

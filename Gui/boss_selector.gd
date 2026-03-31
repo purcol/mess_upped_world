@@ -13,7 +13,7 @@ func _ready() -> void:
 		if str(scene).split(".")[1] == "tscn":
 			var button = load(str(path_to_bosses_panels,scene)).instantiate()
 			#button.button_group = load("res://Gui/buttons/groups/achievements.tres")
-			button.position += Vector2(0,size.y*scale.y)
+			#button.position += Vector2(0,size.y*scale.y)
 			button.scale = scale
 			boss_list.append(button.name)
 			$"../".call_deferred("add_child",button)

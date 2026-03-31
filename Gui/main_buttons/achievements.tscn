@@ -63,7 +63,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	text = str(G.selected_restricted_weapons)+\" \\n\"+str(G.selected_weapons)+\" \\n\"+str(G.total_time)+\" \\n\"+str(G.died_to)+\" \\n\"+str(G.win_to)+\" \\n\"+str(G.settings)+\" \\n\\n\"+str(G.contents_to_save)
+	text = str(GWeapons.selected_restricted_weapons)+\" \\n\"+str(GWeapons.selected_weapons)+\" \\n\"+str(GSaves.total_time)+\" \\n\"+str(GSaves.died_to)+\" \\n\"+str(GSaves.win_to)+\" \\n\"+str(GSaves.settings)+\" \\n\\n\"+str(GSaves.contents_to_save)
 "
 
 [sub_resource type="GDScript" id="GDScript_2gmo2"]
@@ -93,7 +93,7 @@ script/source = "@tool
 extends SimpleAchiementButton
 
 func unlock_check() -> bool:
-	if G.died_to[\"total\"] > 0:
+	if GSaves.died_to[\"total\"] > 0:
 		return true
 	return false
 "
@@ -103,7 +103,7 @@ script/source = "@tool
 extends SimpleAchiementButton
 
 func unlock_check() -> bool:
-	if G.win_to[\"TutorialBoss_E\"] > 0:
+	if GSaves.win_to[\"TutorialBoss_E\"] > 0:
 		return true
 	return false
 "
@@ -113,7 +113,7 @@ script/source = "@tool
 extends SimpleAchiementButton
 
 func unlock_check() -> bool:
-	if G.win_to[\"LazerTagBoss_E\"] > 0:
+	if GSaves.win_to[\"LazerTagBoss_E\"] > 0:
 		return true
 	return false
 "
@@ -123,7 +123,7 @@ script/source = "@tool
 extends SimpleAchiementButton
 
 func unlock_check() -> bool:
-	if G.win_to[\"total\"] >= 10:
+	if GSaves.win_to[\"total\"] >= 10:
 		return true
 	return false
 "

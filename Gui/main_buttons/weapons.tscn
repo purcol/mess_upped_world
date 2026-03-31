@@ -54,7 +54,7 @@ extends GameMenuWeaponButton
 
 func disable_check() -> bool:
 	if !Engine.is_editor_hint():
-		if G.win_to[\"TutorialBoss_E\"] <= 0:
+		if GSaves.win_to[\"TutorialBoss_E\"] <= 0:
 			return true
 	return super()
 "
@@ -65,7 +65,7 @@ extends GameMenuWeaponButton
 
 func disable_check() -> bool:
 	if !Engine.is_editor_hint():
-		if G.win_to[\"LazerTagBoss_E\"] <= 0:
+		if GSaves.win_to[\"LazerTagBoss_E\"] <= 0:
 			return true
 	return super()
 "
@@ -76,7 +76,7 @@ extends GameMenuWeaponButton
 
 func disable_check() -> bool:
 	if !Engine.is_editor_hint():
-		if G.win_to[\"LazerTagBoss_E\"] <= 0:
+		if GSaves.win_to[\"LazerTagBoss_E\"] <= 0:
 			return true
 	return super()
 "

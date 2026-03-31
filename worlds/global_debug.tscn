@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://due6y7alsiiek"]
+
+[ext_resource type="Script" uid="uid://duwuttbyi41rp" path="res://worlds/global_debug.gd" id="1_mve1s"]
+
+[node name="GlobalDebug" type="Node"]
+script = ExtResource("1_mve1s")
+log = Dictionary[String, bool]({
+"ButtonInit": false,
+"EntityFrequentInteractions": false,
+"EntityInteractions": false,
+"PlayerInit": false,
+"SaveAndLoad": false,
+"StartupInit": true,
+"WeaponInteractions": false,
+"WorldActions": false
+})

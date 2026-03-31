@@ -21,8 +21,8 @@ boss_name = "Обучающий босс"
 layout_mode = 2
 title = "Обучающий б."
 unlock_comment = ""
-description = "[color=dark_gray]сложность: [color=light_green]нормальная[/color][/color]
-[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+description = "[color=dark_gray]сложность: [dif d=n]нормальная[/dif][/color]
+[color=dark_gray]Награда за победу: [weap]Пуля[/weap][/color]
 
 Первый босс игры. Ничего особенного.
 "
@@ -34,8 +34,8 @@ visible = false
 layout_mode = 2
 title = "Обучающий б."
 unlock_comment = "сначала победите преведуйщею сложность"
-description = "[color=dark_gray]сложность: [color=red]мастер[/color] [/color]
-[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+description = "[color=dark_gray]сложность: [dif d=m]мастер[/dif] [/color]
+[color=dark_gray]Награда за победу: [weap]Пуля[/weap][/color]
 
 Первый босс игры. Ничего особенного.
 "
@@ -48,8 +48,8 @@ visible = false
 layout_mode = 2
 title = "Обучающий б."
 unlock_comment = "сначала победите преведуйщею сложность"
-description = "[color=dark_gray]сложность: [color=dark_magenta]кошмар+[/color] [/color]
-[color=dark_gray]Награда за победу: [color=gold]Пуля[/color][/color]
+description = "[color=dark_gray]сложность: [dif d=N]кошмар+[/dif] [/color]
+[color=dark_gray]Награда за победу: [weap]Пуля[/weap][/color]
 
 Первый босс игры. Ничего особенного.
 "

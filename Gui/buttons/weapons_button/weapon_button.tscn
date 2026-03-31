@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnt4vdkdju32f"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_u3wsg"]
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="2_ywtxo"]
+[ext_resource type="Script" uid="uid://c5a5lkqu6bsqn" path="res://Gui/buttons/weapons_button/weapon_button.gd" id="3_qa3jw"]
+[ext_resource type="PackedScene" uid="uid://c02ppg5jg06bi" path="res://assets/weapon_panels/bullet_weapon.tscn" id="4_u3wsg"]
+[ext_resource type="Texture2D" uid="uid://d18duduuwpb0f" path="res://assets/textures/weapons/weapon_icon.png" id="5_ywtxo"]
+
+[node name="Weapon" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.056
+anchor_bottom = 0.09900001
+offset_right = -0.5119629
+offset_bottom = -0.15200806
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_u3wsg")
+toggle_mode = true
+button_group = ExtResource("2_ywtxo")
+script = ExtResource("3_qa3jw")
+achievement = ExtResource("4_u3wsg")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_ywtxo")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc5nafmisremy"]
+
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="2_aiwxg"]
+[ext_resource type="PackedScene" uid="uid://c02ppg5jg06bi" path="res://assets/weapon_panels/bullet_weapon.tscn" id="4_qmlw1"]
+[ext_resource type="Texture2D" uid="uid://w5dprfajikot" path="res://assets/textures/weapons/bullet.png" id="5_aiwxg"]
+
+[sub_resource type="GDScript" id="GDScript_6j2x7"]
+script/source = "@tool
+extends WeaponButton
+
+func is_unlocked() -> bool: return true
+"
+
+[node name="WeaponButton" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+toggle_mode = true
+button_group = ExtResource("2_aiwxg")
+script = SubResource("GDScript_6j2x7")
+achievement = ExtResource("4_qmlw1")
+metadata/_custom_type_script = "uid://c5a5lkqu6bsqn"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_aiwxg")

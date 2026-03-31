@@ -8,11 +8,11 @@ var owner_rotation:float = 0.0
 
 func _process(_delta: float) -> void:
 	owner_rotation = $"../../..".rotation
-	if Engine.is_editor_hint() or G.dev_mode:
+	if Engine.is_editor_hint() or GDebug.dev_mode:
 		queue_redraw()
 
 func _draw() -> void:
-	if G.dev_mode:
+	if GDebug.dev_mode:
 		draw_circle(Vector2.ZERO,5,Color.CRIMSON)
 	if Engine.is_editor_hint():
 		draw_dashed_line(Vector2.ZERO,final_position,Color.CORAL,0.5)

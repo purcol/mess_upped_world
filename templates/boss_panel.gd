@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	if $VSplitContainer/Description.text != description:
 		$VSplitContainer/Description.text = description
 	if !Engine.is_editor_hint():
-		if G.win_to or G.died_to: $VSplitContainer/Header/Icon.texture = icon
+		if GSaves.win_to or GSaves.died_to: $VSplitContainer/Header/Icon.texture = icon
 		else: $VSplitContainer/Header/Icon.texture = unknow
 	else:
 		if $VSplitContainer/Header/Icon.texture != icon:

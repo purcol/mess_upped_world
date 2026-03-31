@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6wckss267exr"]
+
+[ext_resource type="Shader" uid="uid://wj54bvtf8vgu" path="res://shaders/sky.gdshader" id="1_jmy1d"]
+[ext_resource type="Texture2D" uid="uid://p55jgj0ijdgx" path="res://icon.svg" id="1_tcq3e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcq3e"]
+shader = ExtResource("1_jmy1d")
+shader_parameter/uv_scale = 1.0
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(-16, -40)
+texture = ExtResource("1_tcq3e")
+
+[node name="Sky" type="Polygon2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_tcq3e")
+position = Vector2(-128, -120)
+texture = ExtResource("1_tcq3e")
+polygon = PackedVector2Array(0, 0, 57.670044, 0, 384, 0, 384, 392, 0, 392)

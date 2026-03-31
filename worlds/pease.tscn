@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cw4sj4xjkq8o2"]
+[gd_scene load_steps=24 format=3 uid="uid://cw4sj4xjkq8o2"]
 
 [ext_resource type="PackedScene" uid="uid://ca8xi5jgrhfou" path="res://templates/beackroung.tscn" id="1_5v8yi"]
 [ext_resource type="Script" uid="uid://bs2w2dtn6hcd" path="res://worlds/pease.gd" id="1_fociy"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://jrsnf42cl25b" path="res://Gui/main_buttons/options.tscn" id="10_87map"]
 [ext_resource type="PackedScene" uid="uid://kqurvydy150r" path="res://Gui/main_buttons/achievements.tscn" id="11_e37mn"]
 [ext_resource type="Material" uid="uid://brl4jgrsxtima" path="res://shaders/distortion_material.tres" id="11_m411v"]
+[ext_resource type="PackedScene" uid="uid://dihaua5i5p4q2" path="res://Gui/panels/weapon_panel.tscn" id="12_ahgbi"]
 [ext_resource type="PackedScene" uid="uid://dcklbs58b1nmx" path="res://Gui/panels/achievement_panel.tscn" id="14_m411v"]
 [ext_resource type="PackedScene" uid="uid://cdwgb17m7hsla" path="res://Gui/panels/boss_selector_panel.tscn" id="15_yffol"]
 [ext_resource type="PackedScene" uid="uid://dr73wiuefcobr" path="res://Gui/main_buttons/weapons.tscn" id="16_cpd08"]
@@ -87,8 +88,8 @@ extends GameMenuButton
 
 
 func _toggled(_toggled_on: bool) -> void:
-	G.update_and_save()
-	if G.settings[\"exit_animation\"]:
+	GSaves.update_and_save()
+	if GSaves.settings[\"exit_animation\"]:
 		var camera = get_tree().get_first_node_in_group(\"Camera\")
 		camera.is_locked = true
 		var tween = get_tree().create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
@@ -242,6 +243,7 @@ offset_right = -28.0
 offset_bottom = 2.0
 
 [node name="Help" parent="MainButtons" instance=ExtResource("4_upm6v")]
+visible = false
 layout_mode = 0
 offset_left = -117.0
 offset_top = -128.0
@@ -321,10 +323,10 @@ offset_bottom = -238.0
 
 [node name="AchievementPanel" parent="MainButtons" instance=ExtResource("14_m411v")]
 layout_mode = 1
-offset_left = -448.0
-offset_top = -640.0
-offset_right = 384.0
-offset_bottom = -368.0
+offset_left = -432.0
+offset_top = -832.0
+offset_right = 400.0
+offset_bottom = -560.0
 
 [node name="Weapons" parent="MainButtons" instance=ExtResource("16_cpd08")]
 layout_mode = 0
@@ -333,6 +335,13 @@ offset_top = -256.0
 offset_right = -417.0
 offset_bottom = -238.0
 pivot_offset = Vector2(-0.063097, -0.15272522)
+
+[node name="WeaponPanel" parent="MainButtons" instance=ExtResource("12_ahgbi")]
+layout_mode = 1
+offset_left = -432.0
+offset_top = -520.0
+offset_right = 402.24
+offset_bottom = -351.8
 
 [node name="StartTutorialBoss" parent="." instance=ExtResource("4_upm6v")]
 material = ExtResource("11_m411v")
@@ -398,7 +407,7 @@ polygon = PackedVector2Array(96.000015, 15.1111145, 89.36018, 18.377354, 85.3333
 position = Vector2(-8, 9808)
 
 [node name="BossPanel" parent="." instance=ExtResource("15_yffol")]
-offset_left = -792.0
-offset_top = -120.0
-offset_right = -792.0
-offset_bottom = -120.0
+offset_left = -816.0
+offset_top = 16.0
+offset_right = -816.0
+offset_bottom = 16.0

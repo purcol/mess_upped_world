@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpy171tc33kbs"]
+
+[ext_resource type="Script" uid="uid://nudysw8geyft" path="res://worlds/global_saves.gd" id="1_p4aky"]
+
+[node name="GlobalSaves" type="Node"]
+script = ExtResource("1_p4aky")

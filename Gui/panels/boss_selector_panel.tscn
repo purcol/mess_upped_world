@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdwgb17m7hsla"]
+[gd_scene load_steps=3 format=3 uid="uid://cdwgb17m7hsla"]
 
 [ext_resource type="PackedScene" uid="uid://cwueadufdy3py" path="res://Gui/boss_selector.tscn" id="1_ww7uu"]
+[ext_resource type="Texture2D" uid="uid://b4y5r6kmtdxcw" path="res://assets/textures/gui_elements/boss_selector_overlay.png" id="2_5p2xa"]
 
 [node name="BossPanel" type="Control"]
 layout_mode = 3
@@ -11,8 +12,15 @@ offset_right = -768.0
 offset_bottom = -432.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 
 [node name="SelecterBossContainer" parent="." instance=ExtResource("1_ww7uu")]
 layout_mode = 0
+offset_top = -32.0
+offset_bottom = 0.0
 mouse_filter = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(100.00003, 83.36)
+scale = Vector2(1.0300001, 1.03)
+texture = ExtResource("2_5p2xa")

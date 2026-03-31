@@ -39,7 +39,7 @@ script/source = "extends Button
 
 func _toggled(_toggled_on: bool) -> void:
 	get_tree().paused = false
-	G.update_and_save()
+	GSaves.update_and_save()
 	get_tree().reload_current_scene()
 	focus_mode = Control.FOCUS_NONE
 
@@ -57,7 +57,7 @@ script/source = "extends Button
 
 func _toggled(_toggled_on: bool) -> void:
 	get_tree().paused = false
-	G.update_and_save()
+	GSaves.update_and_save()
 	get_tree().change_scene_to_file(\"res://worlds/pease.tscn\")
 	focus_mode = Control.FOCUS_NONE
 

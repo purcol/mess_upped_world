@@ -56,7 +56,7 @@ func _process(_delta: float) -> void:
 		offset = get_global_mouse_position()*0.01
 
 func _ready() -> void:
-	if G.settings["exit_animation"]:
+	if GSaves.settings["exit_animation"]:
 		is_locked = true
 		var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		position.y = position.y-250000

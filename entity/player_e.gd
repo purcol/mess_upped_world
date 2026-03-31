@@ -13,13 +13,13 @@ extends CharacterBody2D
 @export var weakering_radius:float = 0.015
 
 func _ready() -> void:
-	weapons = G.selected_weapons
+	weapons = GWeapons.selected_weapons
 	add_weapons()
-	G.print_log("PlayerInit", ["Weapons added."])
-	G.print_log("PlayerInit", ["Movement type: ", MovementType])
+	GDebug.print_log("PlayerInit", ["Weapons added."])
+	GDebug.print_log("PlayerInit", ["Movement type: ", MovementType])
 
 func _physics_process(_delta: float) -> void:
-	G.selected_movement = MovementType
+	GWeapons.selected_movement = MovementType
 	match MovementType:
 		0: hower_mouse_movement()
 		1: stationary_movement()
@@ -33,7 +33,7 @@ func add_weapons():
 		var weapon_inst = weapon_exemplar.instantiate()
 		weapon_inst.on_timer = true
 		$Components.add_child(weapon_inst)
-		G.print_log("PlayerInit", ["Weapon added: ",weapon])
+		GDebug.print_log("PlayerInit", ["Weapon added: ",weapon])
 
 ##обработка HOWER_MOUSE
 func hower_mouse_movement() -> void:
@@ -46,6 +46,6 @@ func hower_mouse_movement() -> void:
 ##обработка STATIONARY
 func stationary_movement():
 	velocity = Vector2.ZERO
-	if !G.dev_mode: return
+	if !GDebug.dev_mode: return
 	if Input.is_action_just_pressed("shot"):
 		global_position = get_global_mouse_position()

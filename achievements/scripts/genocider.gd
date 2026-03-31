@@ -3,4 +3,4 @@ extends AchievementButton_
 
 func is_unlocked() -> bool:
 	if Engine.is_editor_hint(): return true
-	return G.win_to["total"] >= 10
+	return GSaves.win_to["total"] >= 10

@@ -8,7 +8,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_xitbox_area_c_area_entered(area: Area2D) -> void:
-	G.print_log("EntityFrequentInteractions", ["From ",$".".name,". Hited entity ID: ", area.entity_id,"."])
+	GDebug.print_log("EntityFrequentInteractions", ["From ",$".".name,". Hited entity ID: ", area.entity_id,"."])
 	if area.entity_id == "Bullet_E":
 		return
 	if area.get_name() == "XitboxArea_C":

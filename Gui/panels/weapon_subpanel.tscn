@@ -1,0 +1,78 @@
+[gd_scene load_steps=14 format=3 uid="uid://dqhoxmgvq3qeb"]
+
+[ext_resource type="Script" uid="uid://guqqnfhxidct" path="res://Gui/panels/weapon_subpanel.gd" id="1_38fk2"]
+[ext_resource type="Texture2D" uid="uid://d18duduuwpb0f" path="res://assets/textures/weapons/weapon_icon.png" id="2_38fk2"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="3_vwtot"]
+[ext_resource type="Script" uid="uid://buotvt3cc467y" path="res://assets/bbcodes/bbc_boss.gd" id="4_u51w8"]
+[ext_resource type="Script" uid="uid://cagdgubux6t5y" path="res://assets/bbcodes/bbc_weapon.gd" id="5_vwxj3"]
+[ext_resource type="Script" uid="uid://d1hk7urkpmfka" path="res://assets/bbcodes/bbc_difficulty.gd" id="6_nniq2"]
+[ext_resource type="Script" uid="uid://bduxvkxhor8ai" path="res://assets/bbcodes/bbc_warn.gd" id="7_y87b3"]
+[ext_resource type="Script" uid="uid://nxxsfftpfegr" path="res://Gui/classes/rich_description.gd" id="8_4subb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_24uow"]
+script = ExtResource("4_u51w8")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wlo1x"]
+script = ExtResource("5_vwxj3")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_pbfp0"]
+script = ExtResource("6_nniq2")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_kwqx3"]
+script = ExtResource("7_y87b3")
+
+[node name="Panel" type="Panel"]
+z_index = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_right = 192.0
+offset_bottom = 128.0
+script = ExtResource("1_38fk2")
+icon = ExtResource("2_38fk2")
+metadata/_edit_use_anchors_ = true
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("2_38fk2")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("3_vwtot")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+
+[node name="Description" type="RichTextLabel" parent="VSplit"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_vwtot")
+bbcode_enabled = true
+custom_effects = [SubResource("RichTextEffect_24uow"), SubResource("RichTextEffect_wlo1x"), SubResource("RichTextEffect_pbfp0"), SubResource("RichTextEffect_kwqx3")]
+script = ExtResource("8_4subb")
+metadata/_custom_type_script = "uid://nxxsfftpfegr"

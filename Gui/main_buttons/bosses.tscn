@@ -74,7 +74,7 @@ script/source = "@tool
 extends GameMenuBossButton 
 
 func unlock_check() -> bool:
-	if G.win_to[\"TutorialBoss_E\"] > 0:
+	if GSaves.win_to[\"TutorialBoss_E\"] > 0:
 		return true
 	return false
 "

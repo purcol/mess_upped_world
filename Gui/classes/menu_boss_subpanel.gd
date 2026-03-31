@@ -19,6 +19,6 @@ func _process(_delta: float) -> void:
 	$VSplit/VSplit/HSplit/Title.text = title
 	$VSplit/VSplit/Description.text = ""
 	if !Engine.is_editor_hint():
-		if !$VSplit/BossSubPanelButton.is_unlocked() && unlock_comment != "": $VSplit/VSplit/Description.text = "[color=red]"+unlock_comment+"[/color]\n"
-	else: if unlock_comment != "": $VSplit/VSplit/Description.text = "[color=red]"+unlock_comment+"[/color]\n"
+		if !$VSplit/BossSubPanelButton.is_unlocked() && unlock_comment != "": $VSplit/VSplit/Description.text = "[warn]"+unlock_comment+"[/warn]\n"
+	else: if unlock_comment != "": $VSplit/VSplit/Description.text = "[warn]"+unlock_comment+"[/warn]\n"
 	$VSplit/VSplit/Description.text += description

@@ -19,4 +19,4 @@ func _load():
 		file.close()
 		
 		var save_data = data.duplicate()
-		G.selected_weapons = save_data.selected_weapons
+		GWeapons.selected_weapons = save_data.selected_weapons

@@ -18,14 +18,14 @@ func _ready() -> void:
 	toggle_mode = true
 	if !Engine.is_editor_hint():
 		text = "Начать Битву!"
-		G.print_log("ButtonInit",["Node "+name+" has been setuped."])
+		GDebug.print_log("ButtonInit",["Node "+name+" has been setuped."])
 	else:
 		text = str(Boss)
 #endregion
 
 #region checks
 ##должно возврашать true если сложность открыта.
-func is_unlocked() -> bool: return G.unloked_bosses[Boss][Difficulty]
+func is_unlocked() -> bool: return GSaves.unloked_bosses[Boss][Difficulty] && GWeapons.selected_weapons != []
 #endregion
 
 #region frame exec
@@ -49,7 +49,7 @@ func update_disabled() -> bool:
 
 #region action
 func _toggled(_toggled_on: bool) -> void:
-	G.selected_boss = Boss
-	G.selected_difficulty = Difficulty
+	GEntyties.selected_boss = Boss
+	GEntyties.selected_difficulty = Difficulty
 	get_tree().change_scene_to_file("res://worlds/battel_zone.tscn")
 #endregion

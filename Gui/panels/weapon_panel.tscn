@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dihaua5i5p4q2"]
+
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="1_7mqdd"]
+
+[sub_resource type="GDScript" id="GDScript_7mqdd"]
+script/source = "extends FlowContainer
+
+var path_to_achievements = \"res://weapons/\"
+
+
+func _ready() -> void:
+	for scene in DirAccess.open(path_to_achievements).get_files():
+		if str(scene).split(\".\")[1] == \"tscn\":
+			print(scene)
+			var button:WeaponButton = load(str(path_to_achievements,scene)).instantiate()
+			button.button_group = load(\"res://Gui/buttons/groups/achievements.tres\")
+			self.add_child(button)
+"
+
+[node name="WeaponPanel" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.94400007
+anchor_bottom = 0.395
+offset_right = 0.5119629
+offset_bottom = 16.039993
+theme = ExtResource("1_7mqdd")
+
+[node name="HFlowContainer" type="FlowContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme = ExtResource("1_7mqdd")
+script = SubResource("GDScript_7mqdd")

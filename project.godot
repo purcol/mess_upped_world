@@ -21,6 +21,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 G="*res://worlds/global.tscn"
+GDebug="*res://worlds/global_debug.tscn"
+GWeapons="*res://worlds/global_weapons.tscn"
+GEntyties="*res://worlds/global_entyties.tscn"
+GSaves="*res://worlds/global_saves.tscn"
 
 [display]
 
@@ -45,6 +49,7 @@ folder_colors={
 "res://resourses/": "gray",
 "res://shaders/": "blue",
 "res://templates/": "gray",
+"res://weapons/": "pink",
 "res://worlds/": "green"
 }
 

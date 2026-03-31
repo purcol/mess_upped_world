@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8xcuwu8q6xxq"]
+
+[ext_resource type="Script" uid="uid://c83srx1ft5lgq" path="res://worlds/global_entyties.gd" id="1_g2jwa"]
+
+[node name="GlobalEntyties" type="Node"]
+script = ExtResource("1_g2jwa")

@@ -30,3 +30,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_aiwxg")
+
+[node name="Equiped" type="Line2D" parent="."]
+position = Vector2(0, 70)
+points = PackedVector2Array(64, 0, 0, 0)
+width = 4.0

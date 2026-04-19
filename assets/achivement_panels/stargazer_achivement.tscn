@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2qbesrl3b8y2"]
+
+[ext_resource type="Script" uid="uid://bb5dieshmkoit" path="res://Gui/panels/achievement_subpanel.tres.gd" id="1_s075x"]
+[ext_resource type="Texture2D" uid="uid://dtwxw53sje8sp" path="res://assets/textures/achievements/stargazer_icon.png" id="2_s075x"]
+[ext_resource type="Theme" uid="uid://c3jix8nnbwx53" path="res://assets/theme/standart.tres" id="3_mldc6"]
+[ext_resource type="Script" uid="uid://buotvt3cc467y" path="res://assets/bbcodes/bbc_boss.gd" id="4_7ngrg"]
+[ext_resource type="Script" uid="uid://cagdgubux6t5y" path="res://assets/bbcodes/bbc_weapon.gd" id="5_wcxhu"]
+[ext_resource type="Script" uid="uid://d1hk7urkpmfka" path="res://assets/bbcodes/bbc_difficulty.gd" id="6_tm4ky"]
+[ext_resource type="Script" uid="uid://bduxvkxhor8ai" path="res://assets/bbcodes/bbc_warn.gd" id="7_qt4yn"]
+[ext_resource type="Script" uid="uid://dypqrcvh7fkch" path="res://assets/bbcodes/bbc_movement.gd" id="8_4i0dn"]
+[ext_resource type="Script" uid="uid://nxxsfftpfegr" path="res://Gui/classes/rich_description.gd" id="8_y4yt4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fdm5"]
+content_margin_left = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_mldc6"]
+script = ExtResource("4_7ngrg")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7ngrg"]
+script = ExtResource("5_wcxhu")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wcxhu"]
+script = ExtResource("6_tm4ky")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tm4ky"]
+script = ExtResource("7_qt4yn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_qt4yn"]
+script = ExtResource("8_4i0dn")
+
+[node name="Panel" type="Panel"]
+z_index = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = -0.002057617
+anchor_right = 1.0
+anchor_bottom = -0.002057617
+offset_right = 280.0
+offset_bottom = 109.333336
+grow_horizontal = 0
+scale = Vector2(2, 2)
+script = ExtResource("1_s075x")
+icon = ExtResource("2_s075x")
+title = "Звездочёт"
+description = "[color=gray]Поймай 50 звёзд.[/color]
+
+Ты мог загадать 50 желаний, но вместо этого ты их ловил. Полагаю ты хочешь какой-то компенсации..
+[color=gray]Передвижение [mov]Деш[/mov] разблокировано.[/color]"
+metadata/_custom_type_script = "uid://bb5dieshmkoit"
+metadata/_edit_use_anchors_ = true
+
+[node name="VSplit" type="VSplitContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 40
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="HSplit" type="HSplitContainer" parent="VSplit"]
+layout_mode = 2
+dragging_enabled = false
+dragger_visibility = 2
+
+[node name="Icon" type="TextureRect" parent="VSplit/HSplit"]
+layout_mode = 2
+texture = ExtResource("2_s075x")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Title" type="LineEdit" parent="VSplit/HSplit"]
+layout_mode = 2
+theme = ExtResource("3_mldc6")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
+text = "Звездочёт"
+
+[node name="Description" type="RichTextLabel" parent="VSplit"]
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_mldc6")
+bbcode_enabled = true
+text = "[color=gray]Поймай 50 звёзд.[/color]
+
+Ты мог загадать 50 желаний, но вместо этого ты их ловил. Полагаю ты хочешь какой-то компенсации..
+[color=gray]Передвижение [mov]Деш[/mov] разблокировано.[/color]"
+custom_effects = [SubResource("RichTextEffect_mldc6"), SubResource("RichTextEffect_7ngrg"), SubResource("RichTextEffect_wcxhu"), SubResource("RichTextEffect_tm4ky"), SubResource("RichTextEffect_qt4yn")]
+script = ExtResource("8_y4yt4")
+metadata/_custom_type_script = "uid://nxxsfftpfegr"

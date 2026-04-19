@@ -1,0 +1,172 @@
+[gd_scene load_steps=8 format=3 uid="uid://crmhpaqu3wjy7"]
+
+[ext_resource type="Shader" uid="uid://bbn2y4p01cte5" path="res://shaders/comet.gdshader" id="1_x3ktt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnrrj"]
+shader = ExtResource("1_x3ktt")
+
+[sub_resource type="Curve" id="Curve_af3rm"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 104.30466), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_x3ktt"]
+script/source = "@tool
+extends CPUParticles2D
+
+@export var SPEED:float = 30.0
+@export var velosity:Vector2 = Vector2(80,120)
+var offset:Vector2 = Vector2(0,0)
+var spawn_pos:Vector2
+
+func _ready() -> void:
+	if Engine.is_editor_hint(): return
+	spawn_pos = global_position
+	var rand:Vector2 = abs(velosity*randf_range(-2,2))
+	SPEED += rand.length()*0.25
+	velosity += rand
+	if randi_range(0,1) == 1:
+		modulate = Color(\"#cecfe1\")
+
+func _process(delta: float) -> void:
+	if rotation_degrees >= 360:
+		rotation_degrees -= 360
+	
+	var comet_size:float = randf_range(6,12)
+	$CometPoly.polygon = PackedVector2Array([
+		Vector2(-comet_size,-comet_size),
+		Vector2(comet_size,-comet_size),
+		Vector2(comet_size,comet_size),
+		Vector2(-comet_size,comet_size)
+	])
+	rotation_degrees += SPEED*delta
+	if Engine.is_editor_hint(): return
+	offset += velosity*delta
+	global_position = offset+spawn_pos
+
+
+func _on_timer_timeout() -> void:
+	queue_free()
+"
+
+[sub_resource type="Curve" id="Curve_x3ktt"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0.019607842, -73.90729), 0.0, 0.0, 0, 0, Vector2(0.99999994, 305.7616), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pnrrj"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 200), 280.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="GDScript" id="GDScript_pnrrj"]
+script/source = "extends Button
+
+func _toggled(_toggled_on: bool) -> void:
+	disabled = true
+	$\"../CometPoly\".visible = false
+	$\"..\".velosity = Vector2(0,0)
+	$\"..\".emitting = false
+	$\"../CometParticle\".emitting = false
+	$\"../CometParticle2\".emitting = false
+	$\"../CometParticle3\".emitting = true
+	await get_tree().create_timer(0.5).timeout
+	$\"../CometParticle3\".emitting = false
+	GSaves.star_count += 1
+	#$\"../Timer\".time_left = 2
+"
+
+[node name="CometParticle" type="CPUParticles2D"]
+modulate = Color(0.9027544, 0.9050069, 0.941601, 1)
+material = SubResource("ShaderMaterial_pnrrj")
+rotation = 1.0161991
+amount = 20
+randomness = 0.74
+lifetime_randomness = 0.51
+emission_shape = 3
+emission_rect_extents = Vector2(6, 6)
+spread = 150.0
+gravity = Vector2(-170, -127.5)
+angular_velocity_max = 10.43
+angular_velocity_curve = SubResource("Curve_af3rm")
+scale_amount_min = 0.0
+scale_amount_max = 9.25
+script = SubResource("GDScript_x3ktt")
+
+[node name="CometParticle" type="CPUParticles2D" parent="."]
+modulate = Color(0.9027544, 0.9050069, 0.941601, 1)
+material = SubResource("ShaderMaterial_pnrrj")
+rotation = -2.6940124
+amount = 9
+lifetime = 0.85
+randomness = 0.74
+lifetime_randomness = 0.51
+emission_shape = 3
+emission_rect_extents = Vector2(6, 6)
+spread = 150.0
+gravity = Vector2(-44, -127.5)
+angular_velocity_max = 10.43
+angular_velocity_curve = SubResource("Curve_x3ktt")
+scale_amount_min = 0.0
+scale_amount_max = 9.25
+
+[node name="CometParticle2" type="CPUParticles2D" parent="."]
+modulate = Color(0.9027544, 0.9050069, 0.941601, 1)
+material = SubResource("ShaderMaterial_pnrrj")
+rotation = -2.6940124
+amount = 9
+lifetime = 0.85
+randomness = 0.74
+lifetime_randomness = 0.51
+emission_shape = 3
+emission_rect_extents = Vector2(6, 6)
+spread = 150.0
+gravity = Vector2(-170, -25)
+angular_velocity_max = 10.43
+angular_velocity_curve = SubResource("Curve_x3ktt")
+scale_amount_min = 0.0
+scale_amount_max = 9.25
+
+[node name="CometParticle3" type="CPUParticles2D" parent="."]
+modulate = Color(0.9027544, 0.9050069, 0.941601, 1)
+material = SubResource("ShaderMaterial_pnrrj")
+emitting = false
+amount = 30
+lifetime = 0.67
+one_shot = true
+explosiveness = 0.8
+randomness = 0.74
+lifetime_randomness = 0.51
+emission_shape = 1
+emission_sphere_radius = 10.27
+spread = 150.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.73
+initial_velocity_max = 174.99
+angular_velocity_max = 10.43
+angular_velocity_curve = SubResource("Curve_x3ktt")
+angle_max = 292.2
+scale_amount_max = 11.0
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("Curve_pnrrj")
+
+[node name="CometPoly" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_pnrrj")
+polygon = PackedVector2Array(-6.6516056, -6.6516056, 6.6516056, -6.6516056, 6.6516056, 6.6516056, -6.6516056, 6.6516056)
+uv = PackedVector2Array(-8.000008, -8, 8, -8, 8, 8, -8.000008, 8)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 40.0
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -14.791796
+offset_top = -14.688545
+offset_right = 15.208204
+offset_bottom = 15.311455
+toggle_mode = true
+flat = true
+script = SubResource("GDScript_pnrrj")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

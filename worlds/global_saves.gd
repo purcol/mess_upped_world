@@ -3,6 +3,8 @@ extends Node
 #region stats var
 ##общее время в игре.
 var total_time:float = 0
+##сколько звёзд игрок поймал
+var star_count:float = 0
 ##список смертей.
 var died_to:Dictionary = {"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0}
 ##список побед.
@@ -38,6 +40,7 @@ var contents_to_save:Dictionary = {
 	"selected_weapons":[],#shoter
 	"selected_movement":0,
 	"total_time":0.0,
+	"star_count":0.0,
 	"died_to":{"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0},
 	"win_to":{"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0},
 	"settings":{"exit_animation":true,"exit_animation_speed":1.0,"sounds":true}
@@ -70,6 +73,9 @@ func _load() -> int:
 		if save_data.total_time != null:
 			total_time = save_data.total_time
 		else: total_time = 0; push_warning("WARNING!| can not load \"total_time\". Loading defalt...")
+		if save_data.star_count != null:
+			star_count = save_data.star_count
+		else: star_count = 0; push_warning("WARNING!| can not load \"star_count\". Loading defalt...")
 		if save_data.died_to != null:
 			died_to.assign(save_data.died_to)
 		else: died_to = {"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0}; push_warning("WARNING!| can not load \"died_to\". Loading defalt...")
@@ -91,6 +97,7 @@ func _update_contents_to_save() -> void:
 	GSaves.contents_to_save.selected_weapons = GWeapons.selected_weapons
 	GSaves.contents_to_save.selected_movement = GWeapons.selected_movement
 	GSaves.contents_to_save.total_time = GSaves.total_time
+	GSaves.contents_to_save.star_count = GSaves.star_count
 	GSaves.contents_to_save.died_to = GSaves.died_to
 	GSaves.contents_to_save.win_to = GSaves.win_to
 	GSaves.contents_to_save.settings = GSaves.settings
@@ -117,6 +124,8 @@ func reset_save(what:String="*") -> void:
 		GWeapons.selected_movement = 0
 	if what == "total_time":
 		total_time = 0
+	if what == "star_count":
+		star_count = 0
 	if what == "died_to":
 		died_to = {"total":0,"TutorialBoss_E":0,"LazerTagBoss_E":0}
 	if what == "win_to":
@@ -144,12 +153,14 @@ func get_save(save_file:bool=false) -> Array:
 			save.append(save_data.selected_weapons)
 			save.append(save_data.selected_movement)
 			save.append(save_data.total_time)
+			save.append(save_data.star_count)
 			save.append(save_data.died_to)
 			save.append(save_data.win_to)
 		return save
 	save.append(GWeapons.selected_weapons)
 	save.append(GWeapons.selected_movement)
 	save.append(total_time)
+	save.append(star_count)
 	save.append(died_to)
 	save.append(win_to)
 	return save

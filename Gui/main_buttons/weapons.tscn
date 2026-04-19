@@ -125,7 +125,6 @@ metadata/_custom_type_script = "uid://bxnp20up2ajx"
 wait_time = 0.3
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 1
@@ -186,7 +185,6 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/VBoxContainer/Bullet" instance=ExtResource("3_a7b7o")]
-visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -237,6 +235,7 @@ is_panel_button = true
 is_hower_button = true
 
 [node name="Panel" parent="Panel/VBoxContainer/Wawe" instance=ExtResource("3_a7b7o")]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

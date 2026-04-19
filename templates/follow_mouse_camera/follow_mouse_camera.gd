@@ -63,8 +63,9 @@ func _ready() -> void:
 		tween.tween_property(self,"position",Vector2(position.x,position.y+250000),3)
 		var _modulate = Color(0,0,0,0)
 		for nodes in get_children():
-			nodes.modulate = Color(1,1,1,0)
-			get_tree().create_tween().tween_property(nodes,"modulate",Color(1,1,1,1),3)
+			if !nodes.is_class("Timer"):
+				nodes.modulate = Color(1,1,1,0)
+				get_tree().create_tween().tween_property(nodes,"modulate",Color(1,1,1,1),3)
 		await get_tree().create_timer(3).timeout
 		is_locked = false
 

@@ -13,7 +13,7 @@ extends Button
 ##возврашает ноду панели.
 func setup_panel_node() -> BasicItemSubpanel:
 	var subpanel:BasicItemSubpanel = achievement.instantiate()
-	$Icon.texture = subpanel.icon
+	subpanel.icon = $Icon.texture
 	subpanel.visible = false
 	return subpanel
 
@@ -22,7 +22,7 @@ func _validate_property(property: Dictionary) -> void:
 		property.usage = PROPERTY_USAGE_NO_EDITOR
 
 func _ready() -> void:
-	if button_group == null: button_group = load("res://Gui/buttons/groups/achievements.tres")
+	#if button_group == null: button_group = load("res://Gui/buttons/groups/achievements.tres")
 	self.add_child(setup_panel_node())
 	update_panel()
 	toggle_mode = true

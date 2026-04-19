@@ -11,9 +11,9 @@ var path_to_achievements = \"res://achievements/\"
 func _ready() -> void:
 	for scene in DirAccess.open(path_to_achievements).get_files():
 		if str(scene).split(\".\")[1] == \"tscn\":
-			print(scene)
+			#print(scene)
 			var button:AchievementButton_ = load(str(path_to_achievements,scene)).instantiate()
-			button.button_group = load(\"res://Gui/buttons/groups/achievements.tres\")
+			#button.button_group = load(\"res://Gui/buttons/groups/achievements.tres\")
 			self.add_child(button)
 "
 

@@ -6,6 +6,17 @@ const CURSOR_POINT_HAND = preload("uid://lg2m68d56o1c")
 const CURSOR_ARROW = preload("uid://c8j13gbv668ey")
 const CURSOR_CROSS = preload("uid://bwu8dqrihi1os")
 #endregion
+var opened_buton:NodePath = ""
+
+
+func set_oppen_button(button:NodePath) -> void:
+	opened_buton = button
+	print(opened_buton)
+
+func set_cursor_textures() -> void:
+	Input.set_custom_mouse_cursor(CURSOR_POINT_HAND,Input.CURSOR_POINTING_HAND,Vector2(15.5,4))
+	Input.set_custom_mouse_cursor(CURSOR_CROSS,Input.CURSOR_FORBIDDEN,Vector2(15.5,4))
+	G.print_log("StartupInit",["Cursor textures have been set."])
 
 #@export_category("Debug")
 ###выключает урон, зум камер 0.5.
@@ -90,7 +101,7 @@ const CURSOR_CROSS = preload("uid://bwu8dqrihi1os")
 								 #BossesID.LAZER_TAG_BOSS_E:{0:false,1:false,2:false}
 								 #}
 ##последняя нажатая(следовательно и окрытая) кнопка.
-var opened_buton:NodePath = ""
+
 #endregion
 
 #region var manegment
@@ -104,10 +115,6 @@ var opened_buton:NodePath = ""
 	#G.print_log("ButtonInit",[value+" was earesed from restricted weapons with key: "+key])
 	##print("INFO| "+value+" was earesed from restricted weapons with key: "+key)
 	#return key
-
-func set_oppen_button(button:NodePath) -> void:
-	opened_buton = button
-	print(opened_buton)
 #endregion
 
 #region init
@@ -117,11 +124,6 @@ func set_oppen_button(button:NodePath) -> void:
 	#else: _load()#save_game = save_game.load_savefile()
 	##reset_save("settings")
 	#pass
-
-func set_cursor_textures() -> void:
-	Input.set_custom_mouse_cursor(CURSOR_POINT_HAND,Input.CURSOR_POINTING_HAND,Vector2(15.5,4))
-	Input.set_custom_mouse_cursor(CURSOR_CROSS,Input.CURSOR_FORBIDDEN,Vector2(15.5,4))
-	G.print_log("StartupInit",["Cursor textures have been set."])
 #endregion
 
 ##region logs

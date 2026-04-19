@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c02ppg5jg06bi"]
+[gd_scene load_steps=24 format=3 uid="uid://c02ppg5jg06bi"]
 
 [ext_resource type="Script" uid="uid://guqqnfhxidct" path="res://Gui/panels/weapon_subpanel.gd" id="1_t4txv"]
 [ext_resource type="Texture2D" uid="uid://w5dprfajikot" path="res://assets/textures/weapons/bullet.png" id="2_4qms3"]
@@ -70,6 +70,83 @@ corner_detail = 1
 expand_margin_bottom = 1.0
 anti_aliasing = false
 
+[sub_resource type="GDScript" id="GDScript_ru0r1"]
+script/source = "extends Button
+
+@export_enum(\"SHOTER\",\"CHARGER_SHOTER\",\"SHOTERS_SHOTER\",\"LAZER\",\"LAZER_MINE\") var WEAPON = 0
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint(): return
+	
+	if GWeapons.is_equiped(WEAPON): text = \"Снять\"
+	else: text = \"Экипировать\"
+	
+	$Cursor.visible = is_hovered()
+
+func _toggled(_toggled_on: bool) -> void:
+	GWeapons.toggle_weapon(WEAPON)
+"
+
+[sub_resource type="GDScript" id="GDScript_ugce8"]
+script/source = "extends Polygon2D
+
+var full_poly
+
+
+func _ready() -> void:
+	full_poly = polygon
+	while true:
+		await get_tree().create_timer(0.3).timeout
+		polygon = full_poly
+		await get_tree().create_timer(0.3).timeout
+		polygon = PackedVector2Array([Vector2(0,0)])
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8mxvt"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhba0"]
+content_margin_left = 5.0
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hren"]
+content_margin_left = 5.0
+content_margin_right = 22.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 3
+border_width_top = 2
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_bottom = 1.0
+anti_aliasing = false
+
+[sub_resource type="GDScript" id="GDScript_i8scl"]
+script/source = "extends LineEdit
+
+
+func _ready() -> void:
+	if GWeapons.is_active($\"../../../..\".WEAPON): text = \"Акстивное\"
+	else: text = \"Пасивное\"
+"
+
 [sub_resource type="RichTextEffect" id="RichTextEffect_ru0r1"]
 script = ExtResource("4_ru0r1")
 
@@ -84,15 +161,18 @@ script = ExtResource("7_abawp")
 
 [node name="Panel" type="Panel"]
 z_index = 1
-anchors_preset = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_right = 192.0
-offset_bottom = 128.0
+offset_right = 196.0
+offset_bottom = 120.0
+scale = Vector2(2, 2)
 script = ExtResource("1_t4txv")
+WEAPON = 1
 icon = ExtResource("2_4qms3")
-title = "Пуля"
-description = "[weap]Пуля"
+title = "Заряж. пуля"
+description = "Стреляет в ближайшую цель. Нужно заряжать [color=light_blue]зажатием ПКМ[/color] (мак. 3с). 
+[color=gray]Становится сильнее с потерей хп.[/color]"
 metadata/_edit_use_anchors_ = true
 
 [node name="VSplit" type="VSplitContainer" parent="."]
@@ -120,7 +200,7 @@ layout_mode = 2
 theme = ExtResource("3_io7mk")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_7fdm5")
-text = "Пуля"
+text = "Заряж. пуля"
 
 [node name="VSplit" type="VSplitContainer" parent="VSplit"]
 layout_mode = 2
@@ -129,14 +209,46 @@ collapsed = true
 dragging_enabled = false
 dragger_visibility = 2
 
-[node name="Button" type="Button" parent="VSplit/VSplit"]
-custom_minimum_size = Vector2(0, 15)
+[node name="HSplit" type="HSplitContainer" parent="VSplit/VSplit"]
+layout_mode = 2
+collapsed = true
+dragger_visibility = 2
+
+[node name="Equip" type="Button" parent="VSplit/VSplit/HSplit"]
+custom_minimum_size = Vector2(127.6, 15)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_ru0r1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ugce8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_abawp")
 theme_override_styles/focus = SubResource("StyleBoxFlat_tss1p")
+toggle_mode = true
 text = "Экипировать"
+script = SubResource("GDScript_ru0r1")
+WEAPON = 1
+
+[node name="Cursor" type="Polygon2D" parent="VSplit/VSplit/HSplit/Equip"]
+position = Vector2(24, 0)
+polygon = PackedVector2Array(89.5, 9.5, 98, 4.5, 98, 15)
+script = SubResource("GDScript_ugce8")
+
+[node name="Type" type="LineEdit" parent="VSplit/VSplit/HSplit"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_8mxvt")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_bhba0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hren")
+text = "Акт/Пас"
+alignment = 3
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+virtual_keyboard_show_on_focus = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+script = SubResource("GDScript_i8scl")
 
 [node name="Description" type="RichTextLabel" parent="VSplit/VSplit"]
 layout_mode = 2
@@ -144,7 +256,8 @@ mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_io7mk")
 bbcode_enabled = true
-text = "[weap]Пуля"
+text = "Стреляет в ближайшую цель. Нужно заряжать [color=light_blue]зажатием ПКМ[/color] (мак. 3с). 
+[color=gray]Становится сильнее с потерей хп.[/color]"
 custom_effects = [SubResource("RichTextEffect_ru0r1"), SubResource("RichTextEffect_ugce8"), SubResource("RichTextEffect_abawp"), SubResource("RichTextEffect_tss1p")]
 script = ExtResource("8_tss1p")
 metadata/_custom_type_script = "uid://nxxsfftpfegr"

@@ -11,6 +11,11 @@ func _validate_property(property: Dictionary) -> void:
 
 func _ready() -> void:
 	bbcode_enabled = true
-	custom_effects = [BossEffect.new(),WeaponsEffect.new(),DifficultyEffect.new(),WarnEffect.new()]
+	custom_effects = [
+		BossEffect.new(),
+		WeaponsEffect.new(),
+		DifficultyEffect.new(),
+		WarnEffect.new(),
+		MovementEffect.new()]
 	mouse_filter = Control.MOUSE_FILTER_PASS
 	mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND

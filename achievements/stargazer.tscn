@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl1lpu7y7jdjx"]
+
+[ext_resource type="ButtonGroup" uid="uid://j7vktb3jvue0" path="res://Gui/buttons/groups/achievements.tres" id="1_55u0w"]
+[ext_resource type="PackedScene" uid="uid://c2qbesrl3b8y2" path="res://assets/achivement_panels/stargazer_achivement.tscn" id="2_o0mdd"]
+[ext_resource type="Texture2D" uid="uid://dtwxw53sje8sp" path="res://assets/textures/achievements/stargazer_icon.png" id="3_55u0w"]
+
+[sub_resource type="GDScript" id="GDScript_l5a73"]
+script/source = "@tool
+extends AchievementButton_
+
+func is_unlocked() -> bool:
+	if Engine.is_editor_hint(): return true
+	return GSaves.star_count >= 50
+"
+
+[node name="Stargazer" type="Button"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+toggle_mode = true
+button_group = ExtResource("1_55u0w")
+script = SubResource("GDScript_l5a73")
+achievement = ExtResource("2_o0mdd")
+metadata/_custom_type_script = "uid://dhgacudsoxec3"
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_55u0w")
+
+[node name="Camera2D" type="Camera2D" parent="."]

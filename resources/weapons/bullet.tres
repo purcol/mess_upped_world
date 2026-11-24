@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://byibu654waflm"]
+
+[ext_resource type="Script" uid="uid://dnomfoc530vgc" path="res://resources/WeaponResource.gd" id="1_t1t58"]
+
+[resource]
+script = ExtResource("1_t1t58")
+name = &"Bullet"
+ru_name = &"Пуля"
+desc = "Normal [5]bullet[/5], nothing [5]spacial[/5].
+[1]Although[/1], I need to make a [4]mini-game[/4] for it."
+ru_desc = "Обычная [5]пуля[/5], ничего необычного.
+Хотя ей надо будет придумать мини-игру"
+metadata/_custom_type_script = "uid://dnomfoc530vgc"

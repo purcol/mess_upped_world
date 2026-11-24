@@ -1,0 +1,33 @@
+[gd_resource type="Theme" format=3 uid="uid://dwe5f22w3c6cm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5surw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3llmd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8cysl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7x8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcjgm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_317ug"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cwp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3qt7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vxb1y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wd3b0"]
+
+[resource]
+GraphEdit/styles/menu_panel = SubResource("StyleBoxEmpty_5surw")
+GraphEdit/styles/panel = SubResource("StyleBoxEmpty_3llmd")
+GraphEdit/styles/panel_focus = SubResource("StyleBoxEmpty_8cysl")
+GraphNode/styles/panel = SubResource("StyleBoxEmpty_i7x8i")
+GraphNode/styles/panel_focus = SubResource("StyleBoxEmpty_lcjgm")
+GraphNode/styles/panel_selected = SubResource("StyleBoxEmpty_317ug")
+GraphNode/styles/slot = SubResource("StyleBoxEmpty_l6cwp")
+GraphNode/styles/slot_selected = SubResource("StyleBoxEmpty_l3qt7")
+GraphNode/styles/titlebar = SubResource("StyleBoxEmpty_vxb1y")
+GraphNode/styles/titlebar_selected = SubResource("StyleBoxEmpty_wd3b0")

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32mm"
+   height="32mm"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="WireOutConnectionPoint.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8756734"
+     inkscape:cx="46.250037"
+     inkscape:cy="40.164506"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-91.271378,-61.460964)">
+    <path
+       id="rect1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 91.271505,61.46109 V 93.460961 H 123.27138 V 61.46109 Z m 2.021513,2.021512 H 121.24986 V 91.43945 H 93.293018 Z" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 107.18228,66.04994 98.397072,77.460955 H 115.9675 Z"
+       id="path7" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.634999;paint-order:stroke markers fill"
+       d="m 110.47737,77.461026 h -6.41186 l -7.5e-4,7.913622 7.5e-4,5.6e-5 h 6.41186 z"
+       id="path8"
+       sodipodi:nodetypes="cccccc" />
+    <path
+       id="path10"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="m 95.357821,87.396286 v 2.021582 h 23.827239 v -2.021582 h -1.50527 -20.816702 z" />
+  </g>
+</svg>

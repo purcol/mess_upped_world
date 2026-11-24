@@ -1,0 +1,80 @@
+[gd_resource type="Theme" format=3 uid="uid://chmatfomgjrsn"]
+
+[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="1_m8188"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3vbr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_bottom = 4
+border_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_317ug"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhpck"]
+bg_color = Color(1, 1, 1, 0.0627451)
+border_width_bottom = 5
+border_color = Color(0.9297146, 0.9297147, 0.9297146, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8188"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cichd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_bottom = 2
+border_color = Color(0.69135684, 0.6913568, 0.69135684, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71gnf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[resource]
+Button/fonts/font = ExtResource("1_m8188")
+Button/styles/disabled = SubResource("StyleBoxFlat_s3vbr")
+Button/styles/focus = SubResource("StyleBoxFlat_317ug")
+Button/styles/hover = SubResource("StyleBoxFlat_rhpck")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_m8188")
+Button/styles/normal = SubResource("StyleBoxFlat_cichd")
+Button/styles/pressed = SubResource("StyleBoxFlat_71gnf")

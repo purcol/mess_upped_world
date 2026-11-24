@@ -1,0 +1,261 @@
+SplineFontDB: 3.2
+FontName: Untitled1
+FullName: Untitled1
+FamilyName: Untitled1
+Weight: Regular
+Copyright: Copyright (c) 2026, Rostik
+UComments: "2026-8-5: Created with FontForge (http://fontforge.org)"
+Version: 001.000
+ItalicAngle: 0
+UnderlinePosition: -100
+UnderlineWidth: 50
+Ascent: 800
+Descent: 200
+InvalidEm: 0
+LayerCount: 2
+Layer: 0 0 "+BBcEMAQ0BD0EOAQ5 +BD8EOwQwBD0A" 1
+Layer: 1 0 "+BB8ENQRABDUENAQ9BDgEOQAA +BD8EOwQwBD0A" 0
+XUID: [1021 779 83993206 7130803]
+StyleMap: 0x0000
+FSType: 0
+OS2Version: 0
+OS2_WeightWidthSlopeOnly: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1785881644
+ModificationTime: 1785884583
+OS2TypoAscent: 0
+OS2TypoAOffset: 1
+OS2TypoDescent: 0
+OS2TypoDOffset: 1
+OS2TypoLinegap: 90
+OS2WinAscent: 0
+OS2WinAOffset: 1
+OS2WinDescent: 0
+OS2WinDOffset: 1
+HheadAscent: 0
+HheadAOffset: 1
+HheadDescent: 0
+HheadDOffset: 1
+DEI: 91125
+Encoding: iso8859-5
+UnicodeInterp: none
+NameList: AGL For New Fonts
+DisplaySize: -48
+AntiAlias: 1
+FitToEm: 0
+WinInfo: 0 38 14
+BeginChars: 256 7
+
+StartChar: uni0410
+Encoding: 176 1040 0
+Width: 700
+Flags: HMW
+LayerCount: 2
+Fore
+SplineSet
+300 800 m 1
+ 300 700 l 1
+ 200 700 l 1
+ 200 400 l 1
+ 100 400 l 1
+ 100 -200 l 1
+ 200 -200 l 1
+ 200 0 l 1
+ 500 0 l 1
+ 500 -200 l 1
+ 600 -200 l 1
+ 600 400 l 1
+ 500 400 l 1
+ 500 700 l 1
+ 400 700 l 1
+ 400 800 l 1
+ 300 800 l 1
+400 500 m 5
+ 400 300 l 1
+ 500 300 l 1
+ 500 200 l 1
+ 200 200 l 1
+ 200 300 l 1
+ 300 300 l 1
+ 300 500 l 1
+ 400 500 l 5
+EndSplineSet
+EndChar
+
+StartChar: uni0411
+Encoding: 177 1041 1
+Width: 700
+Flags: MW
+LayerCount: 2
+Fore
+SplineSet
+100 800 m 1
+ 100 -200 l 1
+ 600 -200 l 1
+ 600 300 l 1
+ 500 300 l 1
+ 500 400 l 1
+ 200 400 l 1
+ 200 600 l 1
+ 600 600 l 1
+ 600 800 l 1
+ 100 800 l 1
+200 100 m 1
+ 300 100 l 1
+ 300 200 l 1
+ 500 200 l 1
+ 500 -100 l 1
+ 200 -100 l 1
+ 200 100 l 1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: uni0412
+Encoding: 178 1042 2
+Width: 700
+Flags: MW
+LayerCount: 2
+Fore
+SplineSet
+100 800 m 1
+ 100 -200 l 1
+ 500 -200 l 1
+ 500 -100 l 1
+ 600 -100 l 1
+ 600 300 l 1
+ 500 300 l 1
+ 500 400 l 1
+ 600 400 l 1
+ 600 700 l 1
+ 500 700 l 1
+ 500 800 l 1
+ 100 800 l 1
+300 600 m 1
+ 400 600 l 1
+ 400 400 l 1
+ 300 400 l 1
+ 300 600 l 1
+300 300 m 1
+ 400 300 l 1
+ 400 -100 l 1
+ 300 -100 l 1
+ 300 300 l 1
+EndSplineSet
+Validated: 8388617
+EndChar
+
+StartChar: uni0413
+Encoding: 179 1043 3
+Width: 700
+Flags: MW
+LayerCount: 2
+Fore
+SplineSet
+100 800 m 1
+ 100 -200 l 1
+ 200 -200 l 1
+ 200 600 l 1
+ 600 600 l 1
+ 600 800 l 1
+ 100 800 l 1
+EndSplineSet
+Validated: 9
+EndChar
+
+StartChar: uni0414
+Encoding: 180 1044 4
+Width: 700
+Flags: MW
+LayerCount: 2
+Fore
+SplineSet
+300 800 m 1
+ 300 700 l 1
+ 200 700 l 1
+ 200 200 l 1
+ 100 200 l 1
+ 100 -200 l 1
+ 200 -200 l 1
+ 200 100 l 1
+ 400 100 l 1
+ 400 -200 l 1
+ 600 -200 l 1
+ 600 200 l 1
+ 500 200 l 1
+ 500 800 l 1
+ 300 800 l 1
+400 600 m 1
+ 400 200 l 1
+ 300 200 l 1
+ 300 600 l 1
+ 400 600 l 1
+EndSplineSet
+Validated: 8388617
+EndChar
+
+StartChar: uni0415
+Encoding: 181 1045 5
+Width: 700
+Flags: MW
+LayerCount: 2
+Fore
+SplineSet
+100 800 m 1
+ 100 -200 l 1
+ 600 -200 l 1
+ 600 0 l 1
+ 200 0 l 1
+ 200 200 l 1
+ 600 200 l 1
+ 600 400 l 1
+ 200 400 l 1
+ 200 600 l 1
+ 600 600 l 1
+ 600 800 l 1
+ 100 800 l 1
+EndSplineSet
+Validated: 8388617
+EndChar
+
+StartChar: uni0416
+Encoding: 182 1046 6
+Width: 700
+Flags: MWO
+LayerCount: 2
+Fore
+SplineSet
+100 800 m 1
+ 100 400 l 1
+ 200 400 l 1
+ 200 200 l 1
+ 100 200 l 1
+ 100 -200 l 1
+ 200 -200 l 1
+ 200 0 l 1
+ 300 0 l 1
+ 300 -200 l 1
+ 400 -200 l 1
+ 400 0 l 1
+ 500 0 l 1
+ 500 -200 l 1
+ 600 -200 l 1
+ 600 200 l 1
+ 500 200 l 1
+ 500 400 l 1
+ 600 400 l 1
+ 600 800 l 1
+ 500 800 l 1
+ 500 500 l 1
+ 400 500 l 1
+ 400 700 l 1
+ 300 700 l 1
+ 300 500 l 1
+ 200 500 l 1
+ 200 800 l 1
+ 100 800 l 1
+EndSplineSet
+Validated: 9
+EndChar
+EndChars
+EndSplineFont

@@ -1,0 +1,78 @@
+[gd_resource type="Theme" format=3 uid="uid://f37x578evoq"]
+
+[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="1_elbwr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3vbr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_317ug"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhpck"]
+bg_color = Color(1, 1, 1, 0.0627451)
+border_color = Color(0.7919994, 0.79199904, 0.7919991, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elbwr"]
+bg_color = Color(1, 1, 1, 0.2)
+border_color = Color(0.7919994, 0.79199904, 0.7919991, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cichd"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m6fs"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+draw_center = false
+border_color = Color(1, 1, 1, 1)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[resource]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_elbwr")
+Button/styles/disabled = SubResource("StyleBoxFlat_s3vbr")
+Button/styles/focus = SubResource("StyleBoxFlat_317ug")
+Button/styles/hover = SubResource("StyleBoxFlat_rhpck")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_elbwr")
+Button/styles/normal = SubResource("StyleBoxFlat_cichd")
+Button/styles/pressed = SubResource("StyleBoxFlat_2m6fs")

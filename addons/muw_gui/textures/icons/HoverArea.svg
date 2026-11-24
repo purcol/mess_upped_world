@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32mm"
+   height="32mm"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="HoverArea.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8756734"
+     inkscape:cx="32.166379"
+     inkscape:cy="52.335568"
+     inkscape:window-width="1027"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-91.271378,-61.460964)">
+    <path
+       id="rect1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 91.271505,61.46109 V 93.460961 H 123.27138 V 61.46109 Z m 2.021513,2.021512 H 121.24986 V 91.43945 H 93.293018 Z" />
+    <path
+       id="path11"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="m 107.37254,74.663916 3.63459,12.911286 2.45288,-1.748141 3.57369,4.830077 3.75629,-2.69805 -4.09454,-4.378156 2.11617,-1.786092 z"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       id="rect12"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 95.510913 65.700499 L 95.510913 73.389952 L 97.489086 73.389952 L 97.489086 67.678672 L 103.13112 67.678672 L 103.13112 65.700499 L 95.510913 65.700499 z M 111.41175 65.700499 L 111.41175 67.678672 L 117.05378 67.678672 L 117.05378 73.389952 L 119.03196 73.389952 L 119.03196 65.700499 L 111.41175 65.700499 z M 95.510913 81.532607 L 95.510913 89.221543 L 103.13112 89.221543 L 103.13112 87.24337 L 97.489086 87.24337 L 97.489086 81.532607 L 95.510913 81.532607 z " />
+  </g>
+</svg>

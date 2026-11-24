@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://bskwqe333bivd"]
+
+[ext_resource type="Texture2D" uid="uid://dx1m08uatvht0" path="res://addons/muw_gui/textures/monitor_texture.png" id="1_5surw"]
+[ext_resource type="Theme" uid="uid://dwe5f22w3c6cm" path="res://addons/muw_gui/textures/standart_theme.tres" id="1_8cysl"]
+[ext_resource type="Script" uid="uid://e4rcacnbrjd6" path="res://addons/muw_gui/nodes/monitors/MonitorFrameClass.gd" id="2_3llmd"]
+[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="3_8cysl"]
+[ext_resource type="Script" uid="uid://btkhms0a4yaan" path="res://addons/muw_gui/nodes/monitors/CLI/MiniGameFlappyBird.gd" id="4_cdnmw"]
+[ext_resource type="Script" uid="uid://b467gs6epi1gt" path="res://addons/muw_gui/nodes/monitors/CLI/MonitorCLI.gd" id="6_cdnmw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_redpe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ov2f"]
+
+[node name="Test2" type="Node2D" unique_id=1595617131]
+
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=233586464]
+offset_top = 1.0
+offset_right = 1093.0
+offset_bottom = 653.0
+theme = ExtResource("1_8cysl")
+show_grid = false
+minimap_enabled = false
+show_menu = false
+show_zoom_buttons = false
+show_grid_buttons = false
+show_minimap_button = false
+show_arrange_button = false
+
+[node name="GraphNode" type="GraphNode" parent="GraphEdit" unique_id=620033411]
+layout_mode = 0
+offset_left = -547.0
+offset_top = -121.0
+offset_right = 15.0
+offset_bottom = 388.0
+mouse_filter = 1
+theme = ExtResource("1_8cysl")
+position_offset = Vector2(-547, -121)
+draggable = false
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="MonitorFrame" type="NinePatchRect" parent="GraphEdit/GraphNode" unique_id=918441966]
+custom_minimum_size = Vector2(220.34, 486.255)
+layout_mode = 2
+texture = ExtResource("1_5surw")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_3llmd")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="MiniGameFlappyBird" type="RichTextLabel" parent="GraphEdit/GraphNode/MonitorFrame" unique_id=544267189]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 38.000008
+offset_top = 42.0
+offset_right = -136.00003
+offset_bottom = -110.65503
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Test2/GraphEdit/GraphNode/MonitorFrame/MiniGameFlappyBird")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Test2/GraphEdit/GraphNode/MonitorFrame/MiniGameFlappyBird")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_8cysl")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_redpe")
+bbcode_enabled = true
+text = "⌜32┃11‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+┃                              ┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+script = ExtResource("4_cdnmw")
+Scroling = null
+metadata/_custom_type_script = "uid://btkhms0a4yaan"
+
+[node name="GraphNode2" type="GraphNode" parent="GraphEdit" unique_id=1487003228]
+layout_mode = 0
+offset_left = 125.0
+offset_top = -37.0
+offset_right = 504.0
+offset_bottom = 480.0
+mouse_filter = 1
+theme = ExtResource("1_8cysl")
+position_offset = Vector2(125, -37)
+title = "adadsdadasdad"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="MonitorFrame" type="NinePatchRect" parent="GraphEdit/GraphNode2" unique_id=906402655]
+custom_minimum_size = Vector2(220, 494.97)
+layout_mode = 2
+texture = ExtResource("1_5surw")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_3llmd")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="MonitorCLI" type="RichTextLabel" parent="GraphEdit/GraphNode2/MonitorFrame" unique_id=1669127352]
+custom_minimum_size = Vector2(12.03, 395.05)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 41.0
+offset_right = 349.0
+offset_bottom = 464.0
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_8cysl")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8ov2f")
+bbcode_enabled = true
+text = "⌜25┃14‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+┃                       ┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+script = ExtResource("6_cdnmw")
+metadata/_custom_type_script = "uid://b467gs6epi1gt"

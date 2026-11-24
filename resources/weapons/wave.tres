@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://lqu6dsgjmqp1"]
+
+[ext_resource type="Script" uid="uid://dnomfoc530vgc" path="res://resources/WeaponResource.gd" id="1_cf3bu"]
+
+[resource]
+script = ExtResource("1_cf3bu")
+is_passive = true
+name = &"Wave"
+ru_name = &"Волна"
+ru_desc = "Простая пасивная волна"
+metadata/_custom_type_script = "uid://dnomfoc530vgc"

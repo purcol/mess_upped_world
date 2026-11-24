@@ -1,0 +1,213 @@
+[gd_scene format=3 uid="uid://bslhlu57gpkuq"]
+
+[ext_resource type="Texture2D" uid="uid://dx1m08uatvht0" path="res://addons/muw_gui/textures/monitor_texture.png" id="1_7sgh3"]
+[ext_resource type="Script" uid="uid://e4rcacnbrjd6" path="res://addons/muw_gui/nodes/monitors/MonitorFrameClass.gd" id="2_pe553"]
+[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="3_7hnhr"]
+[ext_resource type="Script" uid="uid://c2kwmc8duiksc" path="res://addons/muw_gui/resources/bbc_effects/boss_effect.gd" id="4_bfbyl"]
+[ext_resource type="Script" uid="uid://clwonv5ellwb7" path="res://addons/muw_gui/resources/bbc_effects/difficulty_effect.gd" id="5_7rocw"]
+[ext_resource type="Script" uid="uid://c1wbhcjdwtq74" path="res://addons/muw_gui/resources/bbc_effects/movement_effect.gd" id="6_38ypv"]
+[ext_resource type="Script" uid="uid://big4ifmipb46f" path="res://addons/muw_gui/resources/bbc_effects/node_effect.gd" id="7_jrbbn"]
+[ext_resource type="Script" uid="uid://dqy5jpiwwvya6" path="res://addons/muw_gui/resources/bbc_effects/warning_effect.gd" id="8_5dwwf"]
+[ext_resource type="Script" uid="uid://cglf2a7pqb4sq" path="res://addons/muw_gui/resources/bbc_effects/weapon_effect.gd" id="9_wrjqk"]
+[ext_resource type="Script" uid="uid://dai5wlqd7gtl5" path="res://nodes/CL/weapons/WeaponsCLI.gd" id="10_hxnjh"]
+[ext_resource type="Script" uid="uid://dvpbdj31ks4uu" path="res://nodes/CL/weapons/WeaponListCLI.gd" id="11_bfbyl"]
+[ext_resource type="Script" uid="uid://cu2p772d7v0gm" path="res://addons/muw_gui/nodes/wires/WireOutConnectionPoint.gd" id="12_bfbyl"]
+[ext_resource type="Script" uid="uid://b8sshpmm75vcu" path="res://addons/muw_gui/resources/wires/wire_out_resoure.gd" id="13_7rocw"]
+[ext_resource type="Script" uid="uid://cr8jlrytfttn3" path="res://nodes/CL/ItemDescPreview.gd" id="14_7rocw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rocw"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_38ypv"]
+script = ExtResource("4_bfbyl")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_jrbbn"]
+script = ExtResource("5_7rocw")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5dwwf"]
+script = ExtResource("6_38ypv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_wrjqk"]
+script = ExtResource("7_jrbbn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_hxnjh"]
+script = ExtResource("8_5dwwf")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_2qpc7"]
+script = ExtResource("9_wrjqk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mm3ks"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_l55f0"]
+script = ExtResource("4_bfbyl")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_funsn"]
+script = ExtResource("5_7rocw")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1wxak"]
+script = ExtResource("6_38ypv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_sjqvo"]
+script = ExtResource("7_jrbbn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_tofxn"]
+script = ExtResource("8_5dwwf")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_1ls51"]
+script = ExtResource("9_wrjqk")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_561fm"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_u1jk2"]
+script = ExtResource("4_bfbyl")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rg8d0"]
+script = ExtResource("5_7rocw")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_f7mcc"]
+script = ExtResource("6_38ypv")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_5f0a6"]
+script = ExtResource("7_jrbbn")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_7qi35"]
+script = ExtResource("8_5dwwf")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xcxdp"]
+script = ExtResource("9_wrjqk")
+
+[sub_resource type="Resource" id="Resource_38ypv"]
+script = ExtResource("13_7rocw")
+id = &"177621"
+offset = 0.43
+Side = 2
+
+[node name="MonitorFrame" type="NinePatchRect" unique_id=1741754778]
+custom_minimum_size = Vector2(220, 80)
+offset_right = 744.0
+offset_bottom = 492.0
+texture = ExtResource("1_7sgh3")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_pe553")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="WeaponsCLI" type="RichTextLabel" parent="." unique_id=1857704312]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = -164.00006
+offset_bottom = -116.00003
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/WeaponsCLI")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/WeaponsCLI")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_7hnhr")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7rocw")
+bbcode_enabled = true
+text = "⌜‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃ Вид Оружия:     Активные    Пасивные     ┃
+┃‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒┃
+┃                                          ┃
+┃                                          ┃
+┃                                          ┃
+┃                                          ┃
+┃                                          ┃
+┃                                          ┃
+┃                                          ┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+custom_effects = [SubResource("RichTextEffect_38ypv"), SubResource("RichTextEffect_jrbbn"), SubResource("RichTextEffect_5dwwf"), SubResource("RichTextEffect_wrjqk"), SubResource("RichTextEffect_hxnjh"), SubResource("RichTextEffect_2qpc7")]
+script = ExtResource("10_hxnjh")
+metadata/_custom_type_script = "uid://dai5wlqd7gtl5"
+
+[node name="WeaponsListCLI" type="RichTextLabel" parent="." unique_id=676921325]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 153.0
+offset_right = -495.97
+offset_bottom = -127.79999
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/WeaponsListCLI")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/WeaponsListCLI")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_7hnhr")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mm3ks")
+bbcode_enabled = true
+text = " ОРУЖИЕТУТ      ┃
+                ┃
+                ┃
+                ┃
+                ┃
+                ┃
+                ┃"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+custom_effects = [SubResource("RichTextEffect_l55f0"), SubResource("RichTextEffect_funsn"), SubResource("RichTextEffect_1wxak"), SubResource("RichTextEffect_sjqvo"), SubResource("RichTextEffect_tofxn"), SubResource("RichTextEffect_1ls51")]
+script = ExtResource("11_bfbyl")
+scroll_max = 0
+metadata/_custom_type_script = "uid://dvpbdj31ks4uu"
+
+[node name="ItemDescPreview" type="RichTextLabel" parent="." unique_id=337754712]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 294.00003
+offset_top = 153.0
+offset_right = -137.19995
+offset_bottom = -128.59998
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/ItemDescPreview")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/MonitorFrame/ItemDescPreview")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_7hnhr")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_561fm")
+bbcode_enabled = true
+text = "                          
+                          
+                          
+                          
+                          
+                          
+                          
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+custom_effects = [SubResource("RichTextEffect_u1jk2"), SubResource("RichTextEffect_rg8d0"), SubResource("RichTextEffect_f7mcc"), SubResource("RichTextEffect_5f0a6"), SubResource("RichTextEffect_7qi35"), SubResource("RichTextEffect_xcxdp")]
+script = ExtResource("14_7rocw")
+metadata/_custom_type_script = "uid://cr8jlrytfttn3"
+
+[node name="Wires" type="Node2D" parent="." unique_id=122537762]
+
+[node name="WireOutConnectionPoint" type="Node2D" parent="Wires" unique_id=1875119804]
+script = ExtResource("12_bfbyl")
+wire_data = SubResource("Resource_38ypv")
+metadata/_custom_type_script = "uid://cu2p772d7v0gm"

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32mm"
+   height="32mm"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="MonitorContentDisplayCLI.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.0167041"
+     inkscape:cx="-189.82908"
+     inkscape:cy="-297.53004"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-91.271378,-61.460964)">
+    <path
+       id="rect1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 91.271505,61.46109 V 93.460961 H 123.27138 V 61.46109 Z m 2.021513,2.021512 H 121.24986 V 91.43945 H 93.293018 Z" />
+    <path
+       id="rect7"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 95.314542 65.504128 L 95.314542 67.52571 L 95.314542 87.721377 L 95.314542 89.742959 L 97.336124 89.742959 L 117.20675 89.742959 L 119.22833 89.742959 L 119.22833 87.721377 L 119.22833 67.52571 L 119.22833 65.504128 L 97.336124 65.504128 L 95.314542 65.504128 z M 97.336124 67.52571 L 117.20675 67.52571 L 117.20675 87.721377 L 97.336124 87.721377 L 97.336124 67.52571 z " />
+    <path
+       id="path2"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.634999;paint-order:stroke markers fill"
+       d="M 105.21988 69.547292 L 105.21988 70.894497 L 105.21988 81.656631 L 109.32299 81.656631 L 109.32299 70.894497 L 109.32299 69.547292 L 105.21988 69.547292 z M 105.21988 83.678213 L 105.21988 84.35259 L 105.21988 85.699795 L 109.32299 85.699795 L 109.32299 84.35259 L 109.32299 83.678213 L 105.21988 83.678213 z " />
+  </g>
+</svg>

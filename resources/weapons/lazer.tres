@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponResource" format=3 uid="uid://gr715csur3c2"]
+
+[ext_resource type="Script" uid="uid://dnomfoc530vgc" path="res://resources/WeaponResource.gd" id="1_igvyo"]
+
+[resource]
+script = ExtResource("1_igvyo")
+is_passive = true
+name = &"Lazer"
+ru_name = &"Лазер"
+desc = "Normal [5]lazer[/5], nothing [5]spacial[/5].
+[1]Although[/1], I need to make a [4]mini-game[/4] for it."
+ru_desc = "Обычный [5]лазер[/5], ничего необычного.
+Хотя ему надо будет придумать мини-игру.
+У этого оружия очень длинное и бесполезное описания для проверки работы 
+прокрутки. Мня пугает кол-во работы, а это же только интерфейс!
+Возможно, возможно у меня больше амбиции, ну да и ладно меня уже удовлетворяет
+результат"
+metadata/_custom_type_script = "uid://dnomfoc530vgc"

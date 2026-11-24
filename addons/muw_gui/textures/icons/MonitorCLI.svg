@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32mm"
+   height="32mm"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="MonitorCLI.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.0334082"
+     inkscape:cx="-6.3932074"
+     inkscape:cy="89.25901"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-91.271378,-61.460964)">
+    <path
+       id="rect1"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="M 91.271505,61.46109 V 93.460961 H 123.27138 V 61.46109 Z m 2.021513,2.021512 H 121.24986 V 91.43945 H 93.293018 Z" />
+    <path
+       id="rect3"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="m 94.989497,87.888291 v 1.854668 h 17.898513 v -1.854668 z"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path6"
+       style="fill:#ffffff;fill-opacity:1;stroke-width:0.635;paint-order:stroke markers fill"
+       d="m 119.55337,78.060119 h -1.85467 l -4.61519,5.841415 4.61519,5.841415 h 1.85467 l -4.59806,-5.795407 z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>

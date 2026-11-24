@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://crylx8x8ple1q"]
+
+[ext_resource type="Texture2D" uid="uid://dx1m08uatvht0" path="res://addons/muw_gui/textures/monitor_texture.png" id="1_8uh7m"]
+[ext_resource type="Script" uid="uid://e4rcacnbrjd6" path="res://addons/muw_gui/nodes/monitors/MonitorFrameClass.gd" id="2_6uqi0"]
+[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="3_vbegm"]
+[ext_resource type="Script" uid="uid://b467gs6epi1gt" path="res://addons/muw_gui/nodes/monitors/CLI/MonitorCLI.gd" id="4_g14j6"]
+[ext_resource type="Script" uid="uid://dtnf3y4gtw6wy" path="res://button.gd" id="5_ykrsh"]
+[ext_resource type="Script" uid="uid://btkhms0a4yaan" path="res://addons/muw_gui/nodes/monitors/CLI/MiniGameFlappyBird.gd" id="6_g14j6"]
+[ext_resource type="Script" uid="uid://bglgi5f5onew7" path="res://node_2d.gd" id="7_vbegm"]
+[ext_resource type="Script" uid="uid://dyo8k0ftfs66q" path="res://addons/muw_gui/nodes/monitors/MonitorCL.gd" id="10_00tp4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ehkex"]
+
+[sub_resource type="GDScript" id="GDScript_ppyta"]
+script/source = "extends TextEdit
+
+var timer = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if timer < 10:
+		text = $\"../MonitorCLI\".text
+	timer += 1
+
+
+func _on_resized() -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="GDScript" id="GDScript_ykrsh"]
+script/source = "@tool
+extends LineEdit
+
+func _process(_delta: float) -> void:
+	text = str(Engine.get_frames_per_second())
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xersf"]
+
+[sub_resource type="GDScript" id="GDScript_vbegm"]
+script/source = "extends Button
+
+
+func _pressed() -> void:
+	$\"../MiniGameFlappyBird\".is_paused = !$\"../MiniGameFlappyBird\".is_paused
+	text = str($\"../MiniGameFlappyBird\".is_paused)
+
+func _process(_delta: float) -> void:
+	text = str($\"../MiniGameFlappyBird\".is_paused)+\" \"+$\"../MiniGameFlappyBird\".get_char_from_text(Vector2i(1,1))
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00tp4"]
+
+[sub_resource type="GDScript" id="GDScript_i7x8i"]
+script/source = "extends Camera2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if Input.is_key_pressed(KEY_W):
+		position.y -= 6
+	if Input.is_key_pressed(KEY_S):
+		position.y += 6
+	if Input.is_key_pressed(KEY_A):
+		position.x -= 6
+	if Input.is_key_pressed(KEY_D):
+		position.x += 6
+"
+
+[node name="Node2D" type="Node2D" unique_id=1175175788]
+
+[node name="MonitorFrame" type="NinePatchRect" parent="." unique_id=772686993]
+custom_minimum_size = Vector2(220, 80)
+offset_left = 926.0
+offset_top = 185.0
+offset_right = 1500.0
+offset_bottom = 651.1051
+texture = ExtResource("1_8uh7m")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_6uqi0")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="MonitorCLI" type="RichTextLabel" parent="MonitorFrame" unique_id=1710048900]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.99994
+offset_top = 40.0
+offset_right = -139.60007
+offset_bottom = -116.80002
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame/MonitorCLI")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame/MonitorCLI")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_vbegm")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ehkex")
+bbcode_enabled = true
+text = "⌜32┃10‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃                             ▲┃
+┃                             ∎┃
+┃                             ┃┃
+┃                             ┃┃
+┃                             ┃┃
+┃                             ┃┃
+┃                             ┃┃
+┃                             ▼┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+script = ExtResource("4_g14j6")
+is_scrollable = true
+scroll_max = 10
+metadata/_custom_type_script = "uid://b467gs6epi1gt"
+
+[node name="TextEdit" type="TextEdit" parent="MonitorFrame" unique_id=989230771]
+layout_mode = 0
+offset_left = 615.0
+offset_top = 209.0
+offset_right = 1076.0
+offset_bottom = 623.0
+script = SubResource("GDScript_ppyta")
+
+[node name="LineEdit" type="LineEdit" parent="MonitorFrame" unique_id=2027254662]
+layout_mode = 0
+offset_left = -158.00012
+offset_top = 493.00006
+offset_right = -89.43762
+offset_bottom = 524.00006
+scale = Vector2(3.785, 3.785)
+text = "60.0"
+script = SubResource("GDScript_ykrsh")
+
+[node name="Button" type="Button" parent="MonitorFrame" unique_id=556951090]
+layout_mode = 0
+offset_left = 582.0
+offset_top = 98.0
+offset_right = 659.0
+offset_bottom = 190.0
+script = ExtResource("5_ykrsh")
+
+[node name="MonitorFrame2" type="NinePatchRect" parent="." unique_id=1401271196]
+custom_minimum_size = Vector2(468.305, 80)
+anchors_preset = -1
+offset_right = 686.0
+offset_bottom = 524.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8uh7m")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_6uqi0")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="MiniGameFlappyBird" type="RichTextLabel" parent="MonitorFrame2" unique_id=1669231087]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 39.999996
+offset_top = 39.999996
+offset_right = -158.80005
+offset_bottom = -127.20001
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame2/MiniGameFlappyBird")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame2/MiniGameFlappyBird")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_vbegm")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xersf")
+bbcode_enabled = true
+text = "⌜40┃12‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+┃                                      ┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+script = ExtResource("6_g14j6")
+Scroling = null
+metadata/_custom_type_script = "uid://btkhms0a4yaan"
+
+[node name="VelDebug" type="Node2D" parent="MonitorFrame2" unique_id=1439940185]
+position = Vector2(680, 262)
+script = ExtResource("7_vbegm")
+
+[node name="Button" type="Button" parent="MonitorFrame2" unique_id=1924386547]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 531.0
+offset_right = 179.0
+offset_bottom = 570.0
+script = SubResource("GDScript_vbegm")
+
+[node name="MonitorFrame3" type="NinePatchRect" parent="." unique_id=259525762]
+custom_minimum_size = Vector2(220, 80)
+offset_left = 761.0
+offset_top = -332.0
+offset_right = 1354.0
+offset_bottom = 44.0
+texture = ExtResource("1_8uh7m")
+patch_margin_left = 110
+patch_margin_top = 40
+patch_margin_right = 110
+patch_margin_bottom = 40
+script = ExtResource("2_6uqi0")
+metadata/_custom_type_script = "uid://e4rcacnbrjd6"
+
+[node name="MonitorCL" type="RichTextLabel" parent="MonitorFrame3" unique_id=1928322526]
+custom_minimum_size = Vector2(12.03, 29.35)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 41.00003
+offset_top = 41.999985
+offset_right = -139.99997
+offset_bottom = -93.20001
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.25, 1.25)
+focus_neighbor_top = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame3/MonitorCL")
+focus_neighbor_bottom = NodePath("/root/@EditorNode@19513/@Panel@14/@VBoxContainer@15/DockVSplitMain/DockHSplitMain/@VBoxContainer@37/DockVSplitCenter/@VSplitContainer@101/@VBoxContainer@102/@EditorMainScreen@160/MainScreen/@CanvasItemEditor@10138/@VSplitContainer@9897/@HSplitContainer@9899/@HSplitContainer@9901/@Control@9902/@SubViewportContainer@9903/@SubViewport@9904/Node2D/MonitorFrame3/MonitorCL")
+focus_mode = 1
+theme_override_fonts/normal_font = ExtResource("3_vbegm")
+theme_override_font_sizes/normal_font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_00tp4")
+bbcode_enabled = true
+text = "⌜34┃8‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
+┃                                ┃
+┃                                ┃
+┃                                ┃
+┃                                ┃
+┃                                ┃
+┃                                ┃
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+"
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+justification_flags = 0
+script = ExtResource("10_00tp4")
+metadata/_custom_type_script = "uid://dyo8k0ftfs66q"
+
+[node name="Area2D" type="Area2D" parent="MonitorFrame3" unique_id=1282358744]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=315394209]
+position = Vector2(590, 41)
+script = SubResource("GDScript_i7x8i")
+
+[connection signal="gui_input" from="MonitorFrame/MonitorCLI" to="MonitorFrame/MonitorCLI" method="_on_gui_input"]
+[connection signal="resized" from="MonitorFrame/MonitorCLI" to="MonitorFrame/MonitorCLI" method="_on_resized"]

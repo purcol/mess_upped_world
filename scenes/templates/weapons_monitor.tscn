@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dx1m08uatvht0" path="res://addons/muw_gui/textures/monitor_texture.png" id="1_7sgh3"]
 [ext_resource type="Script" uid="uid://e4rcacnbrjd6" path="res://addons/muw_gui/nodes/monitors/MonitorFrameClass.gd" id="2_pe553"]
-[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="3_7hnhr"]
+[ext_resource type="FontFile" uid="uid://btqi1odoh33at" path="res://addons/muw_gui/font/MUWFontTestV5.1.otf" id="3_7hnhr"]
 [ext_resource type="Script" uid="uid://c2kwmc8duiksc" path="res://addons/muw_gui/resources/bbc_effects/boss_effect.gd" id="4_bfbyl"]
 [ext_resource type="Script" uid="uid://clwonv5ellwb7" path="res://addons/muw_gui/resources/bbc_effects/difficulty_effect.gd" id="5_7rocw"]
 [ext_resource type="Script" uid="uid://c1wbhcjdwtq74" path="res://addons/muw_gui/resources/bbc_effects/movement_effect.gd" id="6_38ypv"]
@@ -115,7 +115,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_7rocw")
 bbcode_enabled = true
 text = "⌜‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌝
 ┃ Вид Оружия:     Активные    Пасивные     ┃
-┃‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒┃
+├‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒┬‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒┤
 ┃                                          ┃
 ┃                                          ┃
 ┃                                          ┃
@@ -123,7 +123,7 @@ text = "⌜‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
 ┃                                          ┃
 ┃                                          ┃
 ┃                                          ┃
-⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
+⌞‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒┴‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒⌟
 "
 scroll_active = false
 autowrap_mode = 0
@@ -154,8 +154,8 @@ theme_override_font_sizes/normal_font_size = 27
 theme_override_styles/normal = SubResource("StyleBoxEmpty_mm3ks")
 bbcode_enabled = true
 text = " ОРУЖИЕТУТ      ┃
-                ┃
-                ┃
+ ОРУЖИЕТУТ      ┃
+ ОРУЖИЕТУТ      ┃
                 ┃
                 ┃
                 ┃

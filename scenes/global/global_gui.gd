@@ -21,7 +21,7 @@ enum BBC_CODES {BOSS=0,DIFFICULTY=1,MOVEMENT=2,NODE=3,WARNING=4,WEAPON=5}
 ## Enum языков
 enum LANG {EN=0,RU=1}
 ## текущий язык.
-var current_lang = LANG.RU
+var current_lang = LANG.EN
 ## ключь [member BBC_CODES] : код соответствующего эффекта
 var effects:Dictionary[BBC_CODES,String] = {BBC_CODES.BOSS:"boss_effect",
 											BBC_CODES.DIFFICULTY:"difficulty_effect",
@@ -36,6 +36,14 @@ var search_words_dictionary:Dictionary[int,Array] = {BBC_CODES.BOSS:[],
 													BBC_CODES.NODE:[],
 													BBC_CODES.WARNING:[],
 													BBC_CODES.WEAPON:[]}
+var names:Dictionary[String,Dictionary]= {
+	"weapon_type":{GU.LANG.RU:"Вид Оружия:", GU.LANG.EN:"Weapon Type:"},
+	"active":{GU.LANG.RU:"Активные", GU.LANG.EN:"Active"},
+	"passive":{GU.LANG.RU:"Пасивные", GU.LANG.EN:"Passive"}
+}
+## получить строку из [names] с ключом [param key] основываясь на языке.
+func get_str(key:String):
+	return names[key][GU.current_lang]
 
 const wire_in_end_texture := preload("res://addons/muw_gui/textures/wire_in_end.png")
 const wire_out_end_texture := preload("res://addons/muw_gui/textures/wire_out_end.png")

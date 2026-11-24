@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://chmatfomgjrsn"]
 
-[ext_resource type="FontFile" uid="uid://cq7ap36qotdpx" path="res://addons/muw_gui/font/MUWFontTestV4.1.otf" id="1_m8188"]
+[ext_resource type="FontFile" uid="uid://btqi1odoh33at" path="res://addons/muw_gui/font/MUWFontTestV5.1.otf" id="1_m8188"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3vbr"]
 bg_color = Color(0.6, 0.6, 0.6, 0)

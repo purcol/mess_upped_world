@@ -101,7 +101,7 @@ func _ready() -> void:
 		connect("resized",Callable(self,"_on_resized"))
 	if !is_connected("gui_input",Callable(self,"_on_gui_input")):
 		connect("gui_input",Callable(self,"_on_gui_input"))
-	add_theme_font_override("normal_font",load("res://addons/muw_gui/font/MUWFontTestV4.1.otf"))
+	add_theme_font_override("normal_font",load("res://addons/muw_gui/font/MUWFontTestV5.1.otf"))
 	add_theme_font_size_override("normal_font_size",27)
 	add_theme_stylebox_override("normal",StyleBoxEmpty.new())
 	if get_node("../").has_signal("wire_input_changed"):

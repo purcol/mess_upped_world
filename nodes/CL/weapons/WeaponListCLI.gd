@@ -35,3 +35,8 @@ func load_passve_weapons_list() -> void:
 		files_count[1] = DirAccess.get_files_at("res://resources/weapons/").size()
 	item_list = passve_weapons_list
 	draw_ui()
+
+func generic_draw_ui() -> void:
+	super.generic_draw_ui()
+	$"../WeaponsCLI".set_char_from_text(Vector2i(2,line_size.x-1),get_char(0b0111))
+	$"../WeaponsCLI".set_char_from_text(Vector2i($"../WeaponsCLI".line_size.y-1,line_size.x-1),get_char(0b1011))

@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_cf3bu")
-is_passive = true
 name = &"Wave"
 ru_name = &"Волна"
 ru_desc = "Простая пасивная волна"

@@ -20,7 +20,7 @@ func generic_draw_ui() -> void:
 	draw_ver_line(line_size.x-1,true)
 	var desc:Array[String] = item.get_desc_lines(line_size.x-2)
 	for i in desc.size():
-		draw_text(desc[i],Vector2(1+i,0))
+		draw_text(desc[i],Vector2(1+i,-1))
 	scroll_max = max(0,desc.size()+2-(line_size.y))+1
 	is_scrollable = scroll_max > 0
 	if !is_scrollable:

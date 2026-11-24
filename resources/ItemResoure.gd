@@ -33,21 +33,67 @@ func _get_words_with_effects(effect:GU.BBC_CODES) -> Array[String]:
 func get_desc_lines(line_lengh:int) -> Array[String]:
 	var s_desc:String = desc if GU.current_lang == GU.LANG.EN else ru_desc
 	for i in GU.BBC_CODES.size(): s_desc = s_desc.replace( "["+str(i)+"]", "" ).replace( "[/{0}]".format([i]), "" ).replace("\n", " ")
+	s_desc = s_desc.replace("\n", "")
+	
+	#line_lengh -= 1
+	var return_list:Array[String] = []
+	var counter:int = 0
+	while counter * line_lengh < s_desc.length():
+		return_list.push_back( s_desc.substr(counter*line_lengh, line_lengh) )
+		counter += 1
+	for i in return_list.size():
+		while return_list[i][0] == " ": return_list[i] = return_list[i].erase(0)
+		#if return_list[i][-1] == " ": return_list[i] = return_list[i].erase(-1)
+	return return_list
+
+func exsperemental_get_desc_lines(line_lengh:int) -> Array[String]:
+	#подкотовка к обработке описания
+	var s_desc:String = desc if GU.current_lang == GU.LANG.EN else ru_desc
+	for i in GU.BBC_CODES.size(): s_desc = s_desc.replace( "["+str(i)+"]", "" ).replace( "[/{0}]".format([i]), "" ).replace("\n", " ")
+	s_desc = s_desc.replace("\n", " ")
+	
+	#сырое разделение строк
 	var return_list:Array[String] = []
 	for i in range(0,s_desc.length(),line_lengh):
 		return_list.append(s_desc.substr(i,i+line_lengh))
+	
+	var counter = 0
+	for i in s_desc.length():
+		if i+1 <= s_desc.length():
+			counter += 1
+			@warning_ignore("standalone_expression")
+			if s_desc[i]+s_desc[i+1] == "\n": i+1
+			else:
+				if counter % line_lengh == 0: s_desc = s_desc.insert(i,"\n");
+	
+	var temp_split:Array = []
+	temp_split = Array(s_desc.split("\n"))
+	var temp_split_sum:String = ""
+	for i in range(1,temp_split.size()):
+		temp_split_sum = temp_split[i-1].split(" ")[-1]+temp_split[i].split(" ")[0]
+		if temp_split_sum in s_desc.replace("\n",""):
+			s_desc = s_desc.replace("\n","").insert(s_desc.find(temp_split_sum), "\t")
+		#print(temp_split_sum, "|", temp_split[i-1],"+",temp_split[i])
+	s_desc = s_desc.replace("\t","\n")
+	#print(s_desc,"\n\n",return_list)
+	#print(line_lengh,"\n",s_desc,"\n\n",return_list)
+	
+	counter = 0
+	temp_split = s_desc.split("\n")
+	var temp_holder:Array[String] = []
+	#for i in temp_split.size(): if temp_split[i].ends_with(" "): temp_split[i].erase(temp_split[i].length()-1)
+	for i in temp_split.size():
+		if temp_split[i].length() > line_lengh:
+			temp_holder.append(temp_split[i])
+			temp_split.remove_at(i)
+			for j in range(line_lengh,temp_holder[0].length(),line_lengh):
+				temp_holder[0].insert(j,"\n")
+			print(temp_holder)
+			temp_split.insert(i,temp_holder[0])
+			
+	print(temp_split)
+	
 	return return_list
-
-func _fix_desc_lines(broken_desc:Array[String],line_lengh:int) -> Array[String]:
-	var return_list:Array[String] = []
-	var string:String = ""
-	for i in broken_desc.size():
-		string = broken_desc[i]
-		if string.length() > line_lengh:
-			for separator in [" ",",",".",":"]:
-				if separator in string:
-					print("FIX ",string.split(separator)[-1])
-	return broken_desc
 
 ## возвращает название ресурса на основе [param lang]. (См. GU.LANG)
 func get_title() -> StringName:
